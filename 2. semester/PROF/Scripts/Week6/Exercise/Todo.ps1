@@ -1,3 +1,4 @@
+#removes the next x amount of commands from the command list
 function Remove-Commands{
     param(
         [int]$amount = 1,
@@ -9,6 +10,7 @@ function Remove-Commands{
     return $commandList[$amount..($commandList.Length - 1)]
 }
 
+#prints out a help message
 function Show-Help{
     write-host "
                 -h                      : show help
@@ -25,6 +27,7 @@ function Show-Help{
                 "
 }
 
+#finds all arguments until the next command
 function Get-Args{
     param(
         $a
@@ -39,6 +42,7 @@ function Get-Args{
     )
 }
 
+#only keeps the item in the todo list that are not in the list of indexes to remove
 function Remove-Tasks{
     param(
         [array]$indexes,
@@ -52,6 +56,7 @@ function Remove-Tasks{
     )
 }
 
+#print out the todo list
 function Show-Tasks{
     param(
         [array]$todoList
@@ -64,25 +69,25 @@ function Show-Tasks{
 
 
 $todoList = @()
-
+Write-Host -NoNewline "             -h for help`n`n"
 while($true){
 
     Write-Host -NoNewline "Todo> "
-    [string]$commands = Read-Host 
+    [string]$commands = Read-Host #get alle commands and arg from user
     write-host ""
 
-    [array]$commandList = $commands.Split(" ")
+    [array]$commandList = $commands.Split(" ") #split commands and args into array
 
     while($commandList.Length -ne 0){
         switch($commandList[0]){
 
-            {$_ -in "-h", "-help"} {
+            {$_ -in "-h", "-help"} { #show help
                 $commandList = Remove-Commands -commandList $commandList
                 Show-Help
                 break
             }
 
-            {$_ -in "-add", "-a"} {
+            {$_ -in "-add", "-a"} { #add all the arg to the todo list
                 $commandList = Remove-Commands -commandList $commandList;
                 [array]$tasksToAdd = Get-Args -a $commandList
                 if($tasksToAdd.length -gt 0){$todoList += $tasksToAdd}
@@ -91,7 +96,7 @@ while($true){
                 break
             }
 
-            {$_ -in "-remove", "-r"} {
+            {$_ -in "-remove", "-r"} { #remove all the arg index form the todo list
                 $commandList = Remove-Commands -commandList $commandList
                 [array]$tasksToRemove = Get-Args -a $commandList
                 $todoList = Remove-Tasks -indexes $tasksToRemove -todoList $todoList
@@ -100,18 +105,18 @@ while($true){
                 break
             }
 
-            {$_ -in "-view", "-v"} {
+            {$_ -in "-view", "-v"} { #show todo list
                 $commandList = Remove-Commands -commandList $commandList
                 Show-Tasks -todoList $todoList | Out-Null
                 write-host "`n"
                 break
             }
 
-            "-exit" {
+            "-exit" { #exit the program
                 exit 0
             }
             
-            default {
+            default { #unknown command
                 write-host "unknown command: $($commandList[0])`n`n"
                 $commandList = Remove-Commands -commandList $commandList
                 break
