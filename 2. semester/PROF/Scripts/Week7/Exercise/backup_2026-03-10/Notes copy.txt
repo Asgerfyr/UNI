@@ -1,0 +1,4 @@
+run a bash on my machine
+
+& "C:\Program Files\Git\bin\bash.exe"
+ "[bash file path]"
