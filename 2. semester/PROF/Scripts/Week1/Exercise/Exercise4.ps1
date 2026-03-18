@@ -3,7 +3,6 @@ param(
 )
 #printing out all files over 10MB in this directory and its subdirectorys, not recursively
 
-
 #getting all files from the subdirectory
 (Get-ChildItem -Path $path | 
 Where-Object { $_.PSIsContainer } | 
