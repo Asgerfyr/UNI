@@ -1,0 +1,2010 @@
+{
+	"Import Statistics Libraries": {
+		"prefix": ["stats-import", "importer-statistik"],
+		"body": [
+			"import numpy as np",
+			"from scipy import stats",
+			"from scipy.stats import norm, t, chi2, f, binom, poisson, expon, uniform, bernoulli, geom",
+			"import matplotlib.pyplot as plt"
+		],
+		"description": "Import common statistics libraries | Importer almindelige statistikbiblioteker"
+	},
+	
+	// ==================== PRINT STATEMENTS / PRINT UDTRYK ====================
+	
+	"Print Percentage": {
+		"prefix": ["print-procent", "print-percent"],
+		"body": [
+			"print(round(${1:value}*100, ${2:2}), \"%\")"
+		],
+		"description": "Print værdi som procent | Print value as percentage"
+	},
+	
+	"Print Percentage f-string": {
+		"prefix": ["print-procent-f", "procent"],
+		"body": [
+			"print(f\"{${1:value}*100:.${2:2}f}%\")"
+		],
+		"description": "Print procent med f-string | Print percentage with f-string"
+	},
+	
+	"Print Formatted Number": {
+		"prefix": ["print-tal", "print-number"],
+		"body": [
+			"print(f\"{${1:variable}:.${2:4}f}\")"
+		],
+		"description": "Print formateret tal | Print formatted number"
+	},
+	
+	"Print with Label": {
+		"prefix": ["print-label", "print-med-label"],
+		"body": [
+			"print(f\"${1:Label}: {${2:variable}:.${3:4}f}\")"
+		],
+		"description": "Print med label | Print with descriptive label"
+	},
+	
+	"Print Probability": {
+		"prefix": ["print-sandsynlighed", "print-prob"],
+		"body": [
+			"print(f\"P(${1:event}) = {${2:probability}:.4f}\")"
+		],
+		"description": "Print sandsynlighed | Print probability statement"
+	},
+	
+	"Print Statistics Summary": {
+		"prefix": ["print-statistik", "print-stats"],
+		"body": [
+			"print(f\"n = {${1:n}}\")",
+			"print(f\"Gennemsnit: {${2:mean}:.4f}\")",
+			"print(f\"Varians: {${3:variance}:.4f}\")",
+			"print(f\"Std: {${4:std}:.4f}\")"
+		],
+		"description": "Print statistisk oversigt | Print statistical summary"
+	},
+	
+	"Print Hypothesis Test Result": {
+		"prefix": ["print-test-resultat", "print-test"],
+		"body": [
+			"print(f\"Teststatistik: {${1:test_stat}:.4f}\")",
+			"print(f\"Kritisk værdi: {${2:critical}:.4f}\")",
+			"print(f\"p-værdi: {${3:p_value}:.4f}\")",
+			"print(f\"Konklusion: {'Forkast H₀' if ${4:condition} else 'Forkast ikke H₀'}\")"
+		],
+		"description": "Print hypotesetest resultat | Print hypothesis test result"
+	},
+	
+	"Print Confidence Interval": {
+		"prefix": ["print-ki", "print-ci"],
+		"body": [
+			"print(f\"{${1:confidence}*100:.0f}% Konfidensinterval: ({${2:lower}:.4f}, {${3:upper}:.4f})\")"
+		],
+		"description": "Print konfidensinterval | Print confidence interval"
+	},
+	
+	"Print Comparison": {
+		"prefix": ["print-sammenligning", "print-compare"],
+		"body": [
+			"print(f\"Teoretisk: {${1:theoretical}:.4f}\")",
+			"print(f\"Empirisk: {${2:empirical}:.4f}\")",
+			"print(f\"Forskel: {abs(${2:empirical} - ${1:theoretical}):.6f}\")"
+		],
+		"description": "Print sammenligning teoretisk vs empirisk | Print theoretical vs empirical comparison"
+	},
+	
+	"Print Distribution Parameters": {
+		"prefix": ["print-fordeling", "print-dist"],
+		"body": [
+			"print(f\"E[X] = {${1:mean}:.4f}\")",
+			"print(f\"Var(X) = {${2:variance}:.4f}\")",
+			"print(f\"σ = {${3:std}:.4f}\")"
+		],
+		"description": "Print fordelingsparametre | Print distribution parameters"
+	},
+	
+	"Print Rounded Percentage": {
+		"prefix": ["procent-round", "percent-round"],
+		"body": [
+			"print(round(${1:value}, ${2:2}), \"%\")"
+		],
+		"description": "Print afrundet procent | Print rounded percentage"
+	},
+	
+	"Print Multiple Values": {
+		"prefix": ["print-flere", "print-multiple"],
+		"body": [
+			"print(f\"${1:Label1}: {${2:var1}:.${3:2}f}, ${4:Label2}: {${5:var2}:.${3:2}f}\")"
+		],
+		"description": "Print flere værdier | Print multiple values"
+	},
+	
+	"Print Separator Line": {
+		"prefix": ["print-linje", "print-separator"],
+		"body": [
+			"print(\"=\"*${1:50})"
+		],
+		"description": "Print separatorlinje | Print separator line"
+	},
+	
+	"Print Section Header": {
+		"prefix": ["print-header", "print-overskrift"],
+		"body": [
+			"print(\"\\n\" + \"=\"*${1:50})",
+			"print(f\"  ${2:Section Title}\")",
+			"print(\"=\"*${1:50} + \"\\n\")"
+		],
+		"description": "Print sektion overskrift | Print section header"
+	},
+	
+	"Print Array/List": {
+		"prefix": ["print-array", "print-liste"],
+		"body": [
+			"print(f\"${1:Label}: {${2:array}}\")"
+		],
+		"description": "Print array/liste | Print array or list"
+	},
+	
+	"Print Rounded Array": {
+		"prefix": ["print-array-round", "print-array-afrundet"],
+		"body": [
+			"print(f\"${1:Label}: {np.round(${2:array}, ${3:4})}\")"
+		],
+		"description": "Print afrundet array | Print rounded array"
+	},
+	
+	"Print True/False Result": {
+		"prefix": ["print-resultat", "print-result"],
+		"body": [
+			"print(f\"${1:Test}: {${2:condition}}\")"
+		],
+		"description": "Print sand/falsk resultat | Print true/false result"
+	},
+	
+	"Print Equation": {
+		"prefix": ["print-ligning", "print-equation"],
+		"body": [
+			"print(f\"${1:y} = {${2:slope}:.4f}x + {${3:intercept}:.4f}\")"
+		],
+		"description": "Print ligning | Print equation"
+	},
+	
+	// ==================== GRUNDLÆGGENDE SANDSYNLIGHED / BASIC PROBABILITY ====================
+	
+	"Binomial Coefficient": {
+		"prefix": ["binom-koef", "binomialkoefficient"],
+		"body": [
+			"from math import comb",
+			"# Binomialkoefficient: n choose k | Binomial coefficient",
+			"# Antal måder at vælge k elementer fra n elementer",
+			"n = ${1:10}",
+			"k = ${2:3}",
+			"coef = comb(n, k)",
+			"print(f\"C({n},{k}) = {coef}\")"
+		],
+		"description": "Binomialkoefficient (n choose k) | Binomial coefficient - number of ways to choose k from n"
+	},
+	
+	"Factorial": {
+		"prefix": ["fakultet", "factorial"],
+		"body": [
+			"from math import factorial",
+			"# Fakultet: n! = n × (n-1) × ... × 2 × 1",
+			"n = ${1:5}",
+			"result = factorial(n)",
+			"print(f\"{n}! = {result}\")"
+		],
+		"description": "Fakultet (n!) | Factorial - product of all positive integers up to n"
+	},
+	
+	"Permutations": {
+		"prefix": ["permutation", "permutationer"],
+		"body": [
+			"from math import perm",
+			"# Permutationer uden tilbagelægning: P(n,k) = n!/(n-k)!",
+			"# Antal ordnede udvælgelser af k elementer fra n",
+			"n = ${1:10}",
+			"k = ${2:3}",
+			"result = perm(n, k)",
+			"print(f\"P({n},{k}) = {result}\")"
+		],
+		"description": "Permutationer P(n,k) | Permutations without replacement - ordered arrangements of k items from n"
+	},
+	
+	"Combinations": {
+		"prefix": ["kombination", "combinations"],
+		"body": [
+			"from math import comb",
+			"# Kombinationer uden tilbagelægning: C(n,k) = n!/(k!(n-k)!)",
+			"# Antal uordnede udvælgelser af k elementer fra n",
+			"n = ${1:10}",
+			"k = ${2:3}",
+			"result = comb(n, k)",
+			"print(f\"C({n},{k}) = {result}\")"
+		],
+		"description": "Kombinationer C(n,k) | Combinations without replacement - unordered selections of k items from n"
+	},
+	
+	"Permutations with Replacement": {
+		"prefix": ["permutation-med-tilbagelægning", "perm-replacement"],
+		"body": [
+			"# Permutationer med tilbagelægning: n^k",
+			"# Antal ordnede udvælgelser af k elementer fra n med tilbagelægning",
+			"# Hver position kan vælges fra alle n muligheder",
+			"n = ${1:10}  # Antal muligheder",
+			"k = ${2:3}  # Antal valg",
+			"result = n ** k",
+			"print(f\"P_rep({n},{k}) = {n}^{k} = {result}\")"
+		],
+		"description": "Permutationer med tilbagelægning n^k | Permutations with replacement - ordered selections with replacement"
+	},
+	
+	"Combinations with Replacement": {
+		"prefix": ["kombination-med-tilbagelægning", "comb-replacement", "multiset"],
+		"body": [
+			"from math import comb",
+			"# Kombinationer med tilbagelægning (multiset koefficient)",
+			"# C_rep(n,k) = C(n+k-1, k) = (n+k-1)! / (k!(n-1)!)",
+			"# Antal uordnede udvælgelser af k elementer fra n med tilbagelægning",
+			"n = ${1:5}  # Antal forskellige typer",
+			"k = ${2:3}  # Antal valg",
+			"result = comb(n + k - 1, k)",
+			"print(f\"C_rep({n},{k}) = C({n+k-1},{k}) = {result}\")"
+		],
+		"description": "Kombinationer med tilbagelægning | Combinations with replacement (multiset coefficient)"
+	},
+	
+	"Stars and Bars": {
+		"prefix": ["stjerner-og-streger", "stars-bars"],
+		"body": [
+			"from math import comb",
+			"# Stjerner og streger (Stars and Bars)",
+			"# Antal måder at fordele k identiske objekter i n forskellige grupper",
+			"# Samme som kombinationer med tilbagelægning: C(n+k-1, k)",
+			"n_groups = ${1:4}  # Antal grupper",
+			"k_objects = ${2:10}  # Antal identiske objekter",
+			"result = comb(n_groups + k_objects - 1, k_objects)",
+			"print(f\"Antal fordelinger: C({n_groups + k_objects - 1},{k_objects}) = {result}\")"
+		],
+		"description": "Stjerner og streger | Stars and bars - distributing identical objects into groups"
+	},
+	
+	"Sampling with Replacement": {
+		"prefix": ["stikprøve-med-tilbagelægning", "sample-replacement"],
+		"body": [
+			"# Stikprøve med tilbagelægning",
+			"# Sample with replacement from population",
+			"import numpy as np",
+			"",
+			"population = ${1:np.array([1, 2, 3, 4, 5])}",
+			"sample_size = ${2:10}",
+			"",
+			"np.random.seed(${3:42})",
+			"sample = np.random.choice(population, size=sample_size, replace=True)",
+			"print(f\"Stikprøve: {sample}\")"
+		],
+		"description": "Stikprøve med tilbagelægning | Sampling with replacement from population"
+	},
+	
+	"Sampling without Replacement": {
+		"prefix": ["stikprøve-uden-tilbagelægning", "sample-no-replacement"],
+		"body": [
+			"# Stikprøve uden tilbagelægning",
+			"# Sample without replacement from population",
+			"import numpy as np",
+			"",
+			"population = ${1:np.array([1, 2, 3, 4, 5])}",
+			"sample_size = ${2:3}",
+			"",
+			"np.random.seed(${3:42})",
+			"sample = np.random.choice(population, size=sample_size, replace=False)",
+			"print(f\"Stikprøve: {sample}\")"
+		],
+		"description": "Stikprøve uden tilbagelægning | Sampling without replacement from population"
+	},
+	
+	"Multinomial Coefficient": {
+		"prefix": ["multinomial-koefficient", "multinomial"],
+		"body": [
+			"from math import factorial",
+			"# Multinomialkoefficient: n! / (k₁! × k₂! × ... × kₘ!)",
+			"# Antal måder at opdele n objekter i m grupper af størrelser k₁, k₂, ..., kₘ",
+			"n = ${1:10}  # Total antal objekter",
+			"k_groups = [${2:3, 4, 3}]  # Størrelser af hver gruppe (skal summe til n)",
+			"",
+			"numerator = factorial(n)",
+			"denominator = 1",
+			"for k in k_groups:",
+			"    denominator *= factorial(k)",
+			"",
+			"result = numerator // denominator",
+			"print(f\"Multinomialkoefficient: {result}\")",
+			"print(f\"{n}! / ({' × '.join([f'{k}!' for k in k_groups])}) = {result}\")"
+		],
+		"description": "Multinomialkoefficient | Multinomial coefficient - dividing n objects into groups"
+	},
+	
+	"Conditional Probability": {
+		"prefix": ["betinget-sandsynlighed", "cond-prob"],
+		"body": [
+			"# Betinget sandsynlighed: P(A|B) = P(A ∩ B) / P(B)",
+			"# Conditional probability: probability of A given B",
+			"P_A_and_B = ${1:0.32}  # P(A ∩ B) - sandsynlighed for både A og B",
+			"P_B = ${2:0.5}  # P(B) - sandsynlighed for B",
+			"P_A_given_B = P_A_and_B / P_B",
+			"print(f\"P(A|B) = {P_A_given_B:.4f}\")"
+		],
+		"description": "Betinget sandsynlighed P(A|B) | Conditional probability - probability of A given B has occurred"
+	},
+	
+	"Bayes Formula": {
+		"prefix": ["bayes-formel", "bayes"],
+		"body": [
+			"# Bayes' formel: P(A|B) = P(B|A) × P(A) / P(B)",
+			"# Bruges til at vende en betinget sandsynlighed",
+			"P_B_given_A = ${1:0.95}  # P(B|A) - sandsynlighed for B givet A",
+			"P_A = ${2:0.01}  # P(A) - a priori sandsynlighed for A",
+			"P_B = ${3:0.05}  # P(B) - total sandsynlighed for B",
+			"",
+			"P_A_given_B = (P_B_given_A * P_A) / P_B",
+			"print(f\"P(A|B) = {P_A_given_B:.4f}\")"
+		],
+		"description": "Bayes' formel | Bayes' formula - reverse conditional probability using prior knowledge"
+	},
+	
+	"Bayes with Total Probability": {
+		"prefix": ["bayes-total", "bayes-med-total"],
+		"body": [
+			"# Bayes' formel med total sandsynlighed",
+			"# P(A|B) = [P(B|A) × P(A)] / [P(B|A) × P(A) + P(B|A^c) × P(A^c)]",
+			"",
+			"P_${1:sygdom} = ${2:0.01}  # P(A) - a priori sandsynlighed",
+			"P_${3:positiv}_given_${1:sygdom} = ${4:0.95}  # P(B|A) - sensitivitet",
+			"P_${3:positiv}_given_not_${1:sygdom} = ${5:0.05}  # P(B|A^c) - falsk positiv rate",
+			"",
+			"# Total sandsynlighed for B",
+			"P_${3:positiv} = P_${1:sygdom} * P_${3:positiv}_given_${1:sygdom} + (1 - P_${1:sygdom}) * P_${3:positiv}_given_not_${1:sygdom}",
+			"",
+			"# Bayes' formel",
+			"P_${1:sygdom}_given_${3:positiv} = (P_${3:positiv}_given_${1:sygdom} * P_${1:sygdom}) / P_${3:positiv}",
+			"",
+			"print(f\"P(${1:sygdom}|${3:positiv}) = {P_${1:sygdom}_given_${3:positiv}:.4f}\")",
+			"print(f\"P(${3:positiv}) = {P_${3:positiv}:.4f}\")"
+		],
+		"description": "Bayes med total sandsynlighed | Bayes' formula with total probability calculation"
+	},
+	
+	"Total Probability": {
+		"prefix": ["total-sandsynlighed", "total-prob"],
+		"body": [
+			"# Total sandsynlighedsformel: P(B) = Σ P(B|Aᵢ) × P(Aᵢ)",
+			"# Total probability: når B kan ske gennem flere partitioner",
+			"events = [${1:'A1', 'A2', 'A3'}]",
+			"P_B_given_A = [${2:0.8, 0.6, 0.9}]  # P(B|Aᵢ) for hver partition",
+			"P_A = [${3:0.3, 0.5, 0.2}]  # P(Aᵢ) - sandsynlighed for hver partition",
+			"",
+			"P_B = sum(p_ba * p_a for p_ba, p_a in zip(P_B_given_A, P_A))",
+			"print(f\"P(B) = {P_B:.4f}\")"
+		],
+		"description": "Total sandsynlighed | Total probability - probability through partitioned events"
+	},
+	
+	"Total Probability (Two Events)": {
+		"prefix": ["total-sandsynlighed-to", "total-prob-two", "total-prob-binary"],
+		"body": [
+			"# Total sandsynlighed med to komplementære hændelser",
+			"# P(B) = P(A) × P(B|A) + P(A^c) × P(B|A^c)",
+			"# P(B) = P(A) × P(B|A) + (1-P(A)) × P(B|A^c)",
+			"",
+			"P_${1:udfald} = ${2:0.3}  # P(A) - sandsynlighed for hændelse A",
+			"P_${3:positiv}_given_${1:udfald} = ${4:0.95}  # P(B|A)",
+			"P_${3:positiv}_given_not_${1:udfald} = ${5:0.05}  # P(B|A^c)",
+			"",
+			"# Total sandsynlighed",
+			"P_${3:positiv} = P_${1:udfald} * P_${3:positiv}_given_${1:udfald} + (1 - P_${1:udfald}) * P_${3:positiv}_given_not_${1:udfald}",
+			"",
+			"print(f\"P(${3:positiv}) = {P_${3:positiv}:.4f}\")"
+		],
+		"description": "Total sandsynlighed (to hændelser) | Total probability with two complementary events"
+	},
+	
+	// ==================== FORDELINGER / DISTRIBUTIONS ====================
+	
+	"Bernoulli Distribution": {
+		"prefix": ["bernoulli-fordeling", "bernoulli"],
+		"body": [
+			"# Bernoulli-fordeling: X ∈ {0,1}, P(X=1) = p",
+			"# Enkelt binært udfald (succes/fiasko)",
+			"p = ${1:0.3}  # Succesandsynlighed | Success probability",
+			"X = stats.bernoulli(p)",
+			"",
+			"# Middelværdi (Expected value): E[X] = p",
+			"# Varians (Variance): Var(X) = p(1-p)",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")",
+			"print(f\"P(X=1) = {X.pmf(1):.4f}\")"
+		],
+		"description": "Bernoulli-fordeling | Bernoulli distribution - single binary trial with probability p"
+	},
+	
+	"Binomial Distribution": {
+		"prefix": ["binomial-fordeling", "binomial"],
+		"body": [
+			"# Binomial-fordeling: X ~ Bin(n,p)",
+			"# Antal succeser i n uafhængige Bernoulli-forsøg",
+			"n = ${1:10}  # Antal forsøg | Number of trials",
+			"p = ${2:0.3}  # Succesandsynlighed | Success probability",
+			"X = stats.binom(n, p)",
+			"",
+			"# Middelværdi: E[X] = np",
+			"# Varians: Var(X) = np(1-p)",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")",
+			"print(f\"P(X = {${3:5}}) = {X.pmf(${3:5}):.4f}\")",
+			"print(f\"P(X ≤ {${3:5}}) = {X.cdf(${3:5}):.4f}\")"
+		],
+		"description": "Binomial-fordeling Bin(n,p) | Binomial distribution - number of successes in n independent Bernoulli trials"
+	},
+	
+	"Geometric Distribution": {
+		"prefix": ["geometrisk-fordeling", "geometric"],
+		"body": [
+			"# Geometrisk fordeling: X ~ Geom(p)",
+			"# Antal forsøg indtil første succes",
+			"p = ${1:0.3}  # Succesandsynlighed | Success probability",
+			"X = stats.geom(p)",
+			"",
+			"# Middelværdi: E[X] = 1/p",
+			"# Varians: Var(X) = (1-p)/p²",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")",
+			"print(f\"P(X = {${2:5}}) = {X.pmf(${2:5}):.4f}\")"
+		],
+		"description": "Geometrisk fordeling Geom(p) | Geometric distribution - trials until first success"
+	},
+	
+	"Negative Binomial Distribution": {
+		"prefix": ["negativ-binomial", "negbinom"],
+		"body": [
+			"# Negativ binomial-fordeling: antal forsøg til r succeser",
+			"r = ${1:3}  # Antal ønskede succeser | Number of successes",
+			"p = ${2:0.3}  # Succesandsynlighed | Success probability",
+			"X = stats.nbinom(r, p)",
+			"",
+			"# Middelværdi: E[X] = r(1-p)/p",
+			"# Varians: Var(X) = r(1-p)/p²",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")"
+		],
+		"description": "Negativ binomial-fordeling | Negative binomial - trials until r successes"
+	},
+	
+	"Hypergeometric Distribution": {
+		"prefix": ["hypergeometrisk-fordeling", "hypergeom"],
+		"body": [
+			"# Hypergeometrisk fordeling: udvælgelse uden tilbagelægning",
+			"# Begrænset population",
+			"M = ${1:50}  # Total populationsstørrelse | Total population size",
+			"n = ${2:20}  # Antal 'succeser' i population | Number of success states",
+			"N = ${3:10}  # Antal trækninger | Number of draws",
+			"X = stats.hypergeom(M, n, N)",
+			"",
+			"# E[X] = N(n/M)",
+			"# Var(X) = N(n/M)(1-n/M)(M-N)/(M-1)",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")"
+		],
+		"description": "Hypergeometrisk fordeling | Hypergeometric - sampling without replacement from finite population"
+	},
+	
+	"Poisson Distribution": {
+		"prefix": ["poisson-fordeling", "poisson"],
+		"body": [
+			"# Poisson-fordeling: X ~ Pois(λ)",
+			"# Antal hændelser i fast tidsinterval/område",
+			"lambda_rate = ${1:3.5}  # λ - gennemsnitlig rate | Average rate",
+			"X = stats.poisson(lambda_rate)",
+			"",
+			"# Middelværdi: E[X] = λ",
+			"# Varians: Var(X) = λ",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")",
+			"print(f\"P(X = {${2:3}}) = {X.pmf(${2:3}):.4f}\")",
+			"print(f\"P(X ≤ {${2:3}}) = {X.cdf(${2:3}):.4f}\")"
+		],
+		"description": "Poisson-fordeling Pois(λ) | Poisson distribution - count of events in fixed interval with rate λ"
+	},
+	
+	"Uniform Distribution (Discrete)": {
+		"prefix": ["uniform-diskret", "uniform-discrete"],
+		"body": [
+			"# Diskret uniform fordeling: X ~ U{a,a+1,...,b}",
+			"# Alle udfald lige sandsynlige",
+			"low = ${1:1}  # Minimum værdi | Minimum value",
+			"high = ${2:6}  # Maksimum værdi | Maximum value",
+			"X = stats.randint(low, high + 1)",
+			"",
+			"# E[X] = (a+b)/2",
+			"# Var(X) = ((b-a+1)²-1)/12",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")"
+		],
+		"description": "Diskret uniform fordeling | Discrete uniform - all outcomes equally likely in {a,...,b}"
+	},
+	
+	"Uniform Distribution (Continuous)": {
+		"prefix": ["uniform-kontinuert", "uniform-cont"],
+		"body": [
+			"# Kontinuert uniform fordeling: X ~ U(a,b)",
+			"# Konstant tæthed over interval",
+			"a = ${1:0}  # Nedre grænse | Lower bound",
+			"b = ${2:1}  # Øvre grænse | Upper bound",
+			"X = stats.uniform(a, b - a)",
+			"",
+			"# Tæthed: f(x) = 1/(b-a) for x ∈ [a,b]",
+			"# E[X] = (a+b)/2",
+			"# Var(X) = (b-a)²/12",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")"
+		],
+		"description": "Kontinuert uniform fordeling U(a,b) | Continuous uniform - constant density over interval [a,b]"
+	},
+	
+	"Exponential Distribution": {
+		"prefix": ["eksponential-fordeling", "exponential"],
+		"body": [
+			"# Eksponentialfordeling: X ~ Exp(λ)",
+			"# Ventetid til næste hændelse (levetidsfordeling)",
+			"lambda_rate = ${1:0.5}  # λ - rate parameter | Rate parameter",
+			"X = stats.expon(scale=1/lambda_rate)",
+			"",
+			"# Tæthed: f(x) = λe^(-λx) for x ≥ 0",
+			"# E[X] = 1/λ",
+			"# Var(X) = 1/λ²",
+			"# Hukommelsesløs: P(X > s+t | X > s) = P(X > t)",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")",
+			"print(f\"P(X ≤ {${2:2}}) = {X.cdf(${2:2}):.4f}\")"
+		],
+		"description": "Eksponentialfordeling Exp(λ) | Exponential distribution - waiting time, memoryless property"
+	},
+	
+	"Normal Distribution": {
+		"prefix": ["normal-fordeling", "normalfordeling"],
+		"body": [
+			"# Normal-fordeling (Gaussisk): X ~ N(μ, σ²)",
+			"# Klokkekurve, symmetrisk omkring μ",
+			"mu = ${1:0}  # μ - middelværdi | Mean",
+			"sigma = ${2:1}  # σ - standardafvigelse | Standard deviation",
+			"X = stats.norm(loc=mu, scale=sigma)",
+			"",
+			"# Tæthed: f(x) = (1/σ√(2π)) exp(-(x-μ)²/(2σ²))",
+			"# E[X] = μ",
+			"# Var(X) = σ²",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")",
+			"print(f\"P(X ≤ {${3:0}}) = {X.cdf(${3:0}):.4f}\")"
+		],
+		"description": "Normal-fordeling N(μ,σ²) | Normal/Gaussian distribution - bell curve, E[X]=μ, Var(X)=σ²"
+	},
+	
+	"Standard Normal Distribution": {
+		"prefix": ["standard-normal", "z-fordeling"],
+		"body": [
+			"# Standard normalfordeling: Z ~ N(0,1)",
+			"# Normaliseret normal-fordeling",
+			"Z = stats.norm(0, 1)",
+			"",
+			"# Standardisering: Z = (X - μ) / σ",
+			"# E[Z] = 0, Var(Z) = 1",
+			"z_value = ${1:1.96}",
+			"print(f\"P(Z ≤ {z_value}) = {Z.cdf(z_value):.4f}\")",
+			"print(f\"P(Z > {z_value}) = {1 - Z.cdf(z_value):.4f}\")",
+			"print(f\"P(-{z_value} ≤ Z ≤ {z_value}) = {Z.cdf(z_value) - Z.cdf(-z_value):.4f}\")"
+		],
+		"description": "Standard normalfordeling N(0,1) | Standard normal distribution - mean 0, variance 1"
+	},
+	
+	"Log-Normal Distribution": {
+		"prefix": ["lognormal-fordeling", "lognormal"],
+		"body": [
+			"# Log-normalfordeling: hvis log(X) ~ N(μ, σ²)",
+			"# Altid positiv, højreskæv",
+			"mu = ${1:0}  # μ - parameter (ikke middelværdi!)",
+			"sigma = ${2:1}  # σ - parameter",
+			"X = stats.lognorm(s=sigma, scale=np.exp(mu))",
+			"",
+			"# E[X] = exp(μ + σ²/2)",
+			"# Var(X) = (exp(σ²) - 1) × exp(2μ + σ²)",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")"
+		],
+		"description": "Log-normalfordeling | Log-normal distribution - if log(X) is normal, X is log-normal"
+	},
+	
+	"Chi-Squared Distribution": {
+		"prefix": ["chi2-fordeling", "chi-kvadrat"],
+		"body": [
+			"# Chi-i-anden (χ²) fordeling med k frihedsgrader",
+			"# Sum af k uafhængige standard normale variable i anden",
+			"df = ${1:10}  # k - frihedsgrader (degrees of freedom)",
+			"X = stats.chi2(df)",
+			"",
+			"# E[X] = k",
+			"# Var(X) = 2k",
+			"# Bruges til: varianstest, goodness-of-fit test",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")",
+			"print(f\"P(X ≤ {${2:10}}) = {X.cdf(${2:10}):.4f}\")"
+		],
+		"description": "Chi-i-anden fordeling χ²(k) | Chi-squared distribution - sum of k squared standard normals"
+	},
+	
+	"Student's t-Distribution": {
+		"prefix": ["t-fordeling", "students-t"],
+		"body": [
+			"# Students t-fordeling med ν frihedsgrader",
+			"# Ligner normalfordeling men tungere haler",
+			"df = ${1:10}  # ν - frihedsgrader (degrees of freedom)",
+			"X = stats.t(df)",
+			"",
+			"# E[X] = 0 (for ν > 1)",
+			"# Var(X) = ν/(ν-2) (for ν > 2)",
+			"# For ν → ∞: t → N(0,1)",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")",
+			"print(f\"P(X ≤ {${2:1.96}}) = {X.cdf(${2:1.96}):.4f}\")"
+		],
+		"description": "Students t-fordeling t(ν) | Student's t-distribution - heavier tails than normal, used when σ unknown"
+	},
+	
+	"F-Distribution": {
+		"prefix": ["f-fordeling", "f-dist"],
+		"body": [
+			"# F-fordeling med (d₁, d₂) frihedsgrader",
+			"# Ratio af to chi-kvadrat fordelinger",
+			"dfn = ${1:5}  # d₁ - tæller frihedsgrader | Numerator degrees of freedom",
+			"dfd = ${2:10}  # d₂ - nævner frihedsgrader | Denominator degrees of freedom",
+			"X = stats.f(dfn, dfd)",
+			"",
+			"# Bruges til: ANOVA, varianstest (F-test)",
+			"# E[X] = d₂/(d₂-2) (for d₂ > 2)",
+			"print(f\"E[X] = {X.mean():.4f}\")",
+			"print(f\"Var(X) = {X.var():.4f}\")"
+		],
+		"description": "F-fordeling F(d₁,d₂) | F-distribution - ratio of chi-squared variables, used in ANOVA"
+	},
+	
+	// ==================== SANDSYNLIGHEDSREGNING / PROBABILITY CALCULATIONS ====================
+	
+	"Normal CDF": {
+		"prefix": ["norm-cdf", "normal-kumulativ"],
+		"body": [
+			"# Kumulativ fordelingsfunktion (CDF): P(X ≤ x)",
+			"# Cumulative distribution function",
+			"prob = stats.norm.cdf(${1:x}, loc=${2:mean}, scale=${3:std})",
+			"print(f\"P(X ≤ {${1:x}}) = {prob:.4f}\")"
+		],
+		"description": "Normal CDF P(X≤x) | Cumulative distribution function - probability up to x"
+	},
+	
+	"Normal PPF (Quantile)": {
+		"prefix": ["norm-ppf", "fraktil", "kvantil"],
+		"body": [
+			"# Fraktil/Kvantil (PPF): Invers CDF",
+			"# Percent point function:Find x sådan at P(X ≤ x) = p",
+			"prob = ${1:0.95}  # Sandsynlighed | Probability",
+			"quantile = stats.norm.ppf(prob)",
+			"print(f\"x sådan at P(X ≤ x) = {prob}: x = {quantile:.4f}\")"
+		],
+		"description": "Fraktil/Kvantil (PPF) | Quantile/percent point function - inverse CDF, find x where P(X≤x)=p"
+	},
+	
+	"Probability Between Values": {
+		"prefix": ["sandsynlighed-mellem", "prob-between"],
+		"body": [
+			"# Sandsynlighed mellem to værdier: P(a < X < b)",
+			"lower = ${1:0}",
+			"upper = ${2:1}",
+			"mu = ${3:0}",
+			"sigma = ${4:1}",
+			"prob = stats.norm.cdf(upper, loc=mu, scale=sigma) - stats.norm.cdf(lower, loc=mu, scale=sigma)",
+			"print(f\"P({lower} < X < {upper}) = {prob:.4f}\")"
+		],
+		"description": "P(a<X<b) | Probability between two values for normal distribution"
+	},
+	
+	// ==================== ESTIMATORER / ESTIMATORS ====================
+	
+	"Sample Statistics": {
+		"prefix": ["stikprøve-statistik", "sample-stats"],
+		"body": [
+			"# Empiriske stikprøvestatistikker",
+			"${1:data} = np.array([${2:values}])",
+			"n = len(${1:data})",
+			"",
+			"# Stikprøvemiddelværdi (Sample mean): x̄",
+			"sample_mean = np.mean(${1:data})",
+			"",
+			"# Stikprøvevarians (Sample variance): s² med Bessel correction (n-1)",
+			"sample_var = np.var(${1:data}, ddof=1)",
+			"",
+			"# Stikprøvestandardafvigelse (Sample std): s",
+			"sample_std = np.std(${1:data}, ddof=1)",
+			"",
+			"print(f\"n = {n}\")",
+			"print(f\"x̄ = {sample_mean:.4f}\")",
+			"print(f\"s² = {sample_var:.4f}\")",
+			"print(f\"s = {sample_std:.4f}\")"
+		],
+		"description": "Stikprøvestatistikker | Sample statistics - mean, variance, std with Bessel correction (n-1)"
+	},
+	
+	"Standard Error": {
+		"prefix": ["standardfejl", "std-error"],
+		"body": [
+			"# Standardfejl (Standard Error): SE = σ/√n",
+			"# Spredning af stikprøvemiddelværdien",
+			"sigma = ${1:5}  # Populationsstandardafvigelse | Population std",
+			"n = ${2:30}  # Stikprøvestørrelse | Sample size",
+			"SE = sigma / np.sqrt(n)",
+			"print(f\"SE = {SE:.4f}\")"
+		],
+		"description": "Standardfejl SE=σ/√n | Standard error - spread of sample mean"
+	},
+	
+	"Point Estimator (Proportion)": {
+		"prefix": ["andel-estimator", "prop-estimate"],
+		"body": [
+			"# Andelestimator: p̂ = X/n",
+			"# Point estimator for proportion",
+			"successes = ${1:45}  # Antal succeser | Number of successes",
+			"n = ${2:100}  # Stikprøvestørrelse | Sample size",
+			"p_hat = successes / n",
+			"print(f\"p̂ = {p_hat:.4f}\")"
+		],
+		"description": "Andelestimator p̂=X/n | Point estimator for proportion"
+	},
+	
+	"Verify Unbiased Estimator": {
+		"prefix": ["verificer-forventningsret", "verify-unbiased"],
+		"body": [
+			"# Verificer forventningsret estimator via simulering",
+			"# En estimator T er forventningsret hvis E[T] = θ",
+			"theta = ${1:0.3}  # Sand parameterværdi | True parameter value",
+			"n = ${2:30}  # Stikprøvestørrelse | Sample size",
+			"N = ${3:10000}  # Antal simuleringer | Number of simulations",
+			"",
+			"# Simuler N stikprøver",
+			"np.random.seed(42)",
+			"estimates = []",
+			"for _ in range(N):",
+			"    sample = np.random.binomial(1, theta, n)",
+			"    estimates.append(np.mean(sample))  # Estimator",
+			"",
+			"mean_estimate = np.mean(estimates)",
+			"bias = mean_estimate - theta",
+			"",
+			"print(f\"Sand θ = {theta:.4f}\")",
+			"print(f\"E[T̂] = {mean_estimate:.4f}\")",
+			"print(f\"Bias = {bias:.6f}\")",
+			"print(f\"Forventningsret: {abs(bias) < 0.01}\")"
+		],
+		"description": "Verificer forventningsret | Verify unbiased estimator - check if E[T]=θ via simulation"
+	},
+	
+	"Maximum Likelihood Estimation": {
+		"prefix": ["maximum-likelihood", "mle"],
+		"body": [
+			"# Maximum Likelihood Estimation (MLE)",
+			"# Find parameter der maksimerer likelihood",
+			"from scipy.optimize import minimize",
+			"",
+			"data = np.array([${1:data_values}])",
+			"",
+			"# Negativ log-likelihood (til minimering)",
+			"def neg_log_likelihood(params):",
+			"    mu, sigma = params",
+			"    return -np.sum(stats.norm.logpdf(data, loc=mu, scale=sigma))",
+			"",
+			"# Initial gæt",
+			"initial = [np.mean(data), np.std(data)]",
+			"result = minimize(neg_log_likelihood, initial, method='L-BFGS-B', ",
+			"                  bounds=[(None, None), (0.001, None)])",
+			"",
+			"mu_mle, sigma_mle = result.x",
+			"print(f\"μ̂_MLE = {mu_mle:.4f}\")",
+			"print(f\"σ̂_MLE = {sigma_mle:.4f}\")"
+		],
+		"description": "Maximum Likelihood Estimation | MLE - find parameters maximizing likelihood"
+	},
+	
+	// ==================== KONFIDENSINTERVALLER / CONFIDENCE INTERVALS ====================
+	
+	"Critical Value": {
+		"prefix": ["kritisk-værdi", "crit-value"],
+		"body": [
+			"# Kritisk værdi for konfidensinterval",
+			"# Critical value: z eller t værdi for given konfidensniveau",
+			"alpha = ${1:0.05}  # Signifikansniveau (typisk 0.05 for 95% CI)",
+			"",
+			"# For normalfordeling (kendt varians)",
+			"z_critical = stats.norm.ppf(1 - alpha/2)",
+			"print(f\"z_{alpha/2} = {z_critical:.4f}\")",
+			"",
+			"# For t-fordeling (ukendt varians)",
+			"df = ${2:29}  # n - 1 frihedsgrader",
+			"t_critical = stats.t.ppf(1 - alpha/2, df)",
+			"print(f\"t_{alpha/2}({df}) = {t_critical:.4f}\")"
+		],
+		"description": "Kritisk værdi z/t | Critical value for confidence intervals"
+	},
+	
+	"Confidence Interval (Known Variance)": {
+		"prefix": ["konfidensinterval-kendt", "ci-known"],
+		"body": [
+			"# Konfidensinterval for middelværdi (kendt varians)",
+			"# CI: x̄ ± z_{α/2} × (σ/√n)",
+			"alpha = ${1:0.05}  # Signifikansniveau (1-α = konfidensniveau)",
+			"sample_mean = ${2:10}  # Stikprøvemiddelværdi | Sample mean",
+			"sigma = ${3:2}  # Kendt standardafvigelse | Known std",
+			"n = ${4:30}  # Stikprøvestørrelse | Sample size",
+			"",
+			"z_critical = stats.norm.ppf(1 - alpha/2)",
+			"SE = sigma / np.sqrt(n)",
+			"margin_error = z_critical * SE",
+			"",
+			"lower_bound = sample_mean - margin_error",
+			"upper_bound = sample_mean + margin_error",
+			"",
+			"print(f\"{(1-alpha)*100:.0f}% Konfidensinterval: ({lower_bound:.4f}, {upper_bound:.4f})\")",
+			"print(f\"Fejlmargin: ±{margin_error:.4f}\")"
+		],
+		"description": "Konfidensinterval kendt σ | CI for mean with known variance: x̄ ± z×(σ/√n)"
+	},
+	
+	"Confidence Interval (Unknown Variance)": {
+		"prefix": ["konfidensinterval-ukendt", "ci-unknown"],
+		"body": [
+			"# Konfidensinterval for middelværdi (ukendt varians)",
+			"# CI: x̄ ± t_{α/2,n-1} × (s/√n)",
+			"alpha = ${1:0.05}",
+			"sample_mean = ${2:10}",
+			"s = ${3:2}  # Stikprøvestandardafvigelse | Sample std",
+			"n = ${4:30}",
+			"",
+			"df = n - 1",
+			"t_critical = stats.t.ppf(1 - alpha/2, df)",
+			"SE = s / np.sqrt(n)",
+			"margin_error = t_critical * SE",
+			"",
+			"lower_bound = sample_mean - margin_error",
+			"upper_bound = sample_mean + margin_error",
+			"",
+			"print(f\"{(1-alpha)*100:.0f}% Konfidensinterval: ({lower_bound:.4f}, {upper_bound:.4f})\")"
+		],
+		"description": "Konfidensinterval ukendt σ | CI for mean with unknown variance: x̄ ± t×(s/√n)"
+	},
+	
+	"Confidence Interval (Proportion)": {
+		"prefix": ["konfidensinterval-andel", "ci-proportion"],
+		"body": [
+			"# Konfidensinterval for andel/proportion",
+			"# CI: p̂ ± z_{α/2} × √(p̂(1-p̂)/n)",
+			"alpha = ${1:0.05}",
+			"p_hat = ${2:0.6}  # Stikprøveandel | Sample proportion",
+			"n = ${3:100}",
+			"",
+			"z_critical = stats.norm.ppf(1 - alpha/2)",
+			"SE = np.sqrt(p_hat * (1 - p_hat) / n)",
+			"margin_error = z_critical * SE",
+			"",
+			"lower_bound = p_hat - margin_error",
+			"upper_bound = p_hat + margin_error",
+			"",
+			"print(f\"{(1-alpha)*100:.0f}% Konfidensinterval: ({lower_bound:.4f}, {upper_bound:.4f})\")"
+		],
+		"description": "Konfidensinterval andel | CI for proportion: p̂ ± z×√(p̂(1-p̂)/n)"
+	},
+	
+	"Confidence Interval (Variance)": {
+		"prefix": ["konfidensinterval-varians", "ci-variance"],
+		"body": [
+			"# Konfidensinterval for varians",
+			"# Bruger chi-kvadrat fordeling",
+			"alpha = ${1:0.05}",
+			"s_squared = ${2:4}  # Stikprøvevarians | Sample variance",
+			"n = ${3:30}",
+			"",
+			"df = n - 1",
+			"chi2_lower = stats.chi2.ppf(alpha/2, df)",
+			"chi2_upper = stats.chi2.ppf(1 - alpha/2, df)",
+			"",
+			"lower_bound = (df * s_squared) / chi2_upper",
+			"upper_bound = (df * s_squared) / chi2_lower",
+			"",
+			"print(f\"{(1-alpha)*100:.0f}% CI for σ²: ({lower_bound:.4f}, {upper_bound:.4f})\")"
+		],
+		"description": "Konfidensinterval varians | CI for variance using chi-squared distribution"
+	},
+	
+	"Sample Size Calculation": {
+		"prefix": ["stikprøvestørrelse", "sample-size"],
+		"body": [
+			"# Beregn nødvendig stikprøvestørrelse",
+			"# For given fejlmargin og konfidensniveau",
+			"alpha = ${1:0.05}",
+			"margin_error = ${2:0.5}  # Ønsket fejlmargin | Desired margin of error",
+			"sigma = ${3:5}  # Kendt/antaget σ (worst case: 0.5 for andel)",
+			"",
+			"z_critical = stats.norm.ppf(1 - alpha/2)",
+			"n = (z_critical * sigma / margin_error) ** 2",
+			"",
+			"print(f\"Nødvendig stikprøvestørrelse: n = {np.ceil(n):.0f}\")"
+		],
+		"description": "Stikprøvestørrelse n | Required sample size for desired margin of error"
+	},
+	
+	// ==================== HYPOTESETEST / HYPOTHESIS TESTING ====================
+	
+	"Z-Test (One Sample)": {
+		"prefix": ["z-test", "z-test-en-stikprøve"],
+		"body": [
+			"# Z-test for middelværdi (kendt varians)",
+			"# H₀: μ = μ₀  vs  H₁: μ ≠ μ₀ (tosidet)",
+			"sample_mean = ${1:10.5}  # Observeret stikprøvemiddel",
+			"mu_0 = ${2:10}  # Nulhypotese værdi",
+			"sigma = ${3:2}  # Kendt populationsstandardafvigelse",
+			"n = ${4:30}",
+			"",
+			"# Teststatistik: Z = (x̄ - μ₀) / (σ/√n)",
+			"z_stat = (sample_mean - mu_0) / (sigma / np.sqrt(n))",
+			"",
+			"# Kritisk værdi",
+			"alpha = ${5:0.05}",
+			"z_critical = stats.norm.ppf(1 - alpha/2)",
+			"",
+			"# p-værdi (tosidet)",
+			"p_value = 2 * (1 - stats.norm.cdf(abs(z_stat)))",
+			"",
+			"print(f\"H₀: μ = {mu_0}\")",
+			"print(f\"H₁: μ ≠ {mu_0}\")",
+			"print(f\"Teststatistik Z = {z_stat:.4f}\")",
+			"print(f\"Kritisk værdi: ±{z_critical:.4f}\")",
+			"print(f\"p-værdi = {p_value:.4f}\")",
+			"print(f\"Konklusion: {'Forkast H₀' if abs(z_stat) > z_critical else 'Forkast ikke H₀'}\")"
+		],
+		"description": "Z-test én stikprøve | One-sample Z-test for mean with known variance"
+	},
+	
+	"Z-Test (One-Sided Greater)": {
+		"prefix": ["z-test-højresidet", "z-test-greater"],
+		"body": [
+			"# Z-test højresidet: H₀: μ = μ₀ vs H₁: μ > μ₀",
+			"sample_mean = ${1:10.5}",
+			"mu_0 = ${2:10}",
+			"sigma = ${3:2}",
+			"n = ${4:30}",
+			"alpha = ${5:0.05}",
+			"",
+			"z_stat = (sample_mean - mu_0) / (sigma / np.sqrt(n))",
+			"z_critical = stats.norm.ppf(1 - alpha)  # Ensidet",
+			"p_value = 1 - stats.norm.cdf(z_stat)",
+			"",
+			"print(f\"H₀: μ = {mu_0}\")",
+			"print(f\"H₁: μ > {mu_0}\")",
+			"print(f\"Z = {z_stat:.4f}\")",
+			"print(f\"Kritisk værdi: {z_critical:.4f}\")",
+			"print(f\"p-værdi = {p_value:.4f}\")",
+			"print(f\"Konklusion: {'Forkast H₀' if z_stat > z_critical else 'Forkast ikke H₀'}\")"
+		],
+		"description": "Z-test højresidet | Right-tailed Z-test: H₁: μ > μ₀"
+	},
+	
+	"T-Test (One Sample)": {
+		"prefix": ["t-test", "t-test-en-stikprøve"],
+		"body": [
+			"# t-test for middelværdi (ukendt varians)",
+			"# H₀: μ = μ₀  vs  H₁: μ ≠ μ₀",
+			"sample_mean = ${1:10.5}",
+			"mu_0 = ${2:10}",
+			"s = ${3:2}  # Stikprøvestandardafvigelse",
+			"n = ${4:30}",
+			"",
+			"# Teststatistik: t = (x̄ - μ₀) / (s/√n)",
+			"t_stat = (sample_mean - mu_0) / (s / np.sqrt(n))",
+			"df = n - 1",
+			"",
+			"alpha = ${5:0.05}",
+			"t_critical = stats.t.ppf(1 - alpha/2, df)",
+			"p_value = 2 * (1 - stats.t.cdf(abs(t_stat), df))",
+			"",
+			"print(f\"H₀: μ = {mu_0}\")",
+			"print(f\"H₁: μ ≠ {mu_0}\")",
+			"print(f\"t({df}) = {t_stat:.4f}\")",
+			"print(f\"Kritisk værdi: ±{t_critical:.4f}\")",
+			"print(f\"p-værdi = {p_value:.4f}\")",
+			"print(f\"Konklusion: {'Forkast H₀' if abs(t_stat) > t_critical else 'Forkast ikke H₀'}\")"
+		],
+		"description": "t-test én stikprøve | One-sample t-test for mean with unknown variance"
+	},
+	
+	"Paired T-Test": {
+		"prefix": ["parret-t-test", "paired-t-test"],
+		"body": [
+			"# Parret t-test: sammenlign to parrede stikprøver",
+			"# H₀: μ_d = 0  (ingen forskel)",
+			"before = np.array([${1:data1}])",
+			"after = np.array([${2:data2}])",
+			"",
+			"# Forskelle",
+			"differences = after - before",
+			"d_bar = np.mean(differences)",
+			"s_d = np.std(differences, ddof=1)",
+			"n = len(differences)",
+			"",
+			"# t-test på forskelle",
+			"t_stat = d_bar / (s_d / np.sqrt(n))",
+			"df = n - 1",
+			"alpha = ${3:0.05}",
+			"",
+			"t_critical = stats.t.ppf(1 - alpha/2, df)",
+			"p_value = 2 * (1 - stats.t.cdf(abs(t_stat), df))",
+			"",
+			"print(f\"H₀: μ_d = 0\")",
+			"print(f\"Gennemsnitlig forskel: {d_bar:.4f}\")",
+			"print(f\"t({df}) = {t_stat:.4f}\")",
+			"print(f\"p-værdi = {p_value:.4f}\")"
+		],
+		"description": "Parret t-test | Paired t-test for matched samples"
+	},
+	
+	"Two-Sample T-Test (Pooled Variance)": {
+		"prefix": ["to-stikprøve-t-test", "two-sample-t"],
+		"body": [
+			"# To-stikprøve t-test med pooled varians",
+			"# H₀: μ₁ = μ₂  vs  H₁: μ₁ ≠ μ₂",
+			"# Antager lige varianser: σ₁² = σ₂²",
+			"x1 = np.array([${1:sample1}])",
+			"x2 = np.array([${2:sample2}])",
+			"",
+			"n1, n2 = len(x1), len(x2)",
+			"mean1, mean2 = np.mean(x1), np.mean(x2)",
+			"s1_sq = np.var(x1, ddof=1)",
+			"s2_sq = np.var(x2, ddof=1)",
+			"",
+			"# Pooled varians: s²_p = [(n₁-1)s₁² + (n₂-1)s₂²] / (n₁+n₂-2)",
+			"s_pooled_sq = ((n1 - 1) * s1_sq + (n2 - 1) * s2_sq) / (n1 + n2 - 2)",
+			"",
+			"# Teststatistik: t = (x̄₁ - x̄₂) / √(s²_p(1/n₁ + 1/n₂))",
+			"t_stat = (mean1 - mean2) / np.sqrt(s_pooled_sq * (1/n1 + 1/n2))",
+			"df = n1 + n2 - 2",
+			"",
+			"alpha = ${3:0.05}",
+			"t_critical = stats.t.ppf(1 - alpha/2, df)",
+			"p_value = 2 * (1 - stats.t.cdf(abs(t_stat), df))",
+			"",
+			"print(f\"H₀: μ₁ = μ₂\")",
+			"print(f\"t({df}) = {t_stat:.4f}\")",
+			"print(f\"p-værdi = {p_value:.4f}\")",
+			"print(f\"Konklusion: {'Forkast H₀' if abs(t_stat) > t_critical else 'Forkast ikke H₀'}\")"
+		],
+		"description": "To-stikprøve t-test pooled | Two-sample t-test assuming equal variances"
+	},
+	
+	"Pooled Variance": {
+		"prefix": ["pooled-varians", "pooled-var"],
+		"body": [
+			"# Pooled variance for two samples",
+			"s_pooled_sq = ((${1:n1} - 1) * ${2:s1_sq} + (${3:n2} - 1) * ${4:s2_sq}) / (${1:n1} + ${3:n2} - 2)",
+			"s_pooled = np.sqrt(s_pooled_sq)",
+			"print(f\"Pooled variance: {s_pooled_sq:.4f}\")",
+			"print(f\"Pooled std: {s_pooled:.4f}\")"
+		],
+		"description": "Calculate pooled variance for two samples"
+	},
+	"Point Estimator (Proportion)": {
+		"prefix": "prop-estimate",
+		"body": [
+			"p_hat = ${1:successes} / ${2:n}",
+			"print(f\"Proportion estimate: {p_hat:.4f}\")"
+		],
+		"description": "Point estimator for proportion"
+	},
+	"Verify Unbiased Estimator (Simulation)": {
+		"prefix": "verify-unbiased",
+		"body": [
+			"# Verify if estimator is unbiased via simulation",
+			"p = ${1:0.018}",
+			"n = ${2:3000}",
+			"N = ${3:10000}",
+			"",
+			"sim_data = np.random.binomial(n=n, p=p, size=N)",
+			"p_hat_sim = sim_data / n",
+			"mean_p_hat = np.mean(p_hat_sim)",
+			"",
+			"print(f\"True parameter p: {p:.4f}\")",
+			"print(f\"Mean of estimators: {mean_p_hat:.4f}\")",
+			"print(f\"Difference: {np.abs(mean_p_hat - p):.6f}\")"
+		],
+		"description": "Verify estimator is unbiased using simulation"
+	},
+	"Histogram Plot": {
+		"prefix": "hist-plot",
+		"body": [
+			"plt.hist(${1:data}, bins=${2:50}, density=${3:True}, alpha=0.7, edgecolor='black')",
+			"plt.xlabel('${4:Value}')",
+			"plt.ylabel('${5:Density}')",
+			"plt.title('${6:Distribution}')",
+			"plt.show()"
+		],
+		"description": "Plot histogram"
+	},
+	"Data Masking": {
+		"prefix": "data-mask",
+		"body": [
+			"mask = (${1:data} ${2:>} ${3:threshold})",
+			"filtered_data = ${1:data}[mask]",
+			"count = mask.sum()",
+			"print(f\"Count: {count}\")"
+		],
+		"description": "Create boolean mask for data filtering"
+	},
+	"Probability Between Values": {
+		"prefix": "prob-between",
+		"body": [
+			"prob = norm.cdf(${1:upper}, loc=${2:mean}, scale=${3:std}) - norm.cdf(${4:lower}, loc=${2:mean}, scale=${3:std})",
+			"print(f\"P({${4:lower}} < X < {${1:upper}}): {prob:.4f}\")"
+		],
+		"description": "Calculate probability between two values for normal distribution"
+	},
+	"Two-Sample T-Test": {
+		"prefix": "two-sample-t",
+		"body": [
+			"# Two-sample unpaired t-test with pooled variance",
+			"x1 = np.array([${1:sample1}])",
+			"x2 = np.array([${2:sample2}])",
+			"",
+			"n1, n2 = len(x1), len(x2)",
+			"mean1, mean2 = np.mean(x1), np.mean(x2)",
+			"s1_sq = np.var(x1, ddof=1)",
+			"s2_sq = np.var(x2, ddof=1)",
+			"",
+			"# Pooled variance",
+			"s_pooled_sq = ((n1 - 1) * s1_sq + (n2 - 1) * s2_sq) / (n1 + n2 - 2)",
+			"",
+			"# Test statistic",
+			"t_stat = (mean1 - mean2) / np.sqrt(s_pooled_sq * (1/n1 + 1/n2))",
+			"df = n1 + n2 - 2",
+			"",
+			"# Critical value",
+			"alpha = ${3:0.05}",
+			"t_critical = t.ppf(1 - alpha/2, df)",
+			"",
+			"print(f\"T-statistic: {t_stat:.4f}\")",
+			"print(f\"Critical value: ±{t_critical:.4f}\")",
+			"print(f\"Conclusion: {'Reject H0' if abs(t_stat) > t_critical else 'Fail to reject H0'}\")"
+		],
+		"description": "Two-sample unpaired t-test with pooled variance"
+	},
+	"Variance Calculation": {
+		"prefix": "variance-calc",
+		"body": [
+			"# Variance from simulated data",
+			"variance = np.sum((${1:data} - np.mean(${1:data})) ** 2) / (len(${1:data}) - 1)",
+			"print(f\"Variance: {variance:.6f}\")"
+		],
+		"description": "Calculate variance manually"
+	},
+	"Expected Value and Variance": {
+		"prefix": ["forventning-varians", "ev-var"],
+		"body": [
+			"# Forventningsværdi og varians fra momenter",
+			"# E[X] og Var(X) = E[X²] - (E[X])²",
+			"E_X = ${1:expected_value}",
+			"E_X_sq = ${2:expected_value_squared}",
+			"Var_X = E_X_sq - E_X**2",
+			"print(f\"E[X]: {E_X:.4f}\")",
+			"print(f\"Var[X]: {Var_X:.4f}\")"
+		],
+		"description": "Forventning og varians | Expected value and variance from E[X] and E[X²]"
+	},
+	
+	// ==================== SIMULERING / SIMULATION ====================
+	
+	"Simulate Discrete Uniform": {
+		"prefix": ["sim-uniform-diskret", "rdunif"],
+		"body": [
+			"# Simuler diskret uniform fordeling",
+			"# R: ceiling(runif(n, min=a-1, max=b))",
+			"np.random.seed(${1:42})",
+			"a = ${2:1}  # Minimum værdi",
+			"b = ${3:6}  # Maksimum værdi",
+			"n = ${4:1000}  # Antal simuleringer",
+			"",
+			"sim_data = np.random.randint(a, b + 1, size=n)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {(a + b) / 2:.4f}\")"
+		],
+		"description": "Simuler diskret uniform | Simulate discrete uniform distribution"
+	},
+	
+	"Simulate Binomial": {
+		"prefix": ["sim-binomial", "rbinom"],
+		"body": [
+			"# Simuler binomial-fordeling: Bin(n, p)",
+			"# R: rbinom(n, size, prob)",
+			"np.random.seed(${1:42})",
+			"n_trials = ${2:10}  # Antal forsøg per observation",
+			"p = ${3:0.3}  # Succesandsynlighed",
+			"n_sim = ${4:1000}  # Antal simuleringer",
+			"",
+			"sim_data = np.random.binomial(n=n_trials, p=p, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {n_trials * p:.4f}\")",
+			"print(f\"Varians: {np.var(sim_data, ddof=1):.4f}\")",
+			"print(f\"Teoretisk Var(X) = {n_trials * p * (1 - p):.4f}\")"
+		],
+		"description": "Simuler binomial | Simulate binomial distribution rbinom()"
+	},
+	
+	"Simulate Negative Binomial": {
+		"prefix": ["sim-negbinom", "rnbinom"],
+		"body": [
+			"# Simuler negativ binomial-fordeling",
+			"# R: rnbinom(n, size, prob)",
+			"# Antal fiaskoer før r succeser",
+			"np.random.seed(${1:42})",
+			"r = ${2:5}  # Antal ønskede succeser",
+			"p = ${3:0.3}  # Succesandsynlighed",
+			"n_sim = ${4:1000}",
+			"",
+			"sim_data = np.random.negative_binomial(n=r, p=p, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {r * (1 - p) / p:.4f}\")"
+		],
+		"description": "Simuler negativ binomial | Simulate negative binomial rnbinom()"
+	},
+	
+	"Simulate Geometric": {
+		"prefix": ["sim-geometrisk", "rgeom"],
+		"body": [
+			"# Simuler geometrisk fordeling",
+			"# R: rgeom(n, prob)",
+			"# Antal forsøg til første succes",
+			"np.random.seed(${1:42})",
+			"p = ${2:0.3}  # Succesandsynlighed",
+			"n_sim = ${3:1000}",
+			"",
+			"sim_data = np.random.geometric(p=p, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {1 / p:.4f}\")"
+		],
+		"description": "Simuler geometrisk | Simulate geometric distribution rgeom()"
+	},
+	
+	"Simulate Hypergeometric": {
+		"prefix": ["sim-hypergeometrisk", "rhyper"],
+		"body": [
+			"# Simuler hypergeometrisk fordeling",
+			"# R: rhyper(nn, m, n, k)",
+			"# Udvælgelse uden tilbagelægning",
+			"np.random.seed(${1:42})",
+			"M = ${2:50}  # Total populationsstørrelse",
+			"K = ${3:20}  # Antal 'succeser' i population",
+			"n_draws = ${4:10}  # Antal trækninger",
+			"n_sim = ${5:1000}",
+			"",
+			"sim_data = np.random.hypergeometric(ngood=K, nbad=M-K, nsample=n_draws, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {n_draws * K / M:.4f}\")"
+		],
+		"description": "Simuler hypergeometrisk | Simulate hypergeometric distribution rhyper()"
+	},
+	
+	"Simulate Poisson": {
+		"prefix": ["sim-poisson", "rpois"],
+		"body": [
+			"# Simuler Poisson-fordeling: Pois(λ)",
+			"# R: rpois(n, lambda)",
+			"np.random.seed(${1:42})",
+			"lambda_rate = ${2:3.5}  # Rate parameter λ",
+			"n_sim = ${3:1000}",
+			"",
+			"sim_data = np.random.poisson(lam=lambda_rate, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {lambda_rate:.4f}\")",
+			"print(f\"Varians: {np.var(sim_data, ddof=1):.4f}\")",
+			"print(f\"Teoretisk Var(X) = {lambda_rate:.4f}\")"
+		],
+		"description": "Simuler Poisson | Simulate Poisson distribution rpois()"
+	},
+	
+	"Simulate Normal": {
+		"prefix": ["sim-normal", "rnorm"],
+		"body": [
+			"# Simuler normalfordeling: N(μ, σ²)",
+			"# R: rnorm(n, mean=0, sd=1)",
+			"np.random.seed(${1:42})",
+			"mu = ${2:0}  # Middelværdi",
+			"sigma = ${3:1}  # Standardafvigelse",
+			"n_sim = ${4:1000}",
+			"",
+			"sim_data = np.random.normal(loc=mu, scale=sigma, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {mu:.4f}\")",
+			"print(f\"Std: {np.std(sim_data, ddof=1):.4f}\")",
+			"print(f\"Teoretisk σ = {sigma:.4f}\")"
+		],
+		"description": "Simuler normal | Simulate normal distribution rnorm()"
+	},
+	
+	"Simulate Log-Normal": {
+		"prefix": ["sim-lognormal", "rlnorm"],
+		"body": [
+			"# Simuler log-normalfordeling",
+			"# R: rlnorm(n, meanlog=0, sdlog=1)",
+			"# Hvis log(X) ~ N(μ, σ²), da X ~ LogNormal",
+			"np.random.seed(${1:42})",
+			"mu = ${2:0}  # meanlog parameter",
+			"sigma = ${3:1}  # sdlog parameter",
+			"n_sim = ${4:1000}",
+			"",
+			"sim_data = np.random.lognormal(mean=mu, sigma=sigma, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {np.exp(mu + sigma**2 / 2):.4f}\")"
+		],
+		"description": "Simuler log-normal | Simulate log-normal distribution rlnorm()"
+	},
+	
+	"Simulate Continuous Uniform": {
+		"prefix": ["sim-uniform", "runif"],
+		"body": [
+			"# Simuler kontinuert uniform: U(a, b)",
+			"# R: runif(n, min=0, max=1)",
+			"np.random.seed(${1:42})",
+			"a = ${2:0}  # Minimum",
+			"b = ${3:1}  # Maksimum",
+			"n_sim = ${4:1000}",
+			"",
+			"sim_data = np.random.uniform(low=a, high=b, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {(a + b) / 2:.4f}\")"
+		],
+		"description": "Simuler kontinuert uniform | Simulate continuous uniform runif()"
+	},
+	
+	"Simulate Exponential": {
+		"prefix": ["sim-eksponential", "rexp"],
+		"body": [
+			"# Simuler eksponentialfordeling: Exp(λ)",
+			"# R: rexp(n, rate=1)",
+			"np.random.seed(${1:42})",
+			"lambda_rate = ${2:1}  # Rate parameter λ",
+			"n_sim = ${3:1000}",
+			"",
+			"# Python bruger scale = 1/rate",
+			"sim_data = np.random.exponential(scale=1/lambda_rate, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {1 / lambda_rate:.4f}\")",
+			"print(f\"Std: {np.std(sim_data, ddof=1):.4f}\")",
+			"print(f\"Teoretisk σ = {1 / lambda_rate:.4f}\")"
+		],
+		"description": "Simuler eksponential | Simulate exponential distribution rexp()"
+	},
+	
+	"Simulate Gamma": {
+		"prefix": ["sim-gamma", "rgamma"],
+		"body": [
+			"# Simuler gamma-fordeling",
+			"# R: rgamma(n, shape, scale=1)",
+			"np.random.seed(${1:42})",
+			"shape = ${2:2}  # Shape parameter (k, α)",
+			"scale = ${3:2}  # Scale parameter (θ)",
+			"n_sim = ${4:1000}",
+			"",
+			"sim_data = np.random.gamma(shape=shape, scale=scale, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {shape * scale:.4f}\")",
+			"print(f\"Varians: {np.var(sim_data, ddof=1):.4f}\")",
+			"print(f\"Teoretisk Var(X) = {shape * scale**2:.4f}\")"
+		],
+		"description": "Simuler gamma | Simulate gamma distribution rgamma()"
+	},
+	
+	"Simulate Cauchy": {
+		"prefix": ["sim-cauchy", "rcauchy"],
+		"body": [
+			"# Simuler Cauchy-fordeling",
+			"# R: rcauchy(n, location=0, scale=1)",
+			"# Ingen veldefineret middelværdi eller varians!",
+			"np.random.seed(${1:42})",
+			"location = ${2:0}  # Location parameter",
+			"scale = ${3:1}  # Scale parameter",
+			"n_sim = ${4:1000}",
+			"",
+			"sim_data = np.random.standard_cauchy(size=n_sim) * scale + location",
+			"print(f\"Median: {np.median(sim_data):.4f}\")",
+			"print(\"OBS: Cauchy har ingen veldefineret middelværdi eller varians\")"
+		],
+		"description": "Simuler Cauchy | Simulate Cauchy distribution rcauchy()"
+	},
+	
+	"Simulate Beta": {
+		"prefix": ["sim-beta", "rbeta"],
+		"body": [
+			"# Simuler beta-fordeling: Beta(α, β)",
+			"# R: rbeta(n, shape1, shape2)",
+			"# Defineret på interval [0, 1]",
+			"np.random.seed(${1:42})",
+			"alpha = ${2:2}  # Shape parameter 1 (α)",
+			"beta = ${3:5}  # Shape parameter 2 (β)",
+			"n_sim = ${4:1000}",
+			"",
+			"sim_data = np.random.beta(a=alpha, b=beta, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {alpha / (alpha + beta):.4f}\")"
+		],
+		"description": "Simuler beta | Simulate beta distribution rbeta()"
+	},
+	
+	"Simulate Student's t": {
+		"prefix": ["sim-t", "rt"],
+		"body": [
+			"# Simuler Students t-fordeling: t(ν)",
+			"# R: rt(n, df)",
+			"np.random.seed(${1:42})",
+			"df = ${2:10}  # Frihedsgrader (degrees of freedom)",
+			"n_sim = ${3:1000}",
+			"",
+			"sim_data = np.random.standard_t(df=df, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = 0 (for df > 1)\")",
+			"if df > 2:",
+			"    print(f\"Varians: {np.var(sim_data, ddof=1):.4f}\")",
+			"    print(f\"Teoretisk Var(X) = {df / (df - 2):.4f}\")"
+		],
+		"description": "Simuler Students t | Simulate Student's t-distribution rt()"
+	},
+	
+	"Simulate Chi-Squared": {
+		"prefix": ["sim-chi2", "rchisq"],
+		"body": [
+			"# Simuler chi-kvadrat-fordeling: χ²(k)",
+			"# R: rchisq(n, df)",
+			"np.random.seed(${1:42})",
+			"df = ${2:5}  # Frihedsgrader k",
+			"n_sim = ${3:1000}",
+			"",
+			"sim_data = np.random.chisquare(df=df, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"print(f\"Teoretisk E[X] = {df:.4f}\")",
+			"print(f\"Varians: {np.var(sim_data, ddof=1):.4f}\")",
+			"print(f\"Teoretisk Var(X) = {2 * df:.4f}\")"
+		],
+		"description": "Simuler chi-kvadrat | Simulate chi-squared distribution rchisq()"
+	},
+	
+	"Simulate F-Distribution": {
+		"prefix": ["sim-f", "rf"],
+		"body": [
+			"# Simuler F-fordeling: F(d₁, d₂)",
+			"# R: rf(n, df1, df2)",
+			"np.random.seed(${1:42})",
+			"dfn = ${2:5}  # Tæller frihedsgrader d₁",
+			"dfd = ${3:10}  # Nævner frihedsgrader d₂",
+			"n_sim = ${4:1000}",
+			"",
+			"sim_data = np.random.f(dfnum=dfn, dfden=dfd, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data):.4f}\")",
+			"if dfd > 2:",
+			"    print(f\"Teoretisk E[X] = {dfd / (dfd - 2):.4f}\")"
+		],
+		"description": "Simuler F-fordeling | Simulate F-distribution rf()"
+	},
+	
+	"Simulate Multivariate Normal": {
+		"prefix": ["sim-mvnorm", "rmvnorm"],
+		"body": [
+			"# Simuler multivariat normalfordeling",
+			"np.random.seed(${1:42})",
+			"",
+			"# Middelværdivektor",
+			"mean = np.array([${2:0, 0}])",
+			"",
+			"# Kovarians matrix",
+			"cov = np.array([[${3:1, 0.5}],",
+			"                [${4:0.5, 1}]])",
+			"",
+			"n_sim = ${5:1000}",
+			"",
+			"sim_data = np.random.multivariate_normal(mean=mean, cov=cov, size=n_sim)",
+			"print(f\"Gennemsnit: {np.mean(sim_data, axis=0)}\")",
+			"print(f\"Kovarians matrix:\")",
+			"print(np.cov(sim_data.T))"
+		],
+		"description": "Simuler multivariat normal | Simulate multivariate normal distribution"
+	},
+	
+	"Bootstrap Sampling": {
+		"prefix": ["bootstrap", "bootstrap-sample"],
+		"body": [
+			"# Bootstrap resampling",
+			"# Træk stikprøver med tilbagelægning",
+			"np.random.seed(${1:42})",
+			"original_data = ${2:data}",
+			"n = len(original_data)",
+			"n_bootstrap = ${3:10000}",
+			"",
+			"# Bootstrap estimater",
+			"bootstrap_means = []",
+			"for _ in range(n_bootstrap):",
+			"    bootstrap_sample = np.random.choice(original_data, size=n, replace=True)",
+			"    bootstrap_means.append(np.mean(bootstrap_sample))",
+			"",
+			"bootstrap_means = np.array(bootstrap_means)",
+			"",
+			"# Bootstrap konfidensinterval",
+			"alpha = ${4:0.05}",
+			"ci_lower = np.percentile(bootstrap_means, 100 * alpha / 2)",
+			"ci_upper = np.percentile(bootstrap_means, 100 * (1 - alpha / 2))",
+			"",
+			"print(f\"Bootstrap gennemsnit: {np.mean(bootstrap_means):.4f}\")",
+			"print(f\"Bootstrap SE: {np.std(bootstrap_means):.4f}\")",
+			"print(f\"{(1-alpha)*100:.0f}% Bootstrap CI: ({ci_lower:.4f}, {ci_upper:.4f})\")"
+		],
+		"description": "Bootstrap resampling | Bootstrap sampling with replacement"
+	},
+	
+	// ==================== PLOTS / VISUALISERING ====================
+	
+	"Histogram Plot": {
+		"prefix": ["plot-histogram", "histogram"],
+		"body": [
+			"# Histogram: fordeling af data",
+			"plt.figure(figsize=(10, 6))",
+			"plt.hist(${1:data}, bins=${2:30}, density=${3:True}, alpha=0.7, edgecolor='black', color='steelblue')",
+			"plt.xlabel('${4:Værdi}', fontsize=12)",
+			"plt.ylabel('${5:Frekvens/Tæthed}', fontsize=12)",
+			"plt.title('${6:Histogram}', fontsize=14, fontweight='bold')",
+			"plt.grid(True, alpha=0.3)",
+			"plt.show()"
+		],
+		"description": "Histogram | Histogram plot showing distribution of data"
+	},
+	
+	"Box Plot": {
+		"prefix": ["plot-boxplot", "boksplot"],
+		"body": [
+			"# Boksplot (Box plot): viser median, kvartiler, outliers",
+			"plt.figure(figsize=(10, 6))",
+			"plt.boxplot(${1:data}, vert=${2:True}, patch_artist=True,",
+			"            boxprops=dict(facecolor='lightblue', color='blue'),",
+			"            medianprops=dict(color='red', linewidth=2),",
+			"            whiskerprops=dict(color='blue'),",
+			"            capprops=dict(color='blue'))",
+			"plt.ylabel('${3:Værdi}', fontsize=12)",
+			"plt.title('${4:Boksplot}', fontsize=14, fontweight='bold')",
+			"plt.grid(True, alpha=0.3, axis='y')",
+			"plt.show()"
+		],
+		"description": "Boksplot | Box plot showing median, quartiles, and outliers"
+	},
+	
+	"QQ Plot": {
+		"prefix": ["plot-qq", "qq-plot"],
+		"body": [
+			"# QQ-plot: tjek normalitet",
+			"# Quantile-Quantile plot sammenligner data med teoretisk fordeling",
+			"from scipy import stats",
+			"",
+			"plt.figure(figsize=(10, 6))",
+			"stats.probplot(${1:data}, dist=\"norm\", plot=plt)",
+			"plt.title('${2:QQ-Plot (Normal Distribution)}', fontsize=14, fontweight='bold')",
+			"plt.xlabel('Teoretiske kvantiler', fontsize=12)",
+			"plt.ylabel('Observerede kvantiler', fontsize=12)",
+			"plt.grid(True, alpha=0.3)",
+			"plt.show()",
+			"",
+			"# Hvis punkterne ligger på linjen, er data normalfordelt"
+		],
+		"description": "QQ-plot | Quantile-Quantile plot for checking normality"
+	},
+	
+	"Scatter Plot": {
+		"prefix": ["plot-scatter", "punktplot"],
+		"body": [
+			"# Punktplot (Scatter plot): sammenhæng mellem to variable",
+			"plt.figure(figsize=(10, 6))",
+			"plt.scatter(${1:x}, ${2:y}, alpha=0.6, s=50, c='steelblue', edgecolors='black', linewidth=0.5)",
+			"plt.xlabel('${3:X}', fontsize=12)",
+			"plt.ylabel('${4:Y}', fontsize=12)",
+			"plt.title('${5:Scatter Plot}', fontsize=14, fontweight='bold')",
+			"plt.grid(True, alpha=0.3)",
+			"plt.show()"
+		],
+		"description": "Punktplot | Scatter plot showing relationship between two variables"
+	},
+	
+	"Line Plot": {
+		"prefix": ["plot-line", "linjeplot"],
+		"body": [
+			"# Linjeplot: udvikling over tid/kontinuert variabel",
+			"plt.figure(figsize=(10, 6))",
+			"plt.plot(${1:x}, ${2:y}, linewidth=2, marker='o', markersize=4, color='steelblue')",
+			"plt.xlabel('${3:X}', fontsize=12)",
+			"plt.ylabel('${4:Y}', fontsize=12)",
+			"plt.title('${5:Line Plot}', fontsize=14, fontweight='bold')",
+			"plt.grid(True, alpha=0.3)",
+			"plt.show()"
+		],
+		"description": "Linjeplot | Line plot for time series or continuous data"
+	},
+	
+	"Bar Plot": {
+		"prefix": ["plot-bar", "søjlediagram"],
+		"body": [
+			"# Søjlediagram (Bar plot): kategoriske data",
+			"plt.figure(figsize=(10, 6))",
+			"plt.bar(${1:categories}, ${2:values}, color='steelblue', edgecolor='black', alpha=0.7)",
+			"plt.xlabel('${3:Kategori}', fontsize=12)",
+			"plt.ylabel('${4:Værdi}', fontsize=12)",
+			"plt.title('${5:Søjlediagram}', fontsize=14, fontweight='bold')",
+			"plt.xticks(rotation=45, ha='right')",
+			"plt.grid(True, alpha=0.3, axis='y')",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Søjlediagram | Bar plot for categorical data"
+	},
+	
+	"PDF Plot (Normal)": {
+		"prefix": ["plot-pdf", "plot-tæthed"],
+		"body": [
+			"# PDF plot: Tæthedsfunktion (Probability Density Function)",
+			"mu = ${1:0}",
+			"sigma = ${2:1}",
+			"x = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)",
+			"y = stats.norm.pdf(x, loc=mu, scale=sigma)",
+			"",
+			"plt.figure(figsize=(10, 6))",
+			"plt.plot(x, y, linewidth=2, color='steelblue', label=f'N({mu}, {sigma}²)')",
+			"plt.fill_between(x, y, alpha=0.3, color='steelblue')",
+			"plt.xlabel('x', fontsize=12)",
+			"plt.ylabel('Tæthed f(x)', fontsize=12)",
+			"plt.title('${3:Probability Density Function}', fontsize=14, fontweight='bold')",
+			"plt.legend(fontsize=11)",
+			"plt.grid(True, alpha=0.3)",
+			"plt.show()"
+		],
+		"description": "PDF plot | Probability density function visualization"
+	},
+	
+	"CDF Plot": {
+		"prefix": ["plot-cdf", "plot-kumulativ"],
+		"body": [
+			"# CDF plot: Kumulativ fordelingsfunktion",
+			"mu = ${1:0}",
+			"sigma = ${2:1}",
+			"x = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)",
+			"y = stats.norm.cdf(x, loc=mu, scale=sigma)",
+			"",
+			"plt.figure(figsize=(10, 6))",
+			"plt.plot(x, y, linewidth=2, color='steelblue', label=f'N({mu}, {sigma}²)')",
+			"plt.xlabel('x', fontsize=12)",
+			"plt.ylabel('P(X ≤ x)', fontsize=12)",
+			"plt.title('${3:Cumulative Distribution Function}', fontsize=14, fontweight='bold')",
+			"plt.legend(fontsize=11)",
+			"plt.grid(True, alpha=0.3)",
+			"plt.axhline(y=0.5, color='red', linestyle='--', alpha=0.5, label='Median')",
+			"plt.show()"
+		],
+		"description": "CDF plot | Cumulative distribution function visualization"
+	},
+	
+	"Multiple Distributions Comparison": {
+		"prefix": ["plot-distributions", "sammenlign-fordelinger"],
+		"body": [
+			"# Sammenlign flere fordelinger",
+			"x = np.linspace(-5, 5, 1000)",
+			"",
+			"plt.figure(figsize=(12, 6))",
+			"",
+			"# Normal fordelinger med forskellige parametre",
+			"plt.plot(x, stats.norm.pdf(x, 0, 1), label='N(0, 1)', linewidth=2)",
+			"plt.plot(x, stats.norm.pdf(x, 0, 0.5), label='N(0, 0.5²)', linewidth=2)",
+			"plt.plot(x, stats.norm.pdf(x, 1, 1), label='N(1, 1)', linewidth=2)",
+			"",
+			"plt.xlabel('x', fontsize=12)",
+			"plt.ylabel('Tæthed', fontsize=12)",
+			"plt.title('${1:Sammenligning af fordelinger}', fontsize=14, fontweight='bold')",
+			"plt.legend(fontsize=11)",
+			"plt.grid(True, alpha=0.3)",
+			"plt.show()"
+		],
+		"description": "Sammenlign fordelinger | Compare multiple probability distributions"
+	},
+	
+	"Correlation Heatmap": {
+		"prefix": ["plot-correlation", "korrelationsmatrix"],
+		"body": [
+			"# Korrelationsmatrix heatmap",
+			"import seaborn as sns",
+			"",
+			"# Beregn korrelationsmatrix",
+			"corr_matrix = ${1:data}.corr()",
+			"",
+			"plt.figure(figsize=(10, 8))",
+			"sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0, ",
+			"            square=True, linewidths=1, cbar_kws={\"shrink\": 0.8},",
+			"            vmin=-1, vmax=1, fmt='.2f')",
+			"plt.title('${2:Korrelationsmatrix}', fontsize=14, fontweight='bold')",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Korrelationsmatrix | Correlation matrix heatmap"
+	},
+	
+	"Regression Plot": {
+		"prefix": ["plot-regression", "regressionsplot"],
+		"body": [
+			"# Regressionsplot med fitted line",
+			"from scipy import stats as sp_stats",
+			"",
+			"x = ${1:x_data}",
+			"y = ${2:y_data}",
+			"",
+			"# Beregn lineær regression",
+			"slope, intercept, r_value, p_value, std_err = sp_stats.linregress(x, y)",
+			"line = slope * x + intercept",
+			"",
+			"plt.figure(figsize=(10, 6))",
+			"plt.scatter(x, y, alpha=0.6, s=50, label='Data', color='steelblue', edgecolors='black')",
+			"plt.plot(x, line, 'r-', linewidth=2, label=f'y = {slope:.3f}x + {intercept:.3f}')",
+			"plt.xlabel('${3:X}', fontsize=12)",
+			"plt.ylabel('${4:Y}', fontsize=12)",
+			"plt.title(f'${5:Linear Regression} (R² = {r_value**2:.3f})', fontsize=14, fontweight='bold')",
+			"plt.legend(fontsize=11)",
+			"plt.grid(True, alpha=0.3)",
+			"plt.show()"
+		],
+		"description": "Regressionsplot | Linear regression scatter plot with fitted line"
+	},
+	
+	"Residual Plot": {
+		"prefix": ["plot-residuals", "residualplot"],
+		"body": [
+			"# Residualplot: tjek modelantagelser",
+			"from scipy import stats as sp_stats",
+			"",
+			"x = ${1:x_data}",
+			"y = ${2:y_data}",
+			"",
+			"# Beregn fitted values og residualer",
+			"slope, intercept, _, _, _ = sp_stats.linregress(x, y)",
+			"fitted = slope * x + intercept",
+			"residuals = y - fitted",
+			"",
+			"fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))",
+			"",
+			"# Residualer vs fitted values",
+			"ax1.scatter(fitted, residuals, alpha=0.6, edgecolors='black')",
+			"ax1.axhline(y=0, color='r', linestyle='--', linewidth=2)",
+			"ax1.set_xlabel('Fitted Values', fontsize=12)",
+			"ax1.set_ylabel('Residuals', fontsize=12)",
+			"ax1.set_title('Residuals vs Fitted', fontsize=14, fontweight='bold')",
+			"ax1.grid(True, alpha=0.3)",
+			"",
+			"# QQ-plot af residualer",
+			"sp_stats.probplot(residuals, dist=\"norm\", plot=ax2)",
+			"ax2.set_title('QQ-Plot of Residuals', fontsize=14, fontweight='bold')",
+			"ax2.grid(True, alpha=0.3)",
+			"",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Residualplot | Residual plots for regression diagnostics"
+	},
+	
+	"Confidence Interval Plot": {
+		"prefix": ["plot-ci", "konfidensinterval-plot"],
+		"body": [
+			"# Plot med konfidensinterval",
+			"means = ${1:means}",
+			"ci_lower = ${2:lower_bounds}",
+			"ci_upper = ${3:upper_bounds}",
+			"labels = ${4:labels}",
+			"",
+			"plt.figure(figsize=(10, 6))",
+			"x_pos = np.arange(len(labels))",
+			"",
+			"plt.errorbar(x_pos, means, ",
+			"             yerr=[np.array(means) - np.array(ci_lower), ",
+			"                   np.array(ci_upper) - np.array(means)],",
+			"             fmt='o', markersize=8, capsize=5, capthick=2,",
+			"             linewidth=2, color='steelblue')",
+			"",
+			"plt.xticks(x_pos, labels)",
+			"plt.xlabel('${5:Gruppe}', fontsize=12)",
+			"plt.ylabel('${6:Værdi}', fontsize=12)",
+			"plt.title('${7:Middelværdier med konfidensintervaller}', fontsize=14, fontweight='bold')",
+			"plt.grid(True, alpha=0.3, axis='y')",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Konfidensinterval plot | Plot with confidence intervals"
+	},
+	
+	"PMF Plot (Discrete)": {
+		"prefix": ["plot-pmf", "plot-diskret"],
+		"body": [
+			"# PMF plot: Sandsynlighedsmassefunktion (diskret fordeling)",
+			"n = ${1:10}  # Binomial n",
+			"p = ${2:0.3}  # Sandsynlighed",
+			"",
+			"x = np.arange(0, n + 1)",
+			"pmf = stats.binom.pmf(x, n, p)",
+			"",
+			"plt.figure(figsize=(10, 6))",
+			"plt.bar(x, pmf, color='steelblue', edgecolor='black', alpha=0.7, width=0.8)",
+			"plt.xlabel('x', fontsize=12)",
+			"plt.ylabel('P(X = x)', fontsize=12)",
+			"plt.title(f'${3:Binomial Distribution} Bin({n}, {p})', fontsize=14, fontweight='bold')",
+			"plt.xticks(x)",
+			"plt.grid(True, alpha=0.3, axis='y')",
+			"plt.show()"
+		],
+		"description": "PMF plot | Probability mass function for discrete distributions"
+	},
+	
+	"Time Series Plot": {
+		"prefix": ["plot-timeseries", "tidsserieplot"],
+		"body": [
+			"# Tidsserie plot",
+			"time = ${1:time_data}",
+			"values = ${2:values}",
+			"",
+			"plt.figure(figsize=(12, 6))",
+			"plt.plot(time, values, linewidth=2, marker='o', markersize=3, color='steelblue')",
+			"",
+			"# Tilføj trend linje",
+			"z = np.polyfit(range(len(values)), values, 1)",
+			"p = np.poly1d(z)",
+			"plt.plot(time, p(range(len(values))), \"r--\", linewidth=2, alpha=0.7, label='Trend')",
+			"",
+			"plt.xlabel('${3:Tid}', fontsize=12)",
+			"plt.ylabel('${4:Værdi}', fontsize=12)",
+			"plt.title('${5:Tidsserie}', fontsize=14, fontweight='bold')",
+			"plt.legend(fontsize=11)",
+			"plt.grid(True, alpha=0.3)",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Tidsserieplot | Time series plot with trend line"
+	},
+	
+	"Violin Plot": {
+		"prefix": ["plot-violin", "violin-plot"],
+		"body": [
+			"# Violin plot: kombination af boxplot og tæthed",
+			"import seaborn as sns",
+			"",
+			"plt.figure(figsize=(10, 6))",
+			"sns.violinplot(data=${1:data}, ${2:x='group', y='value', }inner='quartile', palette='Set2')",
+			"plt.xlabel('${3:Gruppe}', fontsize=12)",
+			"plt.ylabel('${4:Værdi}', fontsize=12)",
+			"plt.title('${5:Violin Plot}', fontsize=14, fontweight='bold')",
+			"plt.grid(True, alpha=0.3, axis='y')",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Violin plot | Violin plot combining boxplot and density"
+	},
+	
+	"Pair Plot": {
+		"prefix": ["plot-pairs", "pairplot"],
+		"body": [
+			"# Pairplot: alle variable mod hinanden",
+			"import seaborn as sns",
+			"",
+			"sns.pairplot(${1:dataframe}, ${2:hue='category', }diag_kind='kde', ",
+			"             plot_kws={'alpha': 0.6, 's': 50, 'edgecolor': 'black'})",
+			"plt.suptitle('${3:Pairwise Relationships}', y=1.02, fontsize=14, fontweight='bold')",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Pairplot | Pairwise scatter plots for all variables"
+	},
+	
+	"Empirical CDF (ECDF)": {
+		"prefix": ["plot-ecdf", "empirisk-cdf"],
+		"body": [
+			"# Empirisk CDF (ECDF): kumulativ fordeling af observeret data",
+			"data = np.sort(${1:data})",
+			"n = len(data)",
+			"y = np.arange(1, n + 1) / n",
+			"",
+			"plt.figure(figsize=(10, 6))",
+			"plt.step(data, y, where='post', linewidth=2, color='steelblue', label='ECDF')",
+			"plt.xlabel('${2:Værdi}', fontsize=12)",
+			"plt.ylabel('P(X ≤ x)', fontsize=12)",
+			"plt.title('${3:Empirical Cumulative Distribution Function}', fontsize=14, fontweight='bold')",
+			"plt.grid(True, alpha=0.3)",
+			"plt.legend(fontsize=11)",
+			"plt.show()"
+		],
+		"description": "Empirisk CDF | Empirical cumulative distribution function from data"
+	},
+	
+	"Side-by-Side Comparison": {
+		"prefix": ["plot-comparison", "sammenligning"],
+		"body": [
+			"# Side-by-side sammenligning af plots",
+			"fig, axes = plt.subplots(${1:1}, ${2:2}, figsize=(${3:14}, ${4:5}))",
+			"",
+			"# Plot 1",
+			"axes[${5:0}].${6:hist}(${7:data1})",
+			"axes[${5:0}].set_title('${8:Plot 1}', fontsize=12, fontweight='bold')",
+			"axes[${5:0}].set_xlabel('${9:X}', fontsize=11)",
+			"axes[${5:0}].set_ylabel('${10:Y}', fontsize=11)",
+			"axes[${5:0}].grid(True, alpha=0.3)",
+			"",
+			"# Plot 2",
+			"axes[${11:1}].${12:hist}(${13:data2})",
+			"axes[${11:1}].set_title('${14:Plot 2}', fontsize=12, fontweight='bold')",
+			"axes[${11:1}].set_xlabel('${15:X}', fontsize=11)",
+			"axes[${11:1}].set_ylabel('${16:Y}', fontsize=11)",
+			"axes[${11:1}].grid(True, alpha=0.3)",
+			"",
+			"plt.suptitle('${17:Overall Title}', fontsize=14, fontweight='bold')",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Side-by-side plots | Multiple plots comparison in subplots"
+	},
+	
+	"ACF Plot": {
+		"prefix": ["plot-acf", "autokorrelation"],
+		"body": [
+			"# ACF plot: Autokorrelationsfunktion",
+			"from statsmodels.graphics.tsaplots import plot_acf",
+			"",
+			"plt.figure(figsize=(12, 6))",
+			"plot_acf(${1:data}, lags=${2:40}, alpha=${3:0.05})",
+			"plt.xlabel('Lag', fontsize=12)",
+			"plt.ylabel('Autokorrelation', fontsize=12)",
+			"plt.title('${4:Autocorrelation Function}', fontsize=14, fontweight='bold')",
+			"plt.grid(True, alpha=0.3)",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "ACF plot | Autocorrelation function plot for time series"
+	},
+	
+	"Probability Plot Comparison": {
+		"prefix": ["plot-prob-compare", "sandsynlighed-sammenligning"],
+		"body": [
+			"# Sammenlign sandsynlighedsfordelinger",
+			"x = np.linspace(${1:0}, ${2:20}, 1000)",
+			"",
+			"plt.figure(figsize=(12, 6))",
+			"",
+			"# Binomial tilnærmelse til Poisson",
+			"n, p = ${3:100}, ${4:0.05}",
+			"lambda_p = n * p",
+			"",
+			"x_discrete = np.arange(0, 20)",
+			"plt.plot(x_discrete, stats.binom.pmf(x_discrete, n, p), 'o-', ",
+			"         label=f'Binomial({n}, {p})', linewidth=2, markersize=6)",
+			"plt.plot(x_discrete, stats.poisson.pmf(x_discrete, lambda_p), 's-', ",
+			"         label=f'Poisson({lambda_p})', linewidth=2, markersize=6, alpha=0.7)",
+			"",
+			"plt.xlabel('x', fontsize=12)",
+			"plt.ylabel('P(X = x)', fontsize=12)",
+			"plt.title('${5:Distribution Comparison}', fontsize=14, fontweight='bold')",
+			"plt.legend(fontsize=11)",
+			"plt.grid(True, alpha=0.3)",
+			"plt.show()"
+		],
+		"description": "Sammenlign sandsynligheder | Compare probability distributions"
+	}
+}
