@@ -52,6 +52,476 @@
 		"description": "Print sandsynlighed | Print probability statement"
 	},
 	
+	"Hypothesis Markdown Output": {
+		"prefix": ["hypothesis", "hypotese", "h0-h1"],
+		"body": [
+			"$ H_0: ${1:\\mu = \\mu_0} $ ${2:beskrivelse af nulhypotesen}",
+			"",
+			"$ H_1: ${3:\\mu \\neq \\mu_0} $ ${4:beskrivelse af alternativ hypotesen}",
+			"",
+			"${5:Dette er en tosidet test}",
+		],
+		"description": "Generate hypothesis markdown template | Generér hypotese markdown skabelon"
+	},
+	
+	"P-value Formula (t-test)": {
+		"prefix": ["p-value-formel-t", "p-formel-t", "pvalue-t"],
+		"body": [
+			"**Frihedsgrader:**",
+			"$$ df = n - 1 $$",
+			"",
+			"**Teststatistik:**",
+			"$$ t = \\frac{\\bar{x} - \\mu_0}{s / \\sqrt{n}} $$",
+			"",
+			"**P-værdi (tosidet):**",
+			"$$ p = 2P(T_{df} > |t|) = 2(1 - \\text{CDF}_{t,df}(|t|)) $$",
+			"",
+			"hvor $\\text{CDF}_{t,df}$ er den kumulative fordelingsfunktion (stats.t.cdf) for t-fordelingen"
+		],
+		"description": "P-værdi formel for t-test med alle komponenter | P-value formula for t-test with all components"
+	},
+	
+	"P-value Formula (z-test)": {
+		"prefix": ["p-value-formel-z", "p-formel-z", "pvalue-z"],
+		"body": [
+			"**Teststatistik:**",
+			"$$ z = \\frac{\\bar{x} - \\mu_0}{\\sigma / \\sqrt{n}} $$",
+			"",
+			"**P-værdi (tosidet):**",
+			"$$ p = 2P(Z > |z|) = 2(1 - \\text{CDF}_Z(|z|)) = 2(1 - \\Phi(|z|)) $$",
+			"",
+			"hvor $\\Phi(z) = \\text{CDF}_Z(z)$ er den kumulative fordelingsfunktion (stats.norm.cdf) for standard normalfordelingen $N(0,1)$"
+		],
+		"description": "P-værdi formel for z-test med alle komponenter | P-value formula for z-test with all components"
+	},
+	
+	"P-value Formula (correlation/regression)": {
+		"prefix": ["p-value-formel-correlation", "p-formel-regression", "pvalue-slope"],
+		"body": [
+			"**Frihedsgrader:**",
+			"$$ df = n - 2 $$",
+			"",
+			"**Teststatistik (hældning):**",
+			"$$ t = \\frac{\\hat{\\beta}_1}{SE(\\hat{\\beta}_1)} = \\frac{\\hat{\\beta}_1}{\\sqrt{s_r^2 / S_{XX}}} $$",
+			"",
+			"**Residual varians:**",
+			"$$ s_r^2 = \\frac{SS_{res}}{df} = \\frac{\\sum(y_i - \\hat{y}_i)^2}{n-2} $$",
+			"",
+			"**P-værdi (tosidet):**",
+			"$$ p = 2P(T_{df} > |t|) = 2(1 - \\text{CDF}_{t,df}(|t|)) $$",
+			"",
+			"hvor $\\text{CDF}_{t,df}$ er den kumulative fordelingsfunktion (stats.t.cdf) for t-fordelingen"
+		],
+		"description": "P-værdi formel for regression med alle komponenter | P-value formula for regression with all components"
+	},
+	
+	"P-value Formula (two-sample t-test)": {
+		"prefix": ["p-value-formel-to-stikprøve", "p-formel-two-sample", "pvalue-pooled"],
+		"body": [
+			"**Pooled varians:**",
+			"$$ s_p^2 = \\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2} $$",
+			"",
+			"**Frihedsgrader:**",
+			"$$ df = n_1 + n_2 - 2 $$",
+			"",
+			"**Teststatistik (generelt):**",
+			"$$ t = \\frac{(\\bar{x}_1 - \\bar{x}_2) - (\\mu_1 - \\mu_2)}{s_p\\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}} $$",
+			"",
+			"**Teststatistik (under $H_0: \\mu_1 = \\mu_2$):**",
+			"$$ t = \\frac{\\bar{x}_1 - \\bar{x}_2}{s_p\\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}} $$",
+			"",
+			"**P-værdi (tosidet):**",
+			"$$ p = 2P(T_{df} > |t|) = 2(1 - \\text{CDF}_{t,df}(|t|)) $$",
+			"",
+			"hvor $\\text{CDF}_{t,df}$ er den kumulative fordelingsfunktion (stats.t.cdf) for t-fordelingen"
+		],
+		"description": "P-værdi formel for to-stikprøve t-test med alle komponenter | P-value formula for two-sample t-test with all components"
+	},
+	
+	"Two-Sample T-Test P-Value": {
+		"prefix": [
+			"p-værdi-beregning-to-stikprøve-t-test-pooled",
+			"p-value-calculation-two-sample-t-test-pooled",
+			"p-value-to-stikprøve",
+			"two-sample-p-value",
+			"pooled-pvalue"
+		],
+		"body": [
+			"# P-værdi beregning for to-stikprøve t-test med pooled varians",
+			"# P-value calculation for two-sample t-test with pooled variance",
+			"# DANSK: To-stikprøve t-test p-værdi (uafhængige grupper, lige varianser)",
+			"# ENGLISH: Two-sample t-test p-value (independent groups, equal variances)",
+			"# LaTeX: t = \\frac{(\\bar{x}_1 - \\bar{x}_2) - (\\mu_1 - \\mu_2)}{s_p\\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}}",
+			"# LaTeX: p = 2P(T_{df} > |t|) = 2(1 - \\text{CDF}_{t,df}(|t|))",
+			"",
+			"# Data fra to grupper",
+			"x1 = np.array([${1:data1}])  # Gruppe 1",
+			"x2 = np.array([${2:data2}])  # Gruppe 2",
+			"",
+			"# Beskrivende statistik",
+			"n1, n2 = len(x1), len(x2)",
+			"x1_bar = np.mean(x1)",
+			"x2_bar = np.mean(x2)",
+			"s1_sq = np.var(x1, ddof=1)",
+			"s2_sq = np.var(x2, ddof=1)",
+			"",
+			"# Pooled varians: s_p^2",
+			"s_p_sq = ((n1 - 1) * s1_sq + (n2 - 1) * s2_sq) / (n1 + n2 - 2)",
+			"s_p = np.sqrt(s_p_sq)",
+			"",
+			"# Teststatistik (generelt): t = ((x̄₁ - x̄₂) - (μ₁ - μ₂)) / (s_p√(1/n₁ + 1/n₂))",
+			"mu_diff = ${3:0}  # (μ₁ - μ₂) under H₀, typisk 0",
+			"t_stat = ((x1_bar - x2_bar) - mu_diff) / (s_p * np.sqrt(1/n1 + 1/n2))",
+			"",
+			"# Frihedsgrader",
+			"df = n1 + n2 - 2",
+			"",
+			"# P-værdi (tosidet): p = 2P(T_df > |t|) = 2(1 - CDF_t(|t|))",
+			"p_value = 2 * (1 - stats.t.cdf(abs(t_stat), df))",
+			"",
+			"print(f\"x̄₁ = {x1_bar:.4f}, x̄₂ = {x2_bar:.4f}\")",
+			"print(f\"s_p² = {s_p_sq:.4f}, s_p = {s_p:.4f}\")",
+			"print(f\"t({df}) = {t_stat:.4f}\")",
+			"print(f\"p-værdi = {p_value:.6f}\")"
+		],
+		"description": "Beregn p-værdi for to-stikprøve t-test | Calculate p-value for two-sample t-test with pooled variance"
+	},
+	
+	"Test Statistic Formula (t-test)": {
+		"prefix": ["t-statistik-formel", "t-test-formel", "t-statistic"],
+		"body": [
+			"$$ t = \\frac{\\bar{x} - \\mu_0}{s / \\sqrt{n}} $$",
+			"",
+			"hvor $s$ er stikprøvestandardafvigelsen og $df = n-1$"
+		],
+		"description": "Teststatistik formel for t-test | Test statistic formula for t-test"
+	},
+	
+	"Test Statistic Formula (z-test)": {
+		"prefix": ["z-statistik-formel", "z-test-formel", "z-statistic"],
+		"body": [
+			"$$ Z = \\frac{\\bar{x} - \\mu_0}{\\sigma / \\sqrt{n}} $$",
+			"",
+			"hvor $\\sigma$ er den kendte populationsstandardafvigelse"
+		],
+		"description": "Teststatistik formel for z-test | Test statistic formula for z-test"
+	},
+	
+	"Pooled Variance Formula": {
+		"prefix": ["pooled-varians-formel", "s_p-formel", "pooled-variance-formula"],
+		"body": [
+			"$$ s_p^2 = \\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2} $$"
+		],
+		"description": "Pooled varians formel | Pooled variance formula for two-sample t-test"
+	},
+	
+	"Regression Slope Formula": {
+		"prefix": ["beta1-formel", "slope-formel", "regression-slope"],
+		"body": [
+			"$$ y=\\hat{\\beta}_0+\\hat{\\beta}_1x $$",
+			"",
+			"$$ \\hat{\\beta}_1 = \\frac{S_{XY}}{S_{XX}} = \\frac{\\sum(x_i-\\bar{x})(y_i-\\bar{y})}{\\sum(x_i-\\bar{x})^2} $$",
+			"",
+			"$$ \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x} $$"
+		],
+		"description": "Regressionskoefficienter formler | Regression slope and intercept formulas"
+	},
+	
+	"Confidence Interval Formula (t)": {
+		"prefix": [
+			"konfidensinterval-formel-t-fordeling",
+			"confidence-interval-formula-t-distribution",
+			"ki-formel-t",
+			"konfidensinterval-t"
+		],
+		"body": [
+			"$$ CI = \\left[\\bar{x} - t_{\\alpha/2,n-1}\\frac{s}{\\sqrt{n}}, \\bar{x} + t_{\\alpha/2,n-1}\\frac{s}{\\sqrt{n}}\\right] $$",
+			"",
+			"hvor $df = n-1$ og $t_{\\alpha/2,n-1}$ er kritisk værdi fra t-fordelingen"
+		],
+		"description": "Konfidensinterval formel (ukendt varians) | Confidence interval formula using t-distribution"
+	},
+	
+	"Confidence Interval Formula (z)": {
+		"prefix": [
+			"konfidensinterval-formel-z-fordeling",
+			"confidence-interval-formula-z-distribution",
+			"ki-formel-z",
+			"konfidensinterval-z"
+		],
+		"body": [
+			"$$ CI = \\left[\\bar{x} - z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}}, \\bar{x} + z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}}\\right] $$",
+			"",
+			"hvor $\\sigma$ er kendt populationsstandardafvigelse"
+		],
+		"description": "Konfidensinterval formel (kendt varians) | Confidence interval formula using z-distribution"
+	},
+	
+	"Confidence Interval Formula (Two-Sample Pooled)": {
+		"prefix": [
+			"konfidensinterval-formel-to-stikprøver-pooled",
+			"confidence-interval-formula-two-samples-pooled",
+			"ki-formel-pooled",
+			"konfidensinterval-formel-pooled"
+		],
+		"body": [
+			"**Konfidensinterval for μ₁ - μ₂ med pooled varians:**",
+			"",
+			"$$ CI = \\left[(\\bar{x}_1-\\bar{x}_2) - t_{\\alpha/2,df} \\cdot s_p\\sqrt{\\frac{1}{n_1}+\\frac{1}{n_2}}, (\\bar{x}_1-\\bar{x}_2) + t_{\\alpha/2,df} \\cdot s_p\\sqrt{\\frac{1}{n_1}+\\frac{1}{n_2}}\\right] $$",
+			"",
+			"**Pooled varians:**",
+			"$$ s_p^2 = \\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2} $$",
+			"",
+			"**Frihedsgrader:**",
+			"$$ df = n_1 + n_2 - 2 $$",
+			"",
+			"**Betingelser:** Uafhængige grupper, normalfordelte data, lige varianser (σ₁² = σ₂²)"
+		],
+		"description": "Konfidensinterval formel for forskel mellem to middelværdier | Confidence interval formula for difference between two means with pooled variance"
+	},
+	
+	"Standard Error Formula": {
+		"prefix": ["se-formel", "standard-error", "standardfejl"],
+		"body": [
+			"$$ SE(\\bar{x}) = \\frac{s}{\\sqrt{n}} $$",
+			"",
+			"eller med kendt $\\sigma$: $SE(\\bar{x}) = \\frac{\\sigma}{\\sqrt{n}}$"
+		],
+		"description": "Standardfejl formel | Standard error of the mean formula"
+	},
+	
+	"Variance of Proportion Estimator": {
+		"prefix": ["var-p-hat-formel", "varians-proportion", "binomial-varians"],
+		"body": [
+			"$$ \\text{Var}(\\hat{p}) = \\frac{p(1-p)}{n} $$",
+			"",
+			"hvor $\\hat{p} = \\frac{X}{n}$ er proportionsestimatoren og $X \\sim \\text{Binomial}(n, p)$"
+		],
+		"description": "Varians af proportionsestimator | Variance of binomial proportion estimator"
+	},
+	
+	"Expected Value and Variance (Continuous)": {
+		"prefix": [
+			"forventningsværdi-og-varians-kontinuert",
+			"expected-value-and-variance-continuous",
+			"forventningsværdi-kontinuert",
+			"expected-value-continuous"
+		],
+		"body": [
+			"**Middelværdi for en kontinuert stokastisk variabel:**",
+			"\\$\\$ E[X] = \\\\int_{-\\\\infty}^{\\\\infty} x \\\\cdot f_X(x) \\\\, dx \\$\\$",
+			"",
+			"**Varians:**",
+			"\\$\\$ Var(X) = E[X^2] - E[X]^2 \\$\\$",
+			"",
+			"hvor:",
+			"\\$\\$ E[X^2] = \\\\int_{-\\\\infty}^{\\\\infty} x^2 \\\\cdot f_X(x) \\\\, dx \\$\\$"
+		],
+		"description": "Forventningsværdi og varians for kontinuert stokastisk variabel | Expected value and variance formulas for continuous random variable"
+	},
+	
+	"Residual Variance Formula (Regression)": {
+		"prefix": ["residual-varians-formel", "s_r-formel", "residual-variance"],
+		"body": [
+			"$$ s_r^2 = \\frac{\\sum(y_i - \\hat{y}_i)^2}{n-2} = \\frac{SS_{res}}{n-2} $$",
+			"",
+			"hvor $SS_{res}$ er residual sum of squares og $df = n-2$"
+		],
+		"description": "Residual varians formel for regression | Residual variance formula for regression"
+	},
+	
+	"R-squared Formula": {
+		"prefix": ["r2-formel", "r-squared-formula", "forklaringsgrad"],
+		"body": [
+			"$$ R^2 = \\frac{S_{XY}^2}{S_{XX} \\cdot S_{YY}} = 1 - \\frac{SS_{res}}{SS_{tot}} $$",
+			"",
+			"hvor $SS_{res} = \\sum(y_i-\\hat{y}_i)^2$ og $SS_{tot} = \\sum(y_i-\\bar{y})^2$"
+		],
+		"description": "R² formel (forklaringsgrad) | R-squared (coefficient of determination) formula"
+	},
+	
+	"T-test Formulas (Complete)": {
+		"prefix": ["t-test-formler", "t-test-complete", "t-test-udtryk"],
+		"body": [
+			"**Stikprøvemiddelværdi:**",
+			"$$ \\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i $$",
+			"",
+			"**Stikprøvestandardafvigelse:**",
+			"$$ s = \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^{n}(x_i - \\bar{x})^2} $$",
+			"",
+			"**Frihedsgrader:**",
+			"$$ df = n - 1 $$",
+			"",
+			"**Teststatistik:**",
+			"$$ t = \\frac{\\bar{x} - \\mu_0}{s / \\sqrt{n}} = \\frac{\\bar{x} - \\mu_0}{SE} $$",
+			"",
+			"hvor $SE = s / \\sqrt{n}$ er standard error",
+			"",
+			"**P-værdi (tosidet):**",
+			"$$ p = 2P(T_{df} > |t|) = 2(1 - \\text{CDF}_{t,df}(|t|)) $$",
+			"",
+			"hvor $\\text{CDF}_{t,df}$ er den kumulative fordelingsfunktion (stats.t.cdf) for t-fordelingen"
+		],
+		"description": "Komplette t-test formler med alle komponenter | Complete t-test formulas with all components"
+	},
+	
+	"Paired T-Test Definition": {
+		"prefix": ["parret-t-test-formel", "paired-t-test-formel", "matched-pairs-formel"],
+		"body": [
+			"**Parret t-test (Matched Pairs T-Test)**",
+			"",
+			"**Anvendelse:** Sammenligner to målinger på **samme** individer (før/efter, parrede data)",
+			"",
+			"**Hypoteser:**",
+			"- $H_0: \\mu_d = 0$ (ingen forskel)",
+			"- $H_1: \\mu_d \\neq 0$ (der er forskel)",
+			"",
+			"**Metode:**",
+			"1. Beregn forskelle for hvert par: $d_i = x_{efter,i} - x_{før,i}$",
+			"",
+			"**Gennemsnitlig forskel:**",
+			"$$ \\bar{d} = \\frac{1}{n}\\sum_{i=1}^{n} d_i $$",
+			"",
+			"**Standardafvigelse af forskelle:**",
+			"$$ s_d = \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^{n}(d_i - \\bar{d})^2} $$",
+			"",
+			"**Frihedsgrader:**",
+			"$$ df = n - 1 $$",
+			"",
+			"**Teststatistik:**",
+			"$$ t = \\frac{\\bar{d}}{s_d / \\sqrt{n}} = \\frac{\\bar{d}}{SE_d} $$",
+			"",
+			"hvor $SE_d = s_d / \\sqrt{n}$ er standard error af forskelle",
+			"",
+			"**P-værdi (tosidet):**",
+			"$$ p = 2P(T_{n-1} > |t|) = 2(1 - \\text{CDF}_{t,n-1}(|t|)) $$",
+			"",
+			"**Betingelser:** Forskellene $d_i$ skal være cirka normalfordelte (eller $n \\geq 30$)"
+		],
+		"description": "Parret t-test definition og formler | Paired t-test definition and formulas"
+	},
+	
+	"Unpaired T-Test Definition (Pooled)": {
+		"prefix": ["uparret-t-test-formel", "two-sample-t-formel", "independent-t-formel"],
+		"body": [
+			"**To-stikprøve t-test med pooled varians (Unpaired/Independent T-Test)**",
+			"",
+			"**Anvendelse:** Sammenligner to **uafhængige** grupper",
+			"",
+			"**Hypoteser:**",
+			"- $H_0: \\mu_1 = \\mu_2$ (samme middelværdi)",
+			"- $H_1: \\mu_1 \\neq \\mu_2$ (forskellige middelværdier)",
+			"",
+			"**Pooled varians (antager $\\sigma_1^2 = \\sigma_2^2$):**",
+			"$$ s_p^2 = \\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2} $$",
+			"",
+			"**Frihedsgrader:**",
+			"$$ df = n_1 + n_2 - 2 $$",
+			"",
+			"**Standard error:**",
+			"$$ SE = s_p \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}} $$",
+			"",
+			"**Teststatistik (generelt):**",
+			"$$ t = \\frac{(\\bar{x}_1 - \\bar{x}_2) - (\\mu_1 - \\mu_2)}{s_p\\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}} $$",
+			"",
+			"**Teststatistik (under $H_0: \\mu_1 = \\mu_2$):**",
+			"$$ t = \\frac{\\bar{x}_1 - \\bar{x}_2}{s_p\\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}} = \\frac{\\bar{x}_1 - \\bar{x}_2}{SE} $$",
+			"",
+			"**P-værdi (tosidet):**",
+			"$$ p = 2P(T_{df} > |t|) = 2(1 - \\text{CDF}_{t,df}(|t|)) $$",
+			"",
+			"hvor $df = n_1 + n_2 - 2$ og $\\text{CDF}_{t,df}$ er kumulative fordelingsfunktion (stats.t.cdf)",
+			"",
+			"**Betingelser:**",
+			"- Uafhængige grupper",
+			"- Cirka normalfordelte data (eller $n_1, n_2 \\geq 30$)",
+			"- Lige varianser: $\\sigma_1^2 = \\sigma_2^2$ (test med F-test eller Levene's test)"
+		],
+		"description": "Uparret t-test definition og formler | Unpaired/independent two-sample t-test definition and formulas"
+	},
+	
+	"Regression T-test Formulas (Slope)": {
+		"prefix": ["slope-test-formler", "beta1-test-formler", "regression-t-test"],
+		"body": [
+			"**Hældning:**",
+			"$$ \\hat{\\beta}_1 = \\frac{S_{XY}}{S_{XX}} = \\frac{\\sum(x_i-\\bar{x})(y_i-\\bar{y})}{\\sum(x_i-\\bar{x})^2} $$",
+			"",
+			"**Fitted values:**",
+			"$$ \\hat{y}_i = \\hat{\\beta}_0 + \\hat{\\beta}_1 x_i $$",
+			"",
+			"**Residual varians:**",
+			"$$ s_r^2 = \\frac{SS_{res}}{df} = \\frac{\\sum(y_i - \\hat{y}_i)^2}{n-2} $$",
+			"",
+			"**Standard error af hældning:**",
+			"$$ SE(\\hat{\\beta}_1) = \\sqrt{\\frac{s_r^2}{S_{XX}}} $$",
+			"",
+			"**Frihedsgrader:**",
+			"$$ df = n - 2 $$",
+			"",
+			"**Teststatistik:**",
+			"$$ t = \\frac{\\hat{\\beta}_1 - 0}{SE(\\hat{\\beta}_1)} = \\frac{\\hat{\\beta}_1}{\\sqrt{s_r^2 / S_{XX}}} $$",
+			"",
+			"**P-værdi (tosidet):**",
+			"$$ p = 2P(T_{df} > |t|) = 2(1 - \\text{CDF}_{t,df}(|t|)) $$",
+			"",
+			"hvor $\\text{CDF}_{t,df}$ er den kumulative fordelingsfunktion (stats.t.cdf) for t-fordelingen"
+		],
+		"description": "Regression t-test formler med alle komponenter | Regression slope t-test formulas with all components"
+	},
+	
+	"Correlation Coefficient Formula": {
+		"prefix": ["correlation-formel", "r-formel", "korrelation"],
+		"body": [
+			"$$ r = \\frac{S_{XY}}{\\sqrt{S_{XX} \\cdot S_{YY}}} = \\frac{\\sum(x_i-\\bar{x})(y_i-\\bar{y})}{\\sqrt{\\sum(x_i-\\bar{x})^2 \\cdot \\sum(y_i-\\bar{y})^2}} $$",
+			"",
+			"hvor $-1 \\leq r \\leq 1$"
+		],
+		"description": "Korrelationskoefficient formel | Correlation coefficient (Pearson's r) formula"
+	},
+	
+	"Box-Muller Formula": {
+		"prefix": ["box-muller-formel", "boxmuller-formula", "box-muller-transformation"],
+		"body": [
+			"**Box-Muller transformation:**",
+			"",
+			"Givet $U_1, U_2 \\sim \\text{Uniform}(0,1)$ uafhængige, da:",
+			"",
+			"$$ Z_1 = \\sqrt{-2 \\ln U_1} \\cos(2\\pi U_2) $$",
+			"",
+			"$$ Z_2 = \\sqrt{-2 \\ln U_1} \\sin(2\\pi U_2) $$",
+			"",
+			"hvor $Z_1, Z_2 \\sim N(0,1)$ uafhængige",
+			"",
+			"**Transformation til $N(\\mu, \\sigma^2)$:**",
+			"",
+			"$$ X = \\mu + \\sigma Z $$"
+		],
+		"description": "Box-Muller transformation formel | Box-Muller method formula for generating normal random variables"
+	},
+	
+	"Central Limit Theorem Formula": {
+		"prefix": ["clt-formel", "clt-formula", "centralgrænseværdisætning"],
+		"body": [
+			"**Centralgrænseværdisætningen (CLT):**",
+			"",
+			"Givet $X_1, X_2, \\ldots, X_n$ uafhængige med $E[X_i] = \\mu$ og $\\text{Var}(X_i) = \\sigma^2$",
+			"",
+			"**Stikprøvemiddelværdi:**",
+			"$$ \\bar{X} = \\frac{1}{n}\\sum_{i=1}^{n} X_i \\xrightarrow{d} N\\left(\\mu, \\frac{\\sigma^2}{n}\\right) \\text{ når } n \\to \\infty $$",
+			"",
+			"**Binomial approximation:**",
+			"$$ X \\sim \\text{Binomial}(n, p) \\approx N(np, np(1-p)) $$",
+			"når $np \\geq 5$ og $n(1-p) \\geq 5$",
+			"",
+			"**Proportion approximation:**",
+			"$$ \\hat{p} = \\frac{X}{n} \\approx N\\left(p, \\frac{p(1-p)}{n}\\right) $$",
+			"",
+			"**Standardisering:**",
+			"$$ Z = \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\xrightarrow{d} N(0,1) $$"
+		],
+		"description": "Centralgrænseværdisætningen (CLT) formler | Central Limit Theorem formulas"
+	},
+	
 	"Print Statistics Summary": {
 		"prefix": ["print-statistik", "print-stats"],
 		"body": [
@@ -75,7 +545,11 @@
 	},
 	
 	"Print Confidence Interval": {
-		"prefix": ["print-ki", "print-ci"],
+		"prefix": [
+			"print-konfidensinterval",
+			"print-confidence-interval",
+			"print-ki"
+		],
 		"body": [
 			"print(f\"{${1:confidence}*100:.0f}% Konfidensinterval: ({${2:lower}:.4f}, {${3:upper}:.4f})\")"
 		],
@@ -176,6 +650,7 @@
 			"from math import comb",
 			"# Binomialkoefficient: n choose k | Binomial coefficient",
 			"# Antal måder at vælge k elementer fra n elementer",
+			"# LaTeX: \\binom{n}{k} = \\frac{n!}{k!(n-k)!}",
 			"n = ${1:10}",
 			"k = ${2:3}",
 			"coef = comb(n, k)",
@@ -189,6 +664,7 @@
 		"body": [
 			"from math import factorial",
 			"# Fakultet: n! = n × (n-1) × ... × 2 × 1",
+			"# LaTeX: n! = \\prod_{i=1}^n i",
 			"n = ${1:5}",
 			"result = factorial(n)",
 			"print(f\"{n}! = {result}\")"
@@ -202,6 +678,7 @@
 			"from math import perm",
 			"# Permutationer uden tilbagelægning: P(n,k) = n!/(n-k)!",
 			"# Antal ordnede udvælgelser af k elementer fra n",
+			"# LaTeX: P(n,k) = \\frac{n!}{(n-k)!}",
 			"n = ${1:10}",
 			"k = ${2:3}",
 			"result = perm(n, k)",
@@ -216,6 +693,7 @@
 			"from math import comb",
 			"# Kombinationer uden tilbagelægning: C(n,k) = n!/(k!(n-k)!)",
 			"# Antal uordnede udvælgelser af k elementer fra n",
+			"# LaTeX: C(n,k) = \\binom{n}{k} = \\frac{n!}{k!(n-k)!}",
 			"n = ${1:10}",
 			"k = ${2:3}",
 			"result = comb(n, k)",
@@ -230,6 +708,7 @@
 			"# Permutationer med tilbagelægning: n^k",
 			"# Antal ordnede udvælgelser af k elementer fra n med tilbagelægning",
 			"# Hver position kan vælges fra alle n muligheder",
+			"# LaTeX: P_{rep}(n,k) = n^k",
 			"n = ${1:10}  # Antal muligheder",
 			"k = ${2:3}  # Antal valg",
 			"result = n ** k",
@@ -245,6 +724,7 @@
 			"# Kombinationer med tilbagelægning (multiset koefficient)",
 			"# C_rep(n,k) = C(n+k-1, k) = (n+k-1)! / (k!(n-1)!)",
 			"# Antal uordnede udvælgelser af k elementer fra n med tilbagelægning",
+			"# LaTeX: C_{rep}(n,k) = \\binom{n+k-1}{k} = \\frac{(n+k-1)!}{k!(n-1)!}",
 			"n = ${1:5}  # Antal forskellige typer",
 			"k = ${2:3}  # Antal valg",
 			"result = comb(n + k - 1, k)",
@@ -308,6 +788,7 @@
 			"from math import factorial",
 			"# Multinomialkoefficient: n! / (k₁! × k₂! × ... × kₘ!)",
 			"# Antal måder at opdele n objekter i m grupper af størrelser k₁, k₂, ..., kₘ",
+			"# LaTeX: \\binom{n}{k_1, k_2, \\ldots, k_m} = \\frac{n!}{k_1! k_2! \\cdots k_m!}",
 			"n = ${1:10}  # Total antal objekter",
 			"k_groups = [${2:3, 4, 3}]  # Størrelser af hver gruppe (skal summe til n)",
 			"",
@@ -321,13 +802,14 @@
 			"print(f\"{n}! / ({' × '.join([f'{k}!' for k in k_groups])}) = {result}\")"
 		],
 		"description": "Multinomialkoefficient | Multinomial coefficient - dividing n objects into groups"
-	},
+	}
 	
 	"Conditional Probability": {
 		"prefix": ["betinget-sandsynlighed", "cond-prob"],
 		"body": [
 			"# Betinget sandsynlighed: P(A|B) = P(A ∩ B) / P(B)",
 			"# Conditional probability: probability of A given B",
+			"# LaTeX: P(A|B) = \\frac{P(A \\cap B)}{P(B)}",
 			"P_A_and_B = ${1:0.32}  # P(A ∩ B) - sandsynlighed for både A og B",
 			"P_B = ${2:0.5}  # P(B) - sandsynlighed for B",
 			"P_A_given_B = P_A_and_B / P_B",
@@ -341,6 +823,7 @@
 		"body": [
 			"# Bayes' formel: P(A|B) = P(B|A) × P(A) / P(B)",
 			"# Bruges til at vende en betinget sandsynlighed",
+			"# LaTeX: P(A|B) = \\frac{P(B|A) \\cdot P(A)}{P(B)}",
 			"P_B_given_A = ${1:0.95}  # P(B|A) - sandsynlighed for B givet A",
 			"P_A = ${2:0.01}  # P(A) - a priori sandsynlighed for A",
 			"P_B = ${3:0.05}  # P(B) - total sandsynlighed for B",
@@ -378,6 +861,7 @@
 		"body": [
 			"# Total sandsynlighedsformel: P(B) = Σ P(B|Aᵢ) × P(Aᵢ)",
 			"# Total probability: når B kan ske gennem flere partitioner",
+			"# LaTeX: P(B) = \\sum_{i=1}^n P(B|A_i)P(A_i)",
 			"events = [${1:'A1', 'A2', 'A3'}]",
 			"P_B_given_A = [${2:0.8, 0.6, 0.9}]  # P(B|Aᵢ) for hver partition",
 			"P_A = [${3:0.3, 0.5, 0.2}]  # P(Aᵢ) - sandsynlighed for hver partition",
@@ -394,6 +878,7 @@
 			"# Total sandsynlighed med to komplementære hændelser",
 			"# P(B) = P(A) × P(B|A) + P(A^c) × P(B|A^c)",
 			"# P(B) = P(A) × P(B|A) + (1-P(A)) × P(B|A^c)",
+			"# LaTeX: P(B) = P(A)P(B|A) + P(A^c)P(B|A^c)",
 			"",
 			"P_${1:udfald} = ${2:0.3}  # P(A) - sandsynlighed for hændelse A",
 			"P_${3:positiv}_given_${1:udfald} = ${4:0.95}  # P(B|A)",
@@ -414,6 +899,8 @@
 		"body": [
 			"# Bernoulli-fordeling: X ∈ {0,1}, P(X=1) = p",
 			"# Enkelt binært udfald (succes/fiasko)",
+			"# LaTeX: P(X=k) = p^k(1-p)^{1-k}, \\quad k \\in \\{0,1\\}",
+			"# LaTeX: E[X] = p, \\quad Var(X) = p(1-p)",
 			"p = ${1:0.3}  # Succesandsynlighed | Success probability",
 			"X = stats.bernoulli(p)",
 			"",
@@ -431,6 +918,8 @@
 		"body": [
 			"# Binomial-fordeling: X ~ Bin(n,p)",
 			"# Antal succeser i n uafhængige Bernoulli-forsøg",
+			"# LaTeX: P(X=k) = \\binom{n}{k}p^k(1-p)^{n-k}",
+			"# LaTeX: E[X] = np, \\quad Var(X) = np(1-p)",
 			"n = ${1:10}  # Antal forsøg | Number of trials",
 			"p = ${2:0.3}  # Succesandsynlighed | Success probability",
 			"X = stats.binom(n, p)",
@@ -450,6 +939,8 @@
 		"body": [
 			"# Geometrisk fordeling: X ~ Geom(p)",
 			"# Antal forsøg indtil første succes",
+			"# LaTeX: P(X=k) = (1-p)^{k-1}p, \\quad k = 1,2,3,\\ldots",
+			"# LaTeX: E[X] = \\frac{1}{p}, \\quad Var(X) = \\frac{1-p}{p^2}",
 			"p = ${1:0.3}  # Succesandsynlighed | Success probability",
 			"X = stats.geom(p)",
 			"",
@@ -466,6 +957,7 @@
 		"prefix": ["negativ-binomial", "negbinom"],
 		"body": [
 			"# Negativ binomial-fordeling: antal forsøg til r succeser",
+			"# LaTeX: E[X] = \\frac{r(1-p)}{p}, \\quad Var(X) = \\frac{r(1-p)}{p^2}",
 			"r = ${1:3}  # Antal ønskede succeser | Number of successes",
 			"p = ${2:0.3}  # Succesandsynlighed | Success probability",
 			"X = stats.nbinom(r, p)",
@@ -483,6 +975,8 @@
 		"body": [
 			"# Hypergeometrisk fordeling: udvælgelse uden tilbagelægning",
 			"# Begrænset population",
+			"# LaTeX: P(X=k) = \\frac{\\binom{n}{k}\\binom{M-n}{N-k}}{\\binom{M}{N}}",
+			"# LaTeX: E[X] = N\\frac{n}{M}, \\quad Var(X) = N\\frac{n}{M}\\left(1-\\frac{n}{M}\\right)\\frac{M-N}{M-1}",
 			"M = ${1:50}  # Total populationsstørrelse | Total population size",
 			"n = ${2:20}  # Antal 'succeser' i population | Number of success states",
 			"N = ${3:10}  # Antal trækninger | Number of draws",
@@ -501,6 +995,8 @@
 		"body": [
 			"# Poisson-fordeling: X ~ Pois(λ)",
 			"# Antal hændelser i fast tidsinterval/område",
+			"# LaTeX: P(X=k) = \\frac{\\lambda^k}{k!}e^{-\\lambda}, \\quad k = 0,1,2,\\ldots",
+			"# LaTeX: E[X] = \\lambda, \\quad Var(X) = \\lambda",
 			"lambda_rate = ${1:3.5}  # λ - gennemsnitlig rate | Average rate",
 			"X = stats.poisson(lambda_rate)",
 			"",
@@ -519,6 +1015,8 @@
 		"body": [
 			"# Diskret uniform fordeling: X ~ U{a,a+1,...,b}",
 			"# Alle udfald lige sandsynlige",
+			"# LaTeX: P(X=k) = \\frac{1}{b-a+1}, \\quad k \\in \\{a, a+1, \\ldots, b\\}",
+			"# LaTeX: E[X] = \\frac{a+b}{2}, \\quad Var(X) = \\frac{(b-a+1)^2-1}{12}",
 			"low = ${1:1}  # Minimum værdi | Minimum value",
 			"high = ${2:6}  # Maksimum værdi | Maximum value",
 			"X = stats.randint(low, high + 1)",
@@ -536,6 +1034,8 @@
 		"body": [
 			"# Kontinuert uniform fordeling: X ~ U(a,b)",
 			"# Konstant tæthed over interval",
+			"# LaTeX: f(x) = \\frac{1}{b-a}, \\quad x \\in [a,b]",
+			"# LaTeX: E[X] = \\frac{a+b}{2}, \\quad Var(X) = \\frac{(b-a)^2}{12}",
 			"a = ${1:0}  # Nedre grænse | Lower bound",
 			"b = ${2:1}  # Øvre grænse | Upper bound",
 			"X = stats.uniform(a, b - a)",
@@ -549,11 +1049,193 @@
 		"description": "Kontinuert uniform fordeling U(a,b) | Continuous uniform - constant density over interval [a,b]"
 	},
 	
+	"Expected Value and Variance Calculation (Continuous)": {
+		"prefix": [
+			"beregn-forventningsværdi-og-varians-kontinuert",
+			"calculate-expected-value-and-variance-continuous",
+			"beregn-ex-varx",
+			"calculate-integral-moments"
+		],
+		"body": [
+			"# Beregn E[X] og Var(X) for kontinuert stokastisk variabel",
+			"# DANSK: Middelværdi E[X] = ∫ x·f(x) dx",
+			"# DANSK: Varians Var(X) = E[X²] - E[X]²",
+			"# ENGLISH: Expected value E[X] = ∫ x·f(x) dx",
+			"# ENGLISH: Variance Var(X) = E[X²] - E[X]²",
+			"# LaTeX: E[X] = \\int_{-\\infty}^{\\infty} x \\cdot f_X(x) \\, dx",
+			"# LaTeX: E[X^2] = \\int_{-\\infty}^{\\infty} x^2 \\cdot f_X(x) \\, dx",
+			"# LaTeX: Var(X) = E[X^2] - E[X]^2",
+			"from scipy import integrate",
+			"",
+			"# Definer tæthedsfunktion f_X(x)",
+			"def f_X(x):",
+			"    return ${1:3 * x**2}  # Eksempel: f(x) = 3x² for x ∈ [0,1]",
+			"",
+			"# Integrationsgränser",
+			"a = ${2:0}  # Nedre grænse",
+			"b = ${3:1}  # Øvre grænse",
+			"",
+			"# Beregn E[X] = ∫ x·f(x) dx",
+			"E_X, _ = integrate.quad(lambda x: x * f_X(x), a, b)",
+			"",
+			"# Beregn E[X²] = ∫ x²·f(x) dx",
+			"E_X2, _ = integrate.quad(lambda x: x**2 * f_X(x), a, b)",
+			"",
+			"# Beregn Var(X) = E[X²] - E[X]²",
+			"Var_X = E_X2 - E_X**2",
+			"",
+			"print(f\"E[X] = {E_X:.4f}\")",
+			"print(f\"E[X²] = {E_X2:.4f}\")",
+			"print(f\"Var(X) = {Var_X:.4f}\")",
+			"print(f\"SD(X) = {np.sqrt(Var_X):.4f}\")"
+		],
+		"description": "Beregn forventningsværdi og varians for kontinuert stokastisk variabel | Calculate E[X] and Var(X) for continuous random variable using integration"
+	},
+	
+	"CDF from PDF Formula": {
+		"prefix": [
+			"fordelingsfunktion-formel",
+			"cdf-from-pdf-formula",
+			"fordelingsfunktion-fx",
+			"cumulative-distribution-function-formula"
+		],
+		"body": [
+			"**Fordelingsfunktion F_X(x):**",
+			"\\$\\$ F_X(x) = P(X \\\\leq x) = \\\\int_{-\\\\infty}^{x} f_X(t) \\\\, dt \\$\\$",
+			"",
+			"hvor \\$f_X(t)\\$ er tæthedsfunktionen (PDF)"
+		],
+		"description": "Fordelingsfunktion fra tæthedsfunktion | CDF (cumulative distribution function) from PDF formula"
+	},
+	
+	"CDF from PDF Calculation": {
+		"prefix": [
+			"beregn-fordelingsfunktion-fra-tæthedsfunktion",
+			"calculate-cdf-from-pdf",
+			"beregn-fx",
+			"cdf-from-pdf"
+		],
+		"body": [
+			"# Bestem fordelingsfunktionen F_X(x) fra tæthedsfunktionen f_X(x)",
+			"# DANSK: F_X(x) = P(X ≤ x) = ∫_{-∞}^x f_X(t) dt",
+			"# ENGLISH: F_X(x) = P(X ≤ x) = ∫_{-∞}^x f_X(t) dt",
+			"# LaTeX: F_X(x) = P(X \\leq x) = \\int_{-\\infty}^{x} f_X(t) \\, dt",
+			"from scipy import integrate",
+			"",
+			"# Definer tæthedsfunktion f_X(x)",
+			"def f_X(x):",
+			"    return ${1:3 * x**2}  # Eksempel: f(x) = 3x² for x ∈ [0,1]",
+			"",
+			"# Definer fordelingsfunktion F_X(x)",
+			"def F_X(x):",
+			"    \"\"\"Beregn P(X ≤ x) = ∫_{-∞}^x f_X(t) dt\"\"\"",
+			"    lower_limit = ${2:0}  # Nedre grænse for support (hvor pdf > 0)",
+			"    if x < lower_limit:",
+			"        return 0",
+			"    result, _ = integrate.quad(f_X, lower_limit, x)",
+			"    return result",
+			"",
+			"# Beregn fordelingsfunktionen for specifikke værdier",
+			"x_values = [${3:0.25, 0.5, 0.75, 1.0}]",
+			"for x in x_values:",
+			"    print(f\"F_X({x}) = P(X ≤ {x}) = {F_X(x):.4f}\")"
+		],
+		"description": "Beregn fordelingsfunktion fra tæthedsfunktion | Calculate CDF F_X(x) from PDF f_X(x) using integration"
+	},
+	
+	"Inverse CDF Formula": {
+		"prefix": [
+			"invers-fordelingsfunktion-formel",
+			"inverse-cdf-formula",
+			"kvantil-funktion-formel",
+			"quantile-function-formula"
+		],
+		"body": [
+			"**Invers fordelingsfunktion (Kvantil-funktion):**",
+			"",
+			"**Definition:**",
+			"",
+			"\\$F_X^{-1}(p)\\$ returnerer den \\$x\\$-værdi hvor den kumulative sandsynlighed er \\$p\\$:",
+			"",
+			"\\$\\$ F_X(x) = p \\\\quad \\\\Rightarrow \\\\quad x = F_X^{-1}(p) \\$\\$",
+			"",
+			"**Område/Definitionsmængde:**",
+			"- Input til \\$F_X(x)\\$: \\$x\\$ værdier (reelle tal)",
+			"- Output fra \\$F_X(x)\\$: sandsynligheder \\$\\\\in [0,1]\\$",
+			"- Input til \\$F_X^{-1}(p)\\$: sandsynligheder \\$p \\\\in [0,1]\\$",
+			"- Output fra \\$F_X^{-1}(p)\\$: \\$x\\$ værdier",
+			"",
+			"**Eksempel:**",
+			"",
+			"Hvis \\$F_X(5) = 0.9\\$, så er \\$F_X^{-1}(0.9) = 5\\$",
+			"",
+			"**Vigtige forholdsregler:**",
+			"",
+			"1. **Strengt voksende CDF:** En ægte invers eksisterer kun hvis CDF er strengt voksende",
+			"",
+			"2. **Diskrete fordelinger:** For \"flade\" dele defineres inversen som:",
+			"   \\$\\$ F_X^{-1}(p) = \\\\inf\\\\{x : F_X(x) \\\\geq p\\\\} \\$\\$",
+			"   (den mindste \\$x\\$ hvor \\$F_X(x) \\\\geq p\\$)",
+			"",
+			"3. **Input-begrænsning:** Brug aldrig værdier uden for \\$[0,1]\\$",
+			"",
+			"4. **Grænsecases:** For kontinuerte fordelinger kan \\$F_X^{-1}(0)\\$ og \\$F_X^{-1}(1)\\$ give \\$-\\\\infty\\$ eller \\$+\\\\infty\\$"
+		],
+		"description": "Invers fordelingsfunktion (kvantil-funktion) med forklaring | Inverse CDF (quantile function) with explanation"
+	},
+	
+	"Inverse CDF Calculation": {
+		"prefix": [
+			"beregn-invers-fordelingsfunktion",
+			"calculate-inverse-cdf",
+			"beregn-kvantil",
+			"inverse-cdf"
+		],
+		"body": [
+			"# Beregn invers fordelingsfunktion F_X^{-1}(p) (kvantil-funktion)",
+			"# DANSK: Find x sådan at F_X(x) = P(X ≤ x) = p",
+			"# ENGLISH: Find x such that F_X(x) = P(X ≤ x) = p",
+			"# LaTeX: F_X^{-1}(p) = \\inf\\{x \\in \\mathbb{R} : F_X(x) \\geq p\\}",
+			"from scipy import integrate, optimize",
+			"",
+			"# Definer tæthedsfunktion f_X(x)",
+			"def f_X(x):",
+			"    return ${1:3 * x**2}  # Eksempel: f(x) = 3x² for x ∈ [0,1]",
+			"",
+			"# Definer fordelingsfunktion F_X(x)",
+			"def F_X(x):",
+			"    \"\"\"Beregn P(X ≤ x) = ∫_{-∞}^x f_X(t) dt\"\"\"",
+			"    lower_limit = ${2:0}  # Nedre grænse for support",
+			"    if x < lower_limit:",
+			"        return 0",
+			"    result, _ = integrate.quad(f_X, lower_limit, x)",
+			"    return result",
+			"",
+			"# Definer invers fordelingsfunktion (kvantil-funktion)",
+			"def F_X_inv(p):",
+			"    \"\"\"Find x sådan at F_X(x) = p\"\"\"",
+			"    # Løs ligningen F_X(x) - p = 0",
+			"    lower_limit = ${3:0}",
+			"    upper_limit = ${4:1}",
+			"    result = optimize.brentq(lambda x: F_X(x) - p, lower_limit, upper_limit)",
+			"    return result",
+			"",
+			"# Beregn kvantiler for specifikke sandsynligheder",
+			"probabilities = [${5:0.25, 0.5, 0.75, 0.95}]",
+			"for p in probabilities:",
+			"    x = F_X_inv(p)",
+			"    print(f\"F_X^{{-1}}({p}) = {x:.4f} (dvs. P(X ≤ {x:.4f}) = {p})\")"
+		],
+		"description": "Beregn invers fordelingsfunktion (kvantil) | Calculate inverse CDF F_X^{-1}(p) using numerical root-finding"
+	},
+	
 	"Exponential Distribution": {
 		"prefix": ["eksponential-fordeling", "exponential"],
 		"body": [
 			"# Eksponentialfordeling: X ~ Exp(λ)",
 			"# Ventetid til næste hændelse (levetidsfordeling)",
+			"# LaTeX: f(x) = \\lambda e^{-\\lambda x}, \\quad x \\geq 0",
+			"# LaTeX: E[X] = \\frac{1}{\\lambda}, \\quad Var(X) = \\frac{1}{\\lambda^2}",
 			"lambda_rate = ${1:0.5}  # λ - rate parameter | Rate parameter",
 			"X = stats.expon(scale=1/lambda_rate)",
 			"",
@@ -573,6 +1255,8 @@
 		"body": [
 			"# Normal-fordeling (Gaussisk): X ~ N(μ, σ²)",
 			"# Klokkekurve, symmetrisk omkring μ",
+			"# LaTeX: f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}",
+			"# LaTeX: E[X] = \\mu, \\quad Var(X) = \\sigma^2",
 			"mu = ${1:0}  # μ - middelværdi | Mean",
 			"sigma = ${2:1}  # σ - standardafvigelse | Standard deviation",
 			"X = stats.norm(loc=mu, scale=sigma)",
@@ -592,6 +1276,8 @@
 		"body": [
 			"# Standard normalfordeling: Z ~ N(0,1)",
 			"# Normaliseret normal-fordeling",
+			"# LaTeX: Z = \\frac{X - \\mu}{\\sigma}",
+			"# LaTeX: E[Z] = 0, \\quad Var(Z) = 1",
 			"Z = stats.norm(0, 1)",
 			"",
 			"# Standardisering: Z = (X - μ) / σ",
@@ -609,6 +1295,7 @@
 		"body": [
 			"# Log-normalfordeling: hvis log(X) ~ N(μ, σ²)",
 			"# Altid positiv, højreskæv",
+			"# LaTeX: E[X] = e^{\\mu + \\sigma^2/2}, \\quad Var(X) = (e^{\\sigma^2} - 1)e^{2\\mu + \\sigma^2}",
 			"mu = ${1:0}  # μ - parameter (ikke middelværdi!)",
 			"sigma = ${2:1}  # σ - parameter",
 			"X = stats.lognorm(s=sigma, scale=np.exp(mu))",
@@ -626,6 +1313,7 @@
 		"body": [
 			"# Chi-i-anden (χ²) fordeling med k frihedsgrader",
 			"# Sum af k uafhængige standard normale variable i anden",
+			"# LaTeX: E[X] = k, \\quad Var(X) = 2k",
 			"df = ${1:10}  # k - frihedsgrader (degrees of freedom)",
 			"X = stats.chi2(df)",
 			"",
@@ -644,6 +1332,7 @@
 		"body": [
 			"# Students t-fordeling med ν frihedsgrader",
 			"# Ligner normalfordeling men tungere haler",
+			"# LaTeX: E[X] = 0 \\text{ for } \\nu > 1, \\quad Var(X) = \\frac{\\nu}{\\nu-2} \\text{ for } \\nu > 2",
 			"df = ${1:10}  # ν - frihedsgrader (degrees of freedom)",
 			"X = stats.t(df)",
 			"",
@@ -662,6 +1351,7 @@
 		"body": [
 			"# F-fordeling med (d₁, d₂) frihedsgrader",
 			"# Ratio af to chi-kvadrat fordelinger",
+			"# LaTeX: E[X] = \\frac{d_2}{d_2-2} \\text{ for } d_2 > 2",
 			"dfn = ${1:5}  # d₁ - tæller frihedsgrader | Numerator degrees of freedom",
 			"dfd = ${2:10}  # d₂ - nævner frihedsgrader | Denominator degrees of freedom",
 			"X = stats.f(dfn, dfd)",
@@ -700,17 +1390,21 @@
 	},
 	
 	"Probability Between Values": {
-		"prefix": ["sandsynlighed-mellem", "prob-between"],
+		"prefix": ["sandsynlighed-mellem", "prob-between", "interval-prob"],
 		"body": [
 			"# Sandsynlighed mellem to værdier: P(a < X < b)",
-			"lower = ${1:0}",
-			"upper = ${2:1}",
-			"mu = ${3:0}",
-			"sigma = ${4:1}",
+			"# Bruger CDF: P(a < X < b) = F(b) - F(a)",
+			"# LaTeX: P(a < X < b) = F(b) - F(a) = \\int_a^b f(x) dx",
+			"lower = ${1:0}  # Nedre grænse a",
+			"upper = ${2:1}  # Øvre grænse b",
+			"mu = ${3:0}  # Middelværdi",
+			"sigma = ${4:1}  # Standardafvigelse",
+			"",
+			"# P(a < X < b) = Φ((b-μ)/σ) - Φ((a-μ)/σ)",
 			"prob = stats.norm.cdf(upper, loc=mu, scale=sigma) - stats.norm.cdf(lower, loc=mu, scale=sigma)",
 			"print(f\"P({lower} < X < {upper}) = {prob:.4f}\")"
 		],
-		"description": "P(a<X<b) | Probability between two values for normal distribution"
+		"description": "P(a<X<b) | Probability between two values for normal distribution using CDF difference: F(b)-F(a)"
 	},
 	
 	// ==================== ESTIMATORER / ESTIMATORS ====================
@@ -719,6 +1413,8 @@
 		"prefix": ["stikprøve-statistik", "sample-stats"],
 		"body": [
 			"# Empiriske stikprøvestatistikker",
+			"# LaTeX: \\bar{x} = \\frac{1}{n}\\sum_{i=1}^n x_i",
+			"# LaTeX: s^2 = \\frac{1}{n-1}\\sum_{i=1}^n (x_i - \\bar{x})^2",
 			"${1:data} = np.array([${2:values}])",
 			"n = len(${1:data})",
 			"",
@@ -744,6 +1440,7 @@
 		"body": [
 			"# Standardfejl (Standard Error): SE = σ/√n",
 			"# Spredning af stikprøvemiddelværdien",
+			"# LaTeX: SE = \\frac{\\sigma}{\\sqrt{n}}",
 			"sigma = ${1:5}  # Populationsstandardafvigelse | Population std",
 			"n = ${2:30}  # Stikprøvestørrelse | Sample size",
 			"SE = sigma / np.sqrt(n)",
@@ -757,12 +1454,28 @@
 		"body": [
 			"# Andelestimator: p̂ = X/n",
 			"# Point estimator for proportion",
+			"# LaTeX: \\hat{p} = \\frac{X}{n}",
 			"successes = ${1:45}  # Antal succeser | Number of successes",
 			"n = ${2:100}  # Stikprøvestørrelse | Sample size",
 			"p_hat = successes / n",
 			"print(f\"p̂ = {p_hat:.4f}\")"
 		],
 		"description": "Andelestimator p̂=X/n | Point estimator for proportion"
+	},
+	
+	"Variance of Proportion Estimator (Calculate)": {
+		"prefix": ["var-p-hat", "varians-andel", "proportion-variance"],
+		"body": [
+			"# Varians af andelestimator: Var(p̂) = p(1-p)/n",
+			"# Theoretical variance of proportion estimator",
+			"# LaTeX: \\text{Var}(\\hat{p}) = \\frac{p(1-p)}{n}",
+			"# LaTeX: \\hat{p} = \\frac{X}{n}, \\quad X \\sim \\text{Binomial}(n, p)",
+			"p = ${1:0.018}  # Teoretisk proportion | Theoretical proportion",
+			"n = ${2:3000}  # Stikprøvestørrelse | Sample size",
+			"var_p_hat = (p * (1 - p)) / n",
+			"print(f\"Var(p̂) = {var_p_hat:.6f}\")"
+		],
+		"description": "Varians af andelestimator Var(p̂)=p(1-p)/n | Variance of binomial proportion estimator"
 	},
 	
 	"Verify Unbiased Estimator": {
@@ -821,10 +1534,12 @@
 	// ==================== KONFIDENSINTERVALLER / CONFIDENCE INTERVALS ====================
 	
 	"Critical Value": {
-		"prefix": ["kritisk-værdi", "crit-value"],
+		"prefix": ["kritisk-værdi", "crit-value", "quantile"],
 		"body": [
 			"# Kritisk værdi for konfidensinterval",
 			"# Critical value: z eller t værdi for given konfidensniveau",
+			"# LaTeX (Z): z_{\\alpha/2} = \\Phi^{-1}(1-\\alpha/2) \\text{ where } \\Phi \\text{ is standard normal CDF}",
+			"# LaTeX (t): t_{\\alpha/2,df} = F^{-1}_{t}(1-\\alpha/2,df) \\text{ where } F_t \\text{ is t-distribution CDF}",
 			"alpha = ${1:0.05}  # Signifikansniveau (typisk 0.05 for 95% CI)",
 			"",
 			"# For normalfordeling (kendt varians)",
@@ -836,18 +1551,26 @@
 			"t_critical = stats.t.ppf(1 - alpha/2, df)",
 			"print(f\"t_{alpha/2}({df}) = {t_critical:.4f}\")"
 		],
-		"description": "Kritisk værdi z/t | Critical value for confidence intervals"
+		"description": "Kritisk værdi z/t | Critical value (quantile) for confidence intervals using inverse CDF"
 	},
 	
 	"Confidence Interval (Known Variance)": {
-		"prefix": ["konfidensinterval-kendt", "ci-known"],
+		"prefix": [
+			"konfidensinterval-kendt-varians-z-fordeling",
+			"confidence-interval-known-variance-z-distribution",
+			"konfidensinterval-kendt",
+			"konfidensinterval-z"
+		],
 		"body": [
-			"# Konfidensinterval for middelværdi (kendt varians)",
+			"# Konfidensinterval for middelværdi μ (kendt populationsvarians σ²)",
+			"# BRUG NÅR: Populationsstandardafvigelse σ er KENDT (fra teori/tidligere studier)",
+			"# Bruger Z-FORDELING (ingen frihedsgrader nødvendige)",
 			"# CI: x̄ ± z_{α/2} × (σ/√n)",
+			"# LaTeX: CI = \\left[\\bar{x} - z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}}, \\bar{x} + z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}}\\right]",
 			"alpha = ${1:0.05}  # Signifikansniveau (1-α = konfidensniveau)",
-			"sample_mean = ${2:10}  # Stikprøvemiddelværdi | Sample mean",
-			"sigma = ${3:2}  # Kendt standardafvigelse | Known std",
-			"n = ${4:30}  # Stikprøvestørrelse | Sample size",
+			"sample_mean = ${2:10}  # x̄ - Observeret stikprøvemiddelværdi",
+			"sigma = ${3:2}  # σ - KENDT populationsstandardafvigelse (ikke s!)",
+			"n = ${4:30}  # Stikprøvestørrelse",
 			"",
 			"z_critical = stats.norm.ppf(1 - alpha/2)",
 			"SE = sigma / np.sqrt(n)",
@@ -859,20 +1582,30 @@
 			"print(f\"{(1-alpha)*100:.0f}% Konfidensinterval: ({lower_bound:.4f}, {upper_bound:.4f})\")",
 			"print(f\"Fejlmargin: ±{margin_error:.4f}\")"
 		],
-		"description": "Konfidensinterval kendt σ | CI for mean with known variance: x̄ ± z×(σ/√n)"
+		"description": "CI middelværdi (kendt σ) | Use when: Population std σ IS KNOWN. Uses Z-distribution, no df needed. Formula: x̄ ± z×(σ/√n)"
 	},
 	
 	"Confidence Interval (Unknown Variance)": {
-		"prefix": ["konfidensinterval-ukendt", "ci-unknown"],
+		"prefix": [
+			"konfidensinterval-ukendt-varians-t-fordeling",
+			"confidence-interval-unknown-variance-t-distribution",
+			"konfidensinterval-ukendt",
+			"konfidensinterval-t",
+			"t-interval"
+		],
 		"body": [
-			"# Konfidensinterval for middelværdi (ukendt varians)",
+			"# Konfidensinterval for middelværdi μ (ukendt populationsvarians)",
+			"# BRUG NÅR: Populationsstandardafvigelse σ er UKENDT - bruger stikprøve-std s",
+			"# Bruger T-FORDELING med df = n-1 frihedsgrader",
+			"# Antager: Data er tilnærmelsesvis normalfordelt",
 			"# CI: x̄ ± t_{α/2,n-1} × (s/√n)",
-			"alpha = ${1:0.05}",
-			"sample_mean = ${2:10}",
-			"s = ${3:2}  # Stikprøvestandardafvigelse | Sample std",
-			"n = ${4:30}",
+			"# LaTeX: CI = \\left[\\bar{x} - t_{\\alpha/2,n-1}\\frac{s}{\\sqrt{n}}, \\bar{x} + t_{\\alpha/2,n-1}\\frac{s}{\\sqrt{n}}\\right]",
+			"alpha = ${1:0.05}  # Signifikansniveau",
+			"sample_mean = ${2:10}  # x̄ - Observeret stikprøvemiddelværdi",
+			"s = ${3:2}  # s - Stikprøvestandardafvigelse (beregnet fra data)",
+			"n = ${4:30}  # Stikprøvestørrelse",
 			"",
-			"df = n - 1",
+			"df = n - 1  # Frihedsgrader",
 			"t_critical = stats.t.ppf(1 - alpha/2, df)",
 			"SE = s / np.sqrt(n)",
 			"margin_error = t_critical * SE",
@@ -880,51 +1613,134 @@
 			"lower_bound = sample_mean - margin_error",
 			"upper_bound = sample_mean + margin_error",
 			"",
-			"print(f\"{(1-alpha)*100:.0f}% Konfidensinterval: ({lower_bound:.4f}, {upper_bound:.4f})\")"
+			"print(f\"{(1-alpha)*100:.0f}% Konfidensinterval: ({lower_bound:.4f}, {upper_bound:.4f})\")",
+			"print(f\"Frihedsgrader: {df}\")"
 		],
-		"description": "Konfidensinterval ukendt σ | CI for mean with unknown variance: x̄ ± t×(s/√n)"
+		"description": "CI middelværdi (t-fordeling) | Use when: Population std σ UNKNOWN - use sample std s. Uses t-distribution with df=n-1. Formula: x̄ ± t×(s/√n)"
 	},
 	
 	"Confidence Interval (Proportion)": {
-		"prefix": ["konfidensinterval-andel", "ci-proportion"],
-		"body": [
-			"# Konfidensinterval for andel/proportion",
-			"# CI: p̂ ± z_{α/2} × √(p̂(1-p̂)/n)",
-			"alpha = ${1:0.05}",
-			"p_hat = ${2:0.6}  # Stikprøveandel | Sample proportion",
-			"n = ${3:100}",
-			"",
-			"z_critical = stats.norm.ppf(1 - alpha/2)",
-			"SE = np.sqrt(p_hat * (1 - p_hat) / n)",
-			"margin_error = z_critical * SE",
-			"",
-			"lower_bound = p_hat - margin_error",
-			"upper_bound = p_hat + margin_error",
-			"",
-			"print(f\"{(1-alpha)*100:.0f}% Konfidensinterval: ({lower_bound:.4f}, {upper_bound:.4f})\")"
+		"prefix": [
+			"konfidensinterval-for-andel-proportion",
+			"confidence-interval-for-proportion",
+			"konfidensinterval-andel",
+			"konfidensinterval-proportion"
 		],
-		"description": "Konfidensinterval andel | CI for proportion: p̂ ± z×√(p̂(1-p̂)/n)"
+		"body": [
+			"# Konfidensinterval for population proportion p",
+			"# BRUG NÅR: Estimerer andel/proportion fra binære data (succes/fiasko)",
+			"# Bruger Z-FORDELING (stor stikprøve tilnærmelse)",
+			"# Krav: n×p̂ ≥ 5 OG n×(1-p̂) ≥ 5",
+			"# CI: p̂ ± z_{α/2} × √(p̂(1-p̂)/n)",
+			"# LaTeX: CI = \\left[\\hat{p} - z_{\\alpha/2}\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}, \\hat{p} + z_{\\alpha/2}\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}\\right]",
+			"alpha = ${1:0.05}  # Signifikansniveau",
+			"p_hat = ${2:0.6}  # p̂ = X/n - Observeret stikprøveandel",
+			"n = ${3:100}  # Stikprøvestørrelse (antal observationer)",
+			"",
+			"# Tjek normalapproksimation",
+			"if n * p_hat >= 5 and n * (1 - p_hat) >= 5:",
+			"    z_critical = stats.norm.ppf(1 - alpha/2)",
+			"    SE = np.sqrt(p_hat * (1 - p_hat) / n)",
+			"    margin_error = z_critical * SE",
+			"    ",
+			"    lower_bound = p_hat - margin_error",
+			"    upper_bound = p_hat + margin_error",
+			"    ",
+			"    print(f\"{(1-alpha)*100:.0f}% Konfidensinterval: ({lower_bound:.4f}, {upper_bound:.4f})\")",
+			"else:",
+			"    print(\"ADVARSEL: Stikprøven er for lille til normalapproksimation\")"
+		],
+		"description": "CI proportion p | Use when: Estimating proportion from binary data. Requires: n×p̂≥5 AND n×(1-p̂)≥5. Uses Z-distribution. Formula: p̂ ± z×√(p̂(1-p̂)/n)"
 	},
 	
 	"Confidence Interval (Variance)": {
-		"prefix": ["konfidensinterval-varians", "ci-variance"],
+		"prefix": [
+			"konfidensinterval-for-varians-chi-kvadrat",
+			"confidence-interval-for-variance-chi-squared",
+			"konfidensinterval-varians",
+			"konfidensinterval-sigma2"
+		],
 		"body": [
-			"# Konfidensinterval for varians",
-			"# Bruger chi-kvadrat fordeling",
-			"alpha = ${1:0.05}",
-			"s_squared = ${2:4}  # Stikprøvevarians | Sample variance",
-			"n = ${3:30}",
+			"# Konfidensinterval for populationsvarians σ²",
+			"# BRUG NÅR: Estimerer varians σ² fra normalfordelte data",
+			"# Bruger CHI-KVADRAT FORDELING med df = n-1 frihedsgrader",
+			"# Antager: Data er normalfordelt (følsomt over for ikke-normalitet!)",
+			"# LaTeX: CI = \\left[\\frac{(n-1)s^2}{\\chi^2_{\\alpha/2,n-1}}, \\frac{(n-1)s^2}{\\chi^2_{1-\\alpha/2,n-1}}\\right]",
+			"alpha = ${1:0.05}  # Signifikansniveau",
+			"s_squared = ${2:4}  # s² - Observeret stikprøvevarians",
+			"n = ${3:30}  # Stikprøvestørrelse",
 			"",
-			"df = n - 1",
+			"df = n - 1  # Frihedsgrader",
 			"chi2_lower = stats.chi2.ppf(alpha/2, df)",
 			"chi2_upper = stats.chi2.ppf(1 - alpha/2, df)",
 			"",
+			"# OBS: Vend om på chi-kvadrat værdier for CI grænser",
 			"lower_bound = (df * s_squared) / chi2_upper",
 			"upper_bound = (df * s_squared) / chi2_lower",
 			"",
-			"print(f\"{(1-alpha)*100:.0f}% CI for σ²: ({lower_bound:.4f}, {upper_bound:.4f})\")"
+			"# CI for standardafvigelse σ",
+			"lower_std = np.sqrt(lower_bound)",
+			"upper_std = np.sqrt(upper_bound)",
+			"",
+			"print(f\"{(1-alpha)*100:.0f}% CI for σ²: ({lower_bound:.4f}, {upper_bound:.4f})\")",
+			"print(f\"{(1-alpha)*100:.0f}% CI for σ: ({lower_std:.4f}, {upper_std:.4f})\")"
 		],
-		"description": "Konfidensinterval varians | CI for variance using chi-squared distribution"
+		"description": "CI varians σ² | Use when: Estimating variance from normal data. Uses Chi-squared distribution with df=n-1. Sensitive to non-normality!"
+	},
+	
+	"Confidence Interval (Two-Sample Pooled)": {
+		"prefix": [
+			"konfidensinterval-for-forskel-mellem-to-middelværdier-pooled",
+			"confidence-interval-for-difference-between-two-means-pooled",
+			"konfidensinterval-pooled",
+			"konfidensinterval-to-stikprøver"
+		],
+		"body": [
+			"# Konfidensinterval for forskel mellem to middelværdier med pooled varians",
+			"# Confidence interval for difference between two means with pooled variance",
+			"# DANSK: To-stikprøve konfidensinterval (uafhængige grupper, lige varianser)",
+			"# ENGLISH: Two-sample confidence interval (independent groups, equal variances)",
+			"# BRUG NÅR: Sammenligner to UAFHÆNGIGE grupper med LIGE VARIANSER",
+			"# Bruger T-FORDELING med df = n₁ + n₂ - 2 frihedsgrader",
+			"# Antager: Normalfordelte data og σ₁² = σ₂²",
+			"# CI: (x̄₁ - x̄₂) ± t_{α/2,df} × s_p√(1/n₁ + 1/n₂)",
+			"# LaTeX: CI = \\left[(\\bar{x}_1-\\bar{x}_2) - t_{\\alpha/2,df} \\cdot s_p\\sqrt{\\frac{1}{n_1}+\\frac{1}{n_2}}, (\\bar{x}_1-\\bar{x}_2) + t_{\\alpha/2,df} \\cdot s_p\\sqrt{\\frac{1}{n_1}+\\frac{1}{n_2}}\\right]",
+			"",
+			"# Data fra to grupper",
+			"x1 = np.array([${1:data1}])  # Gruppe 1",
+			"x2 = np.array([${2:data2}])  # Gruppe 2",
+			"alpha = ${3:0.05}  # Signifikansniveau",
+			"",
+			"# Beskrivende statistik",
+			"n1, n2 = len(x1), len(x2)",
+			"x1_bar = np.mean(x1)",
+			"x2_bar = np.mean(x2)",
+			"s1_sq = np.var(x1, ddof=1)",
+			"s2_sq = np.var(x2, ddof=1)",
+			"",
+			"# Pooled varians: s_p² = [(n₁-1)s₁² + (n₂-1)s₂²] / (n₁+n₂-2)",
+			"s_p_sq = ((n1 - 1) * s1_sq + (n2 - 1) * s2_sq) / (n1 + n2 - 2)",
+			"s_p = np.sqrt(s_p_sq)",
+			"",
+			"# Frihedsgrader",
+			"df = n1 + n2 - 2",
+			"",
+			"# Kritisk værdi og margin of error",
+			"t_critical = stats.t.ppf(1 - alpha/2, df)",
+			"SE = s_p * np.sqrt(1/n1 + 1/n2)",
+			"margin_error = t_critical * SE",
+			"",
+			"# Konfidensinterval for μ₁ - μ₂",
+			"diff = x1_bar - x2_bar",
+			"lower_bound = diff - margin_error",
+			"upper_bound = diff + margin_error",
+			"",
+			"print(f\"x̄₁ - x̄₂ = {diff:.4f}\")",
+			"print(f\"s_p = {s_p:.4f}\")",
+			"print(f\"{(1-alpha)*100:.0f}% CI for μ₁-μ₂: ({lower_bound:.4f}, {upper_bound:.4f})\")",
+			"print(f\"Fortolkning: Vi er {(1-alpha)*100:.0f}% sikre på at μ₁-μ₂ ligger i intervallet\")"
+		],
+		"description": "Konfidensinterval for forskel mellem to middelværdier | Confidence interval for difference between two means (pooled variance)"
 	},
 	
 	"Sample Size Calculation": {
@@ -932,6 +1748,7 @@
 		"body": [
 			"# Beregn nødvendig stikprøvestørrelse",
 			"# For given fejlmargin og konfidensniveau",
+			"# LaTeX: n = \\left(\\frac{z_{\\alpha/2} \\sigma}{E}\\right)^2",
 			"alpha = ${1:0.05}",
 			"margin_error = ${2:0.5}  # Ønsket fejlmargin | Desired margin of error",
 			"sigma = ${3:5}  # Kendt/antaget σ (worst case: 0.5 for andel)",
@@ -947,23 +1764,27 @@
 	// ==================== HYPOTESETEST / HYPOTHESIS TESTING ====================
 	
 	"Z-Test (One Sample)": {
-		"prefix": ["z-test", "z-test-en-stikprøve"],
+		"prefix": ["z-test", "z-test-en-stikprøve", "z-test-mean"],
 		"body": [
-			"# Z-test for middelværdi (kendt varians)",
+			"# Z-test for middelværdi μ (kendt populationsvarians σ²)",
+			"# BRUG NÅR: Populationsstandardafvigelse σ er KENDT",
+			"# Bruger Z-FORDELING (standard normal)",
 			"# H₀: μ = μ₀  vs  H₁: μ ≠ μ₀ (tosidet)",
-			"sample_mean = ${1:10.5}  # Observeret stikprøvemiddel",
-			"mu_0 = ${2:10}  # Nulhypotese værdi",
-			"sigma = ${3:2}  # Kendt populationsstandardafvigelse",
-			"n = ${4:30}",
+			"# LaTeX: Z = \\frac{\\bar{x} - \\mu_0}{\\sigma / \\sqrt{n}}",
+			"# LaTeX: p = 2\\Phi(-|Z|) = 2(1 - \\Phi(|Z|))",
+			"sample_mean = ${1:10.5}  # x̄ - Observeret stikprøvemiddelværdi",
+			"mu_0 = ${2:10}  # μ₀ - Nulhypoteseantaget værdi for μ",
+			"sigma = ${3:2}  # σ - KENDT populationsstandardafvigelse",
+			"n = ${4:30}  # Stikprøvestørrelse",
 			"",
 			"# Teststatistik: Z = (x̄ - μ₀) / (σ/√n)",
 			"z_stat = (sample_mean - mu_0) / (sigma / np.sqrt(n))",
 			"",
 			"# Kritisk værdi",
-			"alpha = ${5:0.05}",
+			"alpha = ${5:0.05}  # Signifikansniveau",
 			"z_critical = stats.norm.ppf(1 - alpha/2)",
 			"",
-			"# p-værdi (tosidet)",
+			"# p-værdi (tosidet): p = 2(1 - Φ(|Z|))",
 			"p_value = 2 * (1 - stats.norm.cdf(abs(z_stat)))",
 			"",
 			"print(f\"H₀: μ = {mu_0}\")",
@@ -973,21 +1794,26 @@
 			"print(f\"p-værdi = {p_value:.4f}\")",
 			"print(f\"Konklusion: {'Forkast H₀' if abs(z_stat) > z_critical else 'Forkast ikke H₀'}\")"
 		],
-		"description": "Z-test én stikprøve | One-sample Z-test for mean with known variance"
+		"description": "Z-test én stikprøve | Use when: Population std σ IS KNOWN. Test: H₀:μ=μ₀ vs H₁:μ≠μ₀. Uses Z ~ N(0,1). Formula: Z=(x̄-μ₀)/(σ/√n)"
 	},
 	
 	"Z-Test (One-Sided Greater)": {
-		"prefix": ["z-test-højresidet", "z-test-greater"],
+		"prefix": ["z-test-højresidet", "z-test-greater", "z-test-right"],
 		"body": [
-			"# Z-test højresidet: H₀: μ = μ₀ vs H₁: μ > μ₀",
-			"sample_mean = ${1:10.5}",
-			"mu_0 = ${2:10}",
-			"sigma = ${3:2}",
-			"n = ${4:30}",
-			"alpha = ${5:0.05}",
+			"# Z-test højresidet (kendt populationsvarians σ²)",
+			"# BRUG NÅR: Tester om middelværdi er STØRRE end μ₀",
+			"# H₀: μ = μ₀ vs H₁: μ > μ₀ (ensidet højre)",
+			"# LaTeX: Z = \\frac{\\bar{x} - \\mu_0}{\\sigma / \\sqrt{n}}",
+			"# LaTeX: p = 1 - \\Phi(Z)",
+			"sample_mean = ${1:10.5}  # x̄ - Observeret stikprøvemiddelværdi",
+			"mu_0 = ${2:10}  # μ₀ - Nulhypotese værdi",
+			"sigma = ${3:2}  # σ - KENDT populationsstandardafvigelse",
+			"n = ${4:30}  # Stikprøvestørrelse",
+			"alpha = ${5:0.05}  # Signifikansniveau",
 			"",
 			"z_stat = (sample_mean - mu_0) / (sigma / np.sqrt(n))",
-			"z_critical = stats.norm.ppf(1 - alpha)  # Ensidet",
+			"z_critical = stats.norm.ppf(1 - alpha)  # Ensidet kritisk værdi",
+			"# p-værdi (højresidet): p = 1 - Φ(Z)",
 			"p_value = 1 - stats.norm.cdf(z_stat)",
 			"",
 			"print(f\"H₀: μ = {mu_0}\")",
@@ -997,25 +1823,31 @@
 			"print(f\"p-værdi = {p_value:.4f}\")",
 			"print(f\"Konklusion: {'Forkast H₀' if z_stat > z_critical else 'Forkast ikke H₀'}\")"
 		],
-		"description": "Z-test højresidet | Right-tailed Z-test: H₁: μ > μ₀"
+		"description": "Z-test højresidet | Use when: Testing if μ > μ₀ (one-sided right). Population std σ known. H₁: μ > μ₀"
 	},
 	
 	"T-Test (One Sample)": {
-		"prefix": ["t-test", "t-test-en-stikprøve"],
+		"prefix": ["t-test", "t-test-en-stikprøve", "t-test-mean"],
 		"body": [
-			"# t-test for middelværdi (ukendt varians)",
-			"# H₀: μ = μ₀  vs  H₁: μ ≠ μ₀",
-			"sample_mean = ${1:10.5}",
-			"mu_0 = ${2:10}",
-			"s = ${3:2}  # Stikprøvestandardafvigelse",
-			"n = ${4:30}",
+			"# t-test for middelværdi μ (ukendt populationsvarians)",
+			"# BRUG NÅR: Populationsstandardafvigelse σ er UKENDT - bruger stikprøve s",
+			"# Bruger T-FORDELING med df = n-1 frihedsgrader",
+			"# Antager: Data er tilnærmelsesvis normalfordelt",
+			"# H₀: μ = μ₀  vs  H₁: μ ≠ μ₀ (tosidet)",
+			"# LaTeX: t = \\frac{\\bar{x} - \\mu_0}{s / \\sqrt{n}}",
+			"# LaTeX: p = 2P(T_{n-1} > |t|) = 2(1 - F_{t,n-1}(|t|))",
+			"sample_mean = ${1:10.5}  # x̄ - Observeret stikprøvemiddelværdi",
+			"mu_0 = ${2:10}  # μ₀ - Nulhypotese værdi",
+			"s = ${3:2}  # s - Stikprøvestandardafvigelse (beregnet fra data)",
+			"n = ${4:30}  # Stikprøvestørrelse",
 			"",
 			"# Teststatistik: t = (x̄ - μ₀) / (s/√n)",
 			"t_stat = (sample_mean - mu_0) / (s / np.sqrt(n))",
-			"df = n - 1",
+			"df = n - 1  # Frihedsgrader",
 			"",
-			"alpha = ${5:0.05}",
+			"alpha = ${5:0.05}  # Signifikansniveau",
 			"t_critical = stats.t.ppf(1 - alpha/2, df)",
+			"# p-værdi (tosidet): p = 2(1 - F_t(|t|))",
 			"p_value = 2 * (1 - stats.t.cdf(abs(t_stat), df))",
 			"",
 			"print(f\"H₀: μ = {mu_0}\")",
@@ -1025,62 +1857,73 @@
 			"print(f\"p-værdi = {p_value:.4f}\")",
 			"print(f\"Konklusion: {'Forkast H₀' if abs(t_stat) > t_critical else 'Forkast ikke H₀'}\")"
 		],
-		"description": "t-test én stikprøve | One-sample t-test for mean with unknown variance"
+		"description": "t-test én stikprøve | Use when: Population std σ UNKNOWN - use sample std s. Test: H₀:μ=μ₀ vs H₁:μ≠μ₀. Uses t(n-1). Assumes normality."
 	},
 	
 	"Paired T-Test": {
-		"prefix": ["parret-t-test", "paired-t-test"],
+		"prefix": ["parret-t-test", "paired-t-test", "matched-pairs"],
 		"body": [
-			"# Parret t-test: sammenlign to parrede stikprøver",
-			"# H₀: μ_d = 0  (ingen forskel)",
-			"before = np.array([${1:data1}])",
-			"after = np.array([${2:data2}])",
+			"# Parret t-test: sammenlign to PARREDE stikprøver",
+			"# BRUG NÅR: To målinger på SAMME individer (før/efter, parrede målinger)",
+			"# Tester forskelle: D_i = X_{after,i} - X_{before,i}",
+			"# H₀: μ_d = 0  (ingen forskel) vs H₁: μ_d ≠ 0",
+			"# LaTeX: t = \\frac{\\bar{d}}{s_d / \\sqrt{n}}",
+			"# LaTeX: p = 2P(T_{n-1} > |t|)",
+			"before = np.array([${1:data1}])  # Målinger før",
+			"after = np.array([${2:data2}])   # Målinger efter (samme rækkefølge!)",
 			"",
-			"# Forskelle",
+			"# Beregn forskelle for HVERT par",
 			"differences = after - before",
-			"d_bar = np.mean(differences)",
-			"s_d = np.std(differences, ddof=1)",
-			"n = len(differences)",
+			"d_bar = np.mean(differences)  # Gennemsnitlig forskel",
+			"s_d = np.std(differences, ddof=1)  # Std af forskelle",
+			"n = len(differences)  # Antal par",
 			"",
-			"# t-test på forskelle",
+			"# t-test på forskelle: t = d̄ / (s_d/√n)",
 			"t_stat = d_bar / (s_d / np.sqrt(n))",
-			"df = n - 1",
+			"df = n - 1  # Frihedsgrader",
 			"alpha = ${3:0.05}",
 			"",
 			"t_critical = stats.t.ppf(1 - alpha/2, df)",
+			"# p-værdi (tosidet): p = 2(1 - F_t(|t|))",
 			"p_value = 2 * (1 - stats.t.cdf(abs(t_stat), df))",
 			"",
-			"print(f\"H₀: μ_d = 0\")",
+			"print(f\"H₀: μ_d = 0 (ingen forskel)\")",
 			"print(f\"Gennemsnitlig forskel: {d_bar:.4f}\")",
 			"print(f\"t({df}) = {t_stat:.4f}\")",
-			"print(f\"p-værdi = {p_value:.4f}\")"
+			"print(f\"p-værdi = {p_value:.4f}\")",
+			"print(f\"Konklusion: {'Forkast H₀' if abs(t_stat) > t_critical else 'Forkast ikke H₀'}\")"
 		],
-		"description": "Parret t-test | Paired t-test for matched samples"
+		"description": "Parret t-test | Use when: TWO measurements on SAME subjects (before/after, matched pairs). Tests differences: H₀:μ_d=0. Uses t(n-1)."
 	},
 	
 	"Two-Sample T-Test (Pooled Variance)": {
-		"prefix": ["to-stikprøve-t-test", "two-sample-t"],
+		"prefix": ["to-stikprøve-t-test", "two-sample-t", "independent-t-test"],
 		"body": [
 			"# To-stikprøve t-test med pooled varians",
+			"# BRUG NÅR: Sammenligner to UAFHÆNGIGE grupper",
+			"# Antager: Lige varianser (σ₁² = σ₂²) og normalfordelte data",
 			"# H₀: μ₁ = μ₂  vs  H₁: μ₁ ≠ μ₂",
-			"# Antager lige varianser: σ₁² = σ₂²",
-			"x1 = np.array([${1:sample1}])",
-			"x2 = np.array([${2:sample2}])",
+			"# LaTeX: s_p^2 = \\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}",
+			"# LaTeX: t = \\frac{\\bar{x}_1 - \\bar{x}_2}{s_p\\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}}",
+			"# LaTeX: p = 2P(T_{n_1+n_2-2} > |t|)",
+			"x1 = np.array([${1:sample1}])  # Data fra gruppe 1",
+			"x2 = np.array([${2:sample2}])  # Data fra gruppe 2",
 			"",
 			"n1, n2 = len(x1), len(x2)",
 			"mean1, mean2 = np.mean(x1), np.mean(x2)",
-			"s1_sq = np.var(x1, ddof=1)",
-			"s2_sq = np.var(x2, ddof=1)",
+			"s1_sq = np.var(x1, ddof=1)  # Varians gruppe 1",
+			"s2_sq = np.var(x2, ddof=1)  # Varians gruppe 2",
 			"",
 			"# Pooled varians: s²_p = [(n₁-1)s₁² + (n₂-1)s₂²] / (n₁+n₂-2)",
 			"s_pooled_sq = ((n1 - 1) * s1_sq + (n2 - 1) * s2_sq) / (n1 + n2 - 2)",
 			"",
 			"# Teststatistik: t = (x̄₁ - x̄₂) / √(s²_p(1/n₁ + 1/n₂))",
 			"t_stat = (mean1 - mean2) / np.sqrt(s_pooled_sq * (1/n1 + 1/n2))",
-			"df = n1 + n2 - 2",
+			"df = n1 + n2 - 2  # Frihedsgrader",
 			"",
 			"alpha = ${3:0.05}",
 			"t_critical = stats.t.ppf(1 - alpha/2, df)",
+			"# p-værdi (tosidet): p = 2(1 - F_t(|t|))",
 			"p_value = 2 * (1 - stats.t.cdf(abs(t_stat), df))",
 			"",
 			"print(f\"H₀: μ₁ = μ₂\")",
@@ -1088,19 +1931,39 @@
 			"print(f\"p-værdi = {p_value:.4f}\")",
 			"print(f\"Konklusion: {'Forkast H₀' if abs(t_stat) > t_critical else 'Forkast ikke H₀'}\")"
 		],
-		"description": "To-stikprøve t-test pooled | Two-sample t-test assuming equal variances"
+		"description": "To-stikprøve t-test | Use when: Comparing TWO INDEPENDENT groups. Assumes: Equal variances (σ₁²=σ₂²) and normality. Uses pooled variance and t(n₁+n₂-2)."
 	},
 	
 	"Pooled Variance": {
-		"prefix": ["pooled-varians", "pooled-var"],
-		"body": [
-			"# Pooled variance for two samples",
-			"s_pooled_sq = ((${1:n1} - 1) * ${2:s1_sq} + (${3:n2} - 1) * ${4:s2_sq}) / (${1:n1} + ${3:n2} - 2)",
-			"s_pooled = np.sqrt(s_pooled_sq)",
-			"print(f\"Pooled variance: {s_pooled_sq:.4f}\")",
-			"print(f\"Pooled std: {s_pooled:.4f}\")"
+		"prefix": [
+			"pooled-varians-beregning-to-stikprøver",
+			"pooled-variance-calculation-two-samples",
+			"pooled-varians",
+			"pooled-var"
 		],
-		"description": "Calculate pooled variance for two samples"
+		"body": [
+			"# Pooled varians beregning for to stikprøver",
+			"# Pooled variance calculation for two samples",
+			"# DANSK: Kombineret varians (to uafhængige grupper med lige varianser)",
+			"# ENGLISH: Pooled variance (two independent groups with equal variances)",
+			"# LaTeX: s_i^2 = \\frac{1}{n_i-1}\\sum_{j=1}^{n_i}(x_{ij} - \\bar{x}_i)^2",
+			"# LaTeX: s_p^2 = \\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}",
+			"",
+			"# Sample variances (s^2 = variance with ddof=1)",
+			"n1 = len(${1:x1})",
+			"n2 = len(${2:x2})",
+			"s1_sq = np.var(${1:x1}, ddof=1)  # Sample variance gruppe 1",
+			"s2_sq = np.var(${2:x2}, ddof=1)  # Sample variance gruppe 2",
+			"",
+			"# Pooled variance",
+			"s_pooled_sq = ((n1 - 1) * s1_sq + (n2 - 1) * s2_sq) / (n1 + n2 - 2)",
+			"s_pooled = np.sqrt(s_pooled_sq)",
+			"",
+			"print(f\"s1² = {s1_sq:.4f}, s2² = {s2_sq:.4f}\")",
+			"print(f\"Pooled variance s_p² = {s_pooled_sq:.4f}\")",
+			"print(f\"Pooled std s_p = {s_pooled:.4f}\")"
+		],
+		"description": "Pooled varians beregning | Pooled variance calculation for two samples with equal variances"
 	},
 	"Point Estimator (Proportion)": {
 		"prefix": "prop-estimate",
@@ -1140,22 +2003,36 @@
 		"description": "Plot histogram"
 	},
 	"Data Masking": {
-		"prefix": "data-mask",
+		"prefix": ["data-mask", "filter-data", "boolean-mask"],
 		"body": [
-			"mask = (${1:data} ${2:>} ${3:threshold})",
-			"filtered_data = ${1:data}[mask]",
-			"count = mask.sum()",
-			"print(f\"Count: {count}\")"
+			"# Boolean masking: filtrer data baseret på betingelse",
+			"# Brug til at tælle eller udvælge data der opfylder kriterie",
+			"data = ${1:data}",
+			"mask = (data ${2:>} ${3:threshold})  # Skab boolean mask",
+			"filtered_data = data[mask]  # Udvælg kun data hvor mask=True",
+			"count = mask.sum()  # Antal True værdier",
+			"proportion = count / len(data)  # Andel der opfylder betingelse",
+			"print(f\"Antal: {count}\")",
+			"print(f\"Andel: {proportion:.4f}\")"
 		],
-		"description": "Create boolean mask for data filtering"
+		"description": "Boolean mask | Filter data using boolean conditions, count occurrences"
 	},
 	"Probability Between Values": {
-		"prefix": "prob-between",
+		"prefix": ["sandsynlighed-mellem", "prob-between", "interval-prob"],
 		"body": [
-			"prob = norm.cdf(${1:upper}, loc=${2:mean}, scale=${3:std}) - norm.cdf(${4:lower}, loc=${2:mean}, scale=${3:std})",
-			"print(f\"P({${4:lower}} < X < {${1:upper}}): {prob:.4f}\")"
+			"# Sandsynlighed mellem to værdier: P(a < X < b)",
+			"# Bruger CDF: P(a < X < b) = F(b) - F(a)",
+			"# LaTeX: P(a < X < b) = F(b) - F(a) = \\int_a^b f(x) dx",
+			"lower = ${1:0}  # Nedre grænse a",
+			"upper = ${2:1}  # Øvre grænse b",
+			"mu = ${3:0}  # Middelværdi",
+			"sigma = ${4:1}  # Standardafvigelse",
+			"",
+			"# P(a < X < b) = Φ((b-μ)/σ) - Φ((a-μ)/σ)",
+			"prob = stats.norm.cdf(upper, loc=mu, scale=sigma) - stats.norm.cdf(lower, loc=mu, scale=sigma)",
+			"print(f\"P({lower} < X < {upper}) = {prob:.4f}\")"
 		],
-		"description": "Calculate probability between two values for normal distribution"
+		"description": "P(a<X<b) | Probability between two values for normal distribution using CDF difference"
 	},
 	"Two-Sample T-Test": {
 		"prefix": "two-sample-t",
@@ -1187,26 +2064,37 @@
 		"description": "Two-sample unpaired t-test with pooled variance"
 	},
 	"Variance Calculation": {
-		"prefix": "variance-calc",
+		"prefix": ["variance-calc", "varians-beregning", "manual-variance"],
 		"body": [
-			"# Variance from simulated data",
-			"variance = np.sum((${1:data} - np.mean(${1:data})) ** 2) / (len(${1:data}) - 1)",
-			"print(f\"Variance: {variance:.6f}\")"
+			"# Varians beregnet manuelt fra data",
+			"# LaTeX: s^2 = \\frac{1}{n-1}\\sum_{i=1}^n (x_i - \\bar{x})^2",
+			"data = ${1:data}",
+			"mean = np.mean(data)",
+			"# Varians med Bessel korrektion (n-1)",
+			"variance = np.sum((data - mean) ** 2) / (len(data) - 1)",
+			"std = np.sqrt(variance)",
+			"print(f\"Middelværdi: {mean:.4f}\")",
+			"print(f\"Varians s²: {variance:.6f}\")",
+			"print(f\"Std s: {std:.6f}\")"
 		],
-		"description": "Calculate variance manually"
+		"description": "Varians beregning | Manual variance calculation with Bessel correction (n-1)"
 	},
 	"Expected Value and Variance": {
-		"prefix": ["forventning-varians", "ev-var"],
+		"prefix": ["forventning-varians", "ev-var", "moments"],
 		"body": [
 			"# Forventningsværdi og varians fra momenter",
 			"# E[X] og Var(X) = E[X²] - (E[X])²",
-			"E_X = ${1:expected_value}",
-			"E_X_sq = ${2:expected_value_squared}",
+			"# LaTeX: E[X] = \\sum x_i P(X=x_i) \\text{ or } \\int x f(x) dx",
+			"# LaTeX: Var(X) = E[X^2] - (E[X])^2 = E[(X-\\mu)^2]",
+			"E_X = ${1:expected_value}  # E[X] - Første moment",
+			"E_X_sq = ${2:expected_value_squared}  # E[X²] - Andet moment",
 			"Var_X = E_X_sq - E_X**2",
+			"std_X = np.sqrt(Var_X)",
 			"print(f\"E[X]: {E_X:.4f}\")",
-			"print(f\"Var[X]: {Var_X:.4f}\")"
+			"print(f\"Var(X): {Var_X:.4f}\")",
+			"print(f\"σ(X): {std_X:.4f}\")"
 		],
-		"description": "Forventning og varians | Expected value and variance from E[X] and E[X²]"
+		"description": "Forventning og varians | Expected value and variance from moments: Var(X) = E[X²] - (E[X])²"
 	},
 	
 	// ==================== SIMULERING / SIMULATION ====================
@@ -1338,6 +2226,38 @@
 		"description": "Simuler normal | Simulate normal distribution rnorm()"
 	},
 	
+	"Box-Muller Transform": {
+		"prefix": ["box-muller", "boxmuller", "box-muller-transform"],
+		"body": [
+			"# Box-Muller transformation til at generere normalfordelte tal",
+			"# Konverterer U(0,1) til N(0,1)",
+			"# LaTeX: Z_1 = \\sqrt{-2 \\ln U_1} \\cos(2\\pi U_2)",
+			"# LaTeX: Z_2 = \\sqrt{-2 \\ln U_1} \\sin(2\\pi U_2)",
+			"# LaTeX: X = \\mu + \\sigma Z \\sim N(\\mu, \\sigma^2)",
+			"np.random.seed(${1:42})",
+			"n_samples = ${2:1000}  # Antal normalfordelte tal at generere",
+			"",
+			"# Generér uniforme tal U(0,1)",
+			"U1 = np.random.uniform(0, 1, n_samples)",
+			"U2 = np.random.uniform(0, 1, n_samples)",
+			"",
+			"# Box-Muller transformation",
+			"Z1 = np.sqrt(-2 * np.log(U1)) * np.cos(2 * np.pi * U2)",
+			"Z2 = np.sqrt(-2 * np.log(U1)) * np.sin(2 * np.pi * U2)",
+			"",
+			"# Z1 og Z2 er begge ~ N(0,1)",
+			"print(f\"Z1 gennemsnit: {np.mean(Z1):.4f}, std: {np.std(Z1, ddof=1):.4f}\")",
+			"print(f\"Z2 gennemsnit: {np.mean(Z2):.4f}, std: {np.std(Z2, ddof=1):.4f}\")",
+			"",
+			"# Transformation til N(μ, σ²)",
+			"mu = ${3:3000}",
+			"sigma = ${4:100}",
+			"X = mu + sigma * Z1",
+			"print(f\"X ~ N({mu}, {sigma}²): gennemsnit = {np.mean(X):.4f}, std = {np.std(X, ddof=1):.4f}\")"
+		],
+		"description": "Box-Muller transformation N(0,1) fra U(0,1) | Box-Muller method to generate normal random numbers"
+	},
+	
 	"Simulate Log-Normal": {
 		"prefix": ["sim-lognormal", "rlnorm"],
 		"body": [
@@ -1354,6 +2274,45 @@
 			"print(f\"Teoretisk E[X] = {np.exp(mu + sigma**2 / 2):.4f}\")"
 		],
 		"description": "Simuler log-normal | Simulate log-normal distribution rlnorm()"
+	},
+	
+	"Generate Uniform Array": {
+		"prefix": [
+			"uniform-array",
+			"np-uniform",
+			"random-uniform-array",
+			"array-uniform"
+		],
+		"body": [
+			"np.random.uniform(${1:0}, ${2:1}, ${3:100})"
+		],
+		"description": "Generer NumPy array med uniform fordeling | Generate NumPy array with uniform distribution: np.random.uniform(low, high, size)"
+	},
+	
+	"Generate Normal Array": {
+		"prefix": [
+			"normal-array",
+			"np-normal",
+			"random-normal-array",
+			"array-normal"
+		],
+		"body": [
+			"np.random.normal(${1:0}, ${2:1}, ${3:100})"
+		],
+		"description": "Generer NumPy array med normalfordeling | Generate NumPy array with normal distribution: np.random.normal(mean, std, size)"
+	},
+	
+	"Generate Random Integers": {
+		"prefix": [
+			"random-integers",
+			"np-randint",
+			"random-int-array",
+			"array-randint"
+		],
+		"body": [
+			"np.random.randint(${1:0}, ${2:10}, ${3:100})"
+		],
+		"description": "Generer NumPy array med tilfældige heltal | Generate NumPy array with random integers: np.random.randint(low, high, size)"
 	},
 	
 	"Simulate Continuous Uniform": {
@@ -1555,6 +2514,179 @@
 		"description": "Bootstrap resampling | Bootstrap sampling with replacement"
 	},
 	
+	// ==================== CENTRAL LIMIT THEOREM / CENTRALGRÆNSEVÆRDISÆTNING ====================
+	
+	"CLT Binomial Approximation": {
+		"prefix": ["clt-binomial", "clt-bin", "normalapprox-binomial"],
+		"body": [
+			"# Central Limit Theorem: Binomial → Normal approximation",
+			"# LaTeX: X \\sim \\text{Binomial}(n, p) \\approx N(np, np(1-p))",
+			"# LaTeX: \\mu = np, \\quad \\sigma^2 = np(1-p)",
+			"# LaTeX: Z = \\frac{X - np}{\\sqrt{np(1-p)}} \\approx N(0,1)",
+			"# Kontinuitetskorrektion: P(X > k) ≈ P(Z > (k+0.5-μ)/σ)",
+			"# Regel: Brug når np ≥ 5 og n(1-p) ≥ 5",
+			"",
+			"n = ${1:3000}  # Antal forsøg",
+			"p = ${2:0.018}  # Succesandsynlighed",
+			"",
+			"# Check CLT betingelser",
+			"print(f\"np = {n*p:.1f}, n(1-p) = {n*(1-p):.1f}\")",
+			"print(f\"CLT gyldig: {n*p >= 5 and n*(1-p) >= 5}\")",
+			"",
+			"# Binomial parametre → Normal parametre",
+			"mu = n * p",
+			"sigma = np.sqrt(n * p * (1 - p))",
+			"",
+			"print(f\"X ~ Binomial({n}, {p}) ≈ N({mu:.2f}, {sigma**2:.2f})\")",
+			"print(f\"μ = {mu:.2f}, σ = {sigma:.4f}\")",
+			"",
+			"# Beregn sandsynlighed: P(X > k) med kontinuitetskorrektion",
+			"k = ${3:54}  # Kritisk værdi",
+			"",
+			"# Med kontinuitetskorrektion: P(X > k) = P(X ≥ k+1) ≈ P(Z > (k+0.5-μ)/σ)",
+			"z = (k + 0.5 - mu) / sigma",
+			"p_greater = 1 - stats.norm.cdf(z)",
+			"",
+			"print(f\"\")",
+			"print(f\"P(X > {k}) med kontinuitetskorrektion:\")",
+			"print(f\"z = ({k}+0.5-{mu:.2f})/{sigma:.4f} = {z:.4f}\")",
+			"print(f\"P(X > {k}) = P(Z > {z:.4f}) = {p_greater:.6f}\")"
+		],
+		"description": "CLT binomial til normal approximation | Central Limit Theorem for binomial distribution"
+	},
+	
+	"CLT Proportion Approximation": {
+		"prefix": ["clt-proportion", "clt-andel", "normalapprox-proportion"],
+		"body": [
+			"# Central Limit Theorem: Proportion p̂ → Normal approximation",
+			"# LaTeX: \\hat{p} = \\frac{X}{n} \\approx N\\left(p, \\frac{p(1-p)}{n}\\right)",
+			"# LaTeX: \\mu_{\\hat{p}} = p, \\quad \\sigma_{\\hat{p}}^2 = \\frac{p(1-p)}{n}",
+			"# LaTeX: Z = \\frac{\\hat{p} - p}{\\sqrt{p(1-p)/n}} \\approx N(0,1)",
+			"# Regel: Brug når np ≥ 5 og n(1-p) ≥ 5",
+			"",
+			"n = ${1:3000}  # Stikprøvestørrelse",
+			"p = ${2:0.018}  # Teoretisk proportion",
+			"",
+			"# Check CLT betingelser",
+			"print(f\"np = {n*p:.1f}, n(1-p) = {n*(1-p):.1f}\")",
+			"print(f\"CLT gyldig: {n*p >= 5 and n*(1-p) >= 5}\")",
+			"",
+			"# Proportion → Normal parametre",
+			"mu_p = p",
+			"sigma_p = np.sqrt(p * (1 - p) / n)",
+			"",
+			"print(f\"p̂ ≈ N({mu_p:.4f}, {sigma_p**2:.6f})\")",
+			"print(f\"μ_p̂ = {mu_p:.4f}, σ_p̂ = {sigma_p:.6f}\")",
+			"",
+			"# Beregn sandsynlighed: P(p̂ > value)",
+			"value = ${3:0.02}  # Kritisk værdi for proportion",
+			"",
+			"z = (value - mu_p) / sigma_p",
+			"p_greater = 1 - stats.norm.cdf(z)",
+			"",
+			"print(f\"\")",
+			"print(f\"P(p̂ > {value}):\")",
+			"print(f\"z = ({value}-{mu_p:.4f})/{sigma_p:.6f} = {z:.4f}\")",
+			"print(f\"P(p̂ > {value}) = P(Z > {z:.4f}) = {p_greater:.6f}\")"
+		],
+		"description": "CLT proportion til normal approximation | Central Limit Theorem for sample proportion"
+	},
+	
+	"CLT Sample Mean": {
+		"prefix": ["clt-mean", "clt-gennemsnit", "clt-sample-mean"],
+		"body": [
+			"# Central Limit Theorem: Sample Mean x̄ → Normal approximation",
+			"# LaTeX: \\bar{X} = \\frac{1}{n}\\sum_{i=1}^{n} X_i \\approx N\\left(\\mu, \\frac{\\sigma^2}{n}\\right)",
+			"# LaTeX: \\mu_{\\bar{X}} = \\mu, \\quad \\sigma_{\\bar{X}}^2 = \\frac{\\sigma^2}{n}",
+			"# LaTeX: Z = \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\approx N(0,1)",
+			"# Gælder for enhver fordeling med veldefineret μ og σ når n ≥ 30",
+			"",
+			"n = ${1:100}  # Stikprøvestørrelse",
+			"mu = ${2:50}  # Teoretisk middelværdi",
+			"sigma = ${3:10}  # Teoretisk standardafvigelse",
+			"",
+			"# Sample mean → Normal parametre",
+			"mu_xbar = mu",
+			"sigma_xbar = sigma / np.sqrt(n)",
+			"",
+			"print(f\"x̄ ≈ N({mu_xbar:.2f}, {sigma_xbar**2:.4f})\")",
+			"print(f\"μ_x̄ = {mu_xbar:.2f}, σ_x̄ = {sigma_xbar:.4f}\")",
+			"",
+			"# Beregn sandsynlighed: P(x̄ > value)",
+			"value = ${4:52}  # Kritisk værdi",
+			"",
+			"z = (value - mu_xbar) / sigma_xbar",
+			"p_greater = 1 - stats.norm.cdf(z)",
+			"",
+			"print(f\"\")",
+			"print(f\"P(x̄ > {value}):\")",
+			"print(f\"z = ({value}-{mu_xbar:.2f})/{sigma_xbar:.4f} = {z:.4f}\")",
+			"print(f\"P(x̄ > {value}) = P(Z > {z:.4f}) = {p_greater:.6f}\")",
+			"",
+			"# Beregn intervalsandsynlighed: P(a < x̄ < b)",
+			"a = ${5:48}",
+			"b = ${6:52}",
+			"z_a = (a - mu_xbar) / sigma_xbar",
+			"z_b = (b - mu_xbar) / sigma_xbar",
+			"p_interval = stats.norm.cdf(z_b) - stats.norm.cdf(z_a)",
+			"print(f\"\")",
+			"print(f\"P({a} < x̄ < {b}) = {p_interval:.6f}\")"
+		],
+		"description": "CLT for stikprøvemiddelværdi | Central Limit Theorem for sample mean"
+	},
+	
+	"Verify CLT (Simulation)": {
+		"prefix": ["verificer-clt", "verify-clt", "clt-demo"],
+		"body": [
+			"# Verificér Central Limit Theorem via simulering",
+			"# Simulér mange stikprøvemiddelværdier og vis normalfordeling",
+			"# LaTeX: \\bar{X} \\xrightarrow{d} N\\left(\\mu, \\frac{\\sigma^2}{n}\\right) \\text{ når } n \\to \\infty",
+			"# LaTeX: \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\xrightarrow{d} N(0,1)",
+			"np.random.seed(${1:42})",
+			"",
+			"# Original fordeling (kan være enhver fordeling)",
+			"n = ${2:30}  # Stikprøvestørrelse",
+			"N = ${3:10000}  # Antal simuleringer",
+			"",
+			"# Eksempel: Uniform fordeling U(0,10)",
+			"a, b = ${4:0, 10}",
+			"mu_theory = (a + b) / 2",
+			"sigma_theory = np.sqrt((b - a)**2 / 12)",
+			"",
+			"# Simulér N stikprøvemiddelværdier",
+			"sample_means = []",
+			"for _ in range(N):",
+			"    sample = np.random.uniform(a, b, size=n)",
+			"    sample_means.append(np.mean(sample))",
+			"",
+			"sample_means = np.array(sample_means)",
+			"",
+			"# CLT forudsiger: x̄ ~ N(μ, σ²/n)",
+			"mu_xbar_theory = mu_theory",
+			"sigma_xbar_theory = sigma_theory / np.sqrt(n)",
+			"",
+			"# Sammenlign simulering med teori",
+			"print(f\"Teoretisk: x̄ ~ N({mu_xbar_theory:.4f}, {sigma_xbar_theory**2:.6f})\")",
+			"print(f\"Simuleret gennemsnit: {np.mean(sample_means):.4f}\")",
+			"print(f\"Teoretisk gennemsnit: {mu_xbar_theory:.4f}\")",
+			"print(f\"Simuleret std: {np.std(sample_means, ddof=1):.6f}\")",
+			"print(f\"Teoretisk std: {sigma_xbar_theory:.6f}\")",
+			"",
+			"# Plot histogram med overlagt normalfordeling",
+			"plt.figure(figsize=(10, 6))",
+			"plt.hist(sample_means, bins=50, density=True, alpha=0.7, edgecolor='black', label='Simuleret')",
+			"x = np.linspace(sample_means.min(), sample_means.max(), 100)",
+			"plt.plot(x, stats.norm.pdf(x, mu_xbar_theory, sigma_xbar_theory), 'r-', linewidth=2, label='Teoretisk N(μ,σ²/n)')",
+			"plt.xlabel('Stikprøvemiddelværdi', fontsize=12)",
+			"plt.ylabel('Tæthed', fontsize=12)",
+			"plt.title(f'CLT Verifikation: Fordeling af x̄ (n={n})', fontsize=14, fontweight='bold')",
+			"plt.legend(fontsize=11)",
+			"plt.grid(True, alpha=0.3)",
+			"plt.show()"
+		],
+		"description": "Verificér CLT via simulering | Verify Central Limit Theorem through simulation"
+	},
+	
 	// ==================== PLOTS / VISUALISERING ====================
 	
 	"Histogram Plot": {
@@ -1725,12 +2857,15 @@
 	},
 	
 	"Correlation Heatmap": {
-		"prefix": ["plot-correlation", "korrelationsmatrix"],
+		"prefix": ["plot-correlation", "korrelationsmatrix", "pearson-correlation"],
 		"body": [
 			"# Korrelationsmatrix heatmap",
+			"# Pearson korrelationskoefficient: måler lineær sammenhæng",
+			"# LaTeX: r = \\frac{\\sum_{i=1}^n (x_i-\\bar{x})(y_i-\\bar{y})}{\\sqrt{\\sum_{i=1}^n(x_i-\\bar{x})^2}\\sqrt{\\sum_{i=1}^n(y_i-\\bar{y})^2}}",
+			"# LaTeX: -1 \\leq r \\leq 1 \\text{ where } r=1 \\text{ (perfect positive), } r=-1 \\text{ (perfect negative), } r=0 \\text{ (no linear relation)}",
 			"import seaborn as sns",
 			"",
-			"# Beregn korrelationsmatrix",
+			"# Beregn korrelationsmatrix (Pearson r)",
 			"corr_matrix = ${1:data}.corr()",
 			"",
 			"plt.figure(figsize=(10, 8))",
@@ -1745,17 +2880,21 @@
 	},
 	
 	"Regression Plot": {
-		"prefix": ["plot-regression", "regressionsplot"],
+		"prefix": ["plot-regression", "regressionsplot", "linear-regression"],
 		"body": [
 			"# Regressionsplot med fitted line",
+			"# Lineær regressionsmodel: Y = β₀ + β₁X + ε",
+			"# LaTeX: Y = \\beta_0 + \\beta_1 X + \\varepsilon \\text{ where } \\varepsilon \\sim N(0,\\sigma^2)",
+			"# LaTeX: \\hat{\\beta}_1 = \\frac{\\sum(x_i-\\bar{x})(y_i-\\bar{y})}{\\sum(x_i-\\bar{x})^2}, \\quad \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x}",
+			"# LaTeX: R^2 = 1 - \\frac{SS_{res}}{SS_{tot}} = \\frac{\\sum(\\hat{y}_i-\\bar{y})^2}{\\sum(y_i-\\bar{y})^2}",
 			"from scipy import stats as sp_stats",
 			"",
 			"x = ${1:x_data}",
 			"y = ${2:y_data}",
 			"",
-			"# Beregn lineær regression",
+			"# Beregn lineær regression: y = β₀ + β₁x",
 			"slope, intercept, r_value, p_value, std_err = sp_stats.linregress(x, y)",
-			"line = slope * x + intercept",
+			"line = slope * x + intercept  # ŷ = β̂₀ + β̂₁x",
 			"",
 			"plt.figure(figsize=(10, 6))",
 			"plt.scatter(x, y, alpha=0.6, s=50, label='Data', color='steelblue', edgecolors='black')",
@@ -1765,24 +2904,170 @@
 			"plt.title(f'${5:Linear Regression} (R² = {r_value**2:.3f})', fontsize=14, fontweight='bold')",
 			"plt.legend(fontsize=11)",
 			"plt.grid(True, alpha=0.3)",
-			"plt.show()"
+			"plt.show()",
+			"",
+			"print(f\"Model: y = {slope:.4f}x + {intercept:.4f}\")",
+			"print(f\"R² = {r_value**2:.4f}\")",
+			"print(f\"p-value = {p_value:.4e}\")"
 		],
-		"description": "Regressionsplot | Linear regression scatter plot with fitted line"
+		"description": "Linear regression plot | Model: Y=β₀+β₁X+ε. Plots data with fitted line and displays slope, intercept, R²"
+	},
+	
+	"Linear Regression (Manual Calculation)": {
+		"prefix": ["regression-manual", "manual-regression", "regression-formula", "sxy-sxx"],
+		"body": [
+			"# Lineær regression - manuel beregning med formler",
+			"# Model: Y = β₀ + β₁X + ε where ε ~ N(0,σ²)",
+			"# LaTeX: \\hat{\\beta}_1 = \\frac{S_{XY}}{S_{XX}} = \\frac{\\sum(x_i-\\bar{x})(y_i-\\bar{y})}{\\sum(x_i-\\bar{x})^2}",
+			"# LaTeX: \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x}",
+			"# LaTeX: R^2 = \\frac{S_{XY}^2}{S_{XX} \\cdot S_{YY}} = 1 - \\frac{\\sum(y_i-\\hat{y}_i)^2}{\\sum(y_i-\\bar{y})^2}",
+			"x = ${1:x_data}",
+			"y = ${2:y_data}",
+			"",
+			"# Beregn middelværdier",
+			"x_bar = np.mean(x)",
+			"y_bar = np.mean(y)",
+			"",
+			"# Beregn sum of squares og cross-products",
+			"# S_XX = Σ(xᵢ-x̄)²",
+			"S_XX = np.sum((x - x_bar) ** 2)",
+			"",
+			"# S_YY = Σ(yᵢ-ȳ)²",
+			"S_YY = np.sum((y - y_bar) ** 2)",
+			"",
+			"# S_XY = Σ(xᵢ-x̄)(yᵢ-ȳ)",
+			"S_XY = np.sum((x - x_bar) * (y - y_bar))",
+			"",
+			"# Beregn regressionskoefficienter",
+			"# β̂₁ = S_XY / S_XX (hældning/slope)",
+			"beta_1 = S_XY / S_XX",
+			"",
+			"# β̂₀ = ȳ - β̂₁·x̄ (skæring/intercept)",
+			"beta_0 = y_bar - beta_1 * x_bar",
+			"",
+			"# Fitted values: ŷ = β̂₀ + β̂₁x",
+			"y_hat = beta_0 + beta_1 * x",
+			"",
+			"# Beregn R² (forklaringsgrad)",
+			"# Metode 1: R² = S_XY² / (S_XX · S_YY)",
+			"R_squared = (S_XY ** 2) / (S_XX * S_YY)",
+			"",
+			"# Metode 2: R² = 1 - SS_res/SS_tot",
+			"SS_res = np.sum((y - y_hat) ** 2)  # Residual sum of squares",
+			"SS_tot = S_YY  # Total sum of squares",
+			"R_squared_alt = 1 - (SS_res / SS_tot)",
+			"",
+			"# Regressionsligningen",
+			"print(f'Regressionsmodel: ŷ = {beta_0:.4f} + {beta_1:.4f}x')",
+			"print(f'β̂₀ (intercept) = {beta_0:.4f}')",
+			"print(f'β̂₁ (slope) = {beta_1:.4f}')",
+			"print(f'R² = {R_squared:.4f}')",
+			"print(f'')",
+			"print(f'Sum of squares:')",
+			"print(f'S_XX = {S_XX:.4f}')",
+			"print(f'S_YY = {S_YY:.4f}')",
+			"print(f'S_XY = {S_XY:.4f}')"
+		],
+		"description": "Linear regression manual | Calculate regression coefficients manually using SXY/SXX formulas: β₁=SXY/SXX, β₀=ȳ-β₁x̄, R²=SXY²/(SXX·SYY)"
+	},
+	
+	"Correlation T-Test (Regression Slope Test)": {
+		"prefix": ["correlation-t-test", "slope-test", "beta1-test", "regression-significance"],
+		"body": [
+			"# T-test for regression slope: Test om der er lineær sammenhæng",
+			"# H₀: β₁ = 0 (ingen lineær sammenhæng)",
+			"# H₁: β₁ ≠ 0 (der er lineær sammenhæng)",
+			"# LaTeX: t = \\frac{\\hat{\\beta}_1 - \\beta_{1,0}}{SE(\\hat{\\beta}_1)} = \\frac{\\hat{\\beta}_1}{\\sqrt{s_r^2 / S_{XX}}}",
+			"# LaTeX: s_r^2 = \\frac{\\sum(y_i - \\hat{y}_i)^2}{n-2} = \\frac{SS_{res}}{n-2}",
+			"# LaTeX: SE(\\hat{\\beta}_1) = \\sqrt{\\frac{s_r^2}{S_{XX}}}, \\quad df = n-2",
+			"# LaTeX: p = 2P(T_{n-2} > |t|) \\text{ (tosidet)}",
+			"x = ${1:x_data}",
+			"y = ${2:y_data}",
+			"",
+			"# Beregn middelværdier og S_XX",
+			"x_bar = np.mean(x)",
+			"y_bar = np.mean(y)",
+			"n = len(x)",
+			"",
+			"# S_XX = Σ(xᵢ-x̄)²",
+			"S_XX = np.sum((x - x_bar) ** 2)",
+			"",
+			"# S_XY = Σ(xᵢ-x̄)(yᵢ-ȳ)",
+			"S_XY = np.sum((x - x_bar) * (y - y_bar))",
+			"",
+			"# Beregn β̂₁ (hældning)",
+			"beta_1_hat = S_XY / S_XX",
+			"",
+			"# Beregn β̂₀ (skæring)",
+			"beta_0_hat = y_bar - beta_1_hat * x_bar",
+			"",
+			"# Fitted values: ŷ = β̂₀ + β̂₁x",
+			"y_hat = beta_0_hat + beta_1_hat * x",
+			"",
+			"# Residualer: eᵢ = yᵢ - ŷᵢ",
+			"residuals = y - y_hat",
+			"",
+			"# Residual sum of squares: SS_res = Σ(yᵢ - ŷᵢ)²",
+			"SS_res = np.sum(residuals ** 2)",
+			"",
+			"# Residual variance: s_r² = SS_res / (n-2)",
+			"df = n - 2  # Frihedsgrader for regression",
+			"s_r_squared = SS_res / df",
+			"s_r = np.sqrt(s_r_squared)",
+			"",
+			"# Standard error af β̂₁: SE(β̂₁) = √(s_r²/S_XX)",
+			"SE_beta_1 = np.sqrt(s_r_squared / S_XX)",
+			"",
+			"# Teststatistik: t = (β̂₁ - 0) / SE(β̂₁)",
+			"beta_1_0 = 0  # Nulhypotese: β₁ = 0",
+			"t_stat = (beta_1_hat - beta_1_0) / SE_beta_1",
+			"",
+			"# p-værdi (tosidet test)",
+			"p_value = 2 * (1 - stats.t.cdf(abs(t_stat), df))",
+			"",
+			"# Kritisk værdi",
+			"alpha = ${3:0.05}",
+			"t_critical = stats.t.ppf(1 - alpha/2, df)",
+			"",
+			"print('=== T-test for lineær sammenhæng ===')",
+			"print(f'H₀: β₁ = {beta_1_0}')",
+			"print(f'H₁: β₁ ≠ {beta_1_0}')",
+			"print(f'')",
+			"print(f'β̂₁ (hældning) = {beta_1_hat:.6f}')",
+			"print(f'SE(β̂₁) = {SE_beta_1:.6f}')",
+			"print(f's_r² (residual varians) = {s_r_squared:.6f}')",
+			"print(f'S_XX = {S_XX:.4f}')",
+			"print(f'')",
+			"print(f't({df}) = {t_stat:.4f}')",
+			"print(f'Kritisk værdi (α={alpha}): ±{t_critical:.4f}')",
+			"print(f'p-værdi = {p_value:.6f}')",
+			"print(f'')",
+			"conclusion = 'Forkast H₀' if abs(t_stat) > t_critical else 'Forkast ikke H₀'",
+			"print(f'Konklusion: {conclusion}')",
+			"if abs(t_stat) > t_critical:",
+			"    print(f'Der er signifikant lineær sammenhæng mellem X og Y (p={p_value:.6f})')",
+			"else:",
+			"    print(f'Ingen signifikant lineær sammenhæng (p={p_value:.6f})')"
+		],
+		"description": "Regression slope t-test | Test for linear relationship: H₀:β₁=0. Uses t=β̂₁/√(s²ᵣ/S_XX) where s²ᵣ=SS_res/(n-2)"
 	},
 	
 	"Residual Plot": {
-		"prefix": ["plot-residuals", "residualplot"],
+		"prefix": ["plot-residuals", "residualplot", "check-assumptions"],
 		"body": [
 			"# Residualplot: tjek modelantagelser",
+			"# Residualer bruges til at validere regression antagelser",
+			"# LaTeX: e_i = y_i - \\hat{y}_i = y_i - (\\hat{\\beta}_0 + \\hat{\\beta}_1 x_i)",
+			"# Antagelser: E[ε]=0, Var(ε)=σ² (konstant), ε~N(0,σ²), uafhængige",
 			"from scipy import stats as sp_stats",
 			"",
 			"x = ${1:x_data}",
 			"y = ${2:y_data}",
 			"",
-			"# Beregn fitted values og residualer",
+			"# Beregn fitted values og residualer: e = y - ŷ",
 			"slope, intercept, _, _, _ = sp_stats.linregress(x, y)",
-			"fitted = slope * x + intercept",
-			"residuals = y - fitted",
+			"fitted = slope * x + intercept  # ŷ",
+			"residuals = y - fitted  # e = y - ŷ",
 			"",
 			"fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))",
 			"",
@@ -1806,7 +3091,11 @@
 	},
 	
 	"Confidence Interval Plot": {
-		"prefix": ["plot-ci", "konfidensinterval-plot"],
+		"prefix": [
+			"plot-konfidensinterval",
+			"plot-confidence-interval",
+			"konfidensinterval-plot"
+		],
 		"body": [
 			"# Plot med konfidensinterval",
 			"means = ${1:means}",
@@ -2006,5 +3295,36 @@
 			"plt.show()"
 		],
 		"description": "Sammenlign sandsynligheder | Compare probability distributions"
+	},
+	
+	"Normal Distribution from Paired Differences": {
+		"prefix": ["udtryk-normalfordeling", "paired-diff-normal", "diff-normal"],
+		"body": [
+			"# Udtryk normalfordeling fra parrede observationer",
+			"# Express normal distribution from paired data differences",
+			"# LaTeX: \\mu_D = \\frac{1}{n}\\sum_{i=1}^n D_i",
+			"# LaTeX: \\sigma_D^2 = \\frac{1}{n-1}\\sum_{i=1}^n (D_i - \\bar{D})^2",
+			"${1:gammel} = np.array([${2:data1}])",
+			"${3:ny} = np.array([${4:data2}])",
+			"",
+			"# Beregn forskelle: D_i = X_{ny,i} - X_{gammel,i}",
+			"diff = ${3:ny} - ${1:gammel}",
+			"",
+			"# Beregn middelværdi (μ) og varians (σ²)",
+			"mu = np.mean(diff)",
+			"",
+			"# Varians med Bessel korrektion (n-1)",
+			"variance = np.sum((diff - mu) ** 2) / (len(diff) - 1)",
+			"",
+			"# Standard afvigelse",
+			"sigma = np.sqrt(variance)",
+			"",
+			"print(f\"Forskelle D = N(μ, σ²)\")",
+			"print(f\"D ~ N({mu:.2f}, {variance:.2f})\")",
+			"print(f\"μ = {mu:.4f}\")",
+			"print(f\"σ² = {variance:.4f}\")",
+			"print(f\"σ = {sigma:.4f}\")"
+		],
+		"description": "Udtryk normalfordeling fra parrede data | Express normal distribution parameters from paired differences"
 	}
 }
