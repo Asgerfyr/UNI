@@ -1,0 +1,221 @@
+{
+  "Example class": {
+    "prefix": "example-class",
+    "body": [
+      "// ${1:Widget}.h",
+      "#pragma once",
+      "#include <string>",
+      "",
+      "class ${1:Widget} {",
+      "public:",
+      "    ${1:Widget}(const std::string &name, int value);",
+      "    const std::string &get_name() const;",
+      "    int get_value() const;",
+      "    void set_value(int new_value);",
+      "",
+      "private:",
+      "    std::string name;",
+      "    int value;",
+      "};",
+      "",
+      "// ${1:Widget}.cpp",
+      "#include \"${2:widget}.h\"",
+      "",
+      "${1:Widget}::${1:Widget}(const std::string &name, int value) : name(name), value(value) {}",
+      "",
+      "const std::string &${1:Widget}::get_name() const {",
+      "    return name;",
+      "}",
+      "",
+      "int ${1:Widget}::get_value() const {",
+      "    return value;",
+      "}",
+      "",
+      "void ${1:Widget}::set_value(int new_value) {",
+      "    value = new_value;",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a full class example with header and source"
+  },
+  "Example class header": {
+    "prefix": "example-class-h",
+    "body": [
+      "#pragma once",
+      "#include <string>",
+      "",
+      "class ${1:Widget} {",
+      "public:",
+      "    ${1:Widget}(const std::string &name, int value);",
+      "    const std::string &get_name() const;",
+      "    int get_value() const;",
+      "    void set_value(int new_value);",
+      "",
+      "private:",
+      "    std::string name;",
+      "    int value;",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a class header example"
+  },
+  "Example class source": {
+    "prefix": "example-class-cpp",
+    "body": [
+      "#include \"${1:widget}.h\"",
+      "",
+      "${2:Widget}::${2:Widget}(const std::string &name, int value) : name(name), value(value) {}",
+      "",
+      "const std::string &${2:Widget}::get_name() const {",
+      "    return name;",
+      "}",
+      "",
+      "int ${2:Widget}::get_value() const {",
+      "    return value;",
+      "}",
+      "",
+      "void ${2:Widget}::set_value(int new_value) {",
+      "    value = new_value;",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a class source example"
+  },
+  "Example struct": {
+    "prefix": "example-struct",
+    "body": [
+      "// ${1:Point}.h",
+      "#pragma once",
+      "#include <ostream>",
+      "",
+      "struct ${1:Point} {",
+      "    int x;",
+      "    int y;",
+      "};",
+      "",
+      "std::ostream &operator<<(std::ostream &os, const ${1:Point} &value);",
+      "",
+      "// ${1:Point}.cpp",
+      "#include \"${2:point}.h\"",
+      "",
+      "std::ostream &operator<<(std::ostream &os, const ${1:Point} &value) {",
+      "    os << \"(\" << value.x << \", \" << value.y << \")\";",
+      "    return os;",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a full struct example with header and source"
+  },
+  "Example struct header": {
+    "prefix": "example-struct-h",
+    "body": [
+      "#pragma once",
+      "#include <ostream>",
+      "",
+      "struct ${1:Point} {",
+      "    int x;",
+      "    int y;",
+      "};",
+      "",
+      "std::ostream &operator<<(std::ostream &os, const ${1:Point} &value);",
+      "$0"
+    ],
+    "description": "Insert a struct header example"
+  },
+  "Example struct source": {
+    "prefix": "example-struct-cpp",
+    "body": [
+      "#include \"${1:point}.h\"",
+      "",
+      "std::ostream &operator<<(std::ostream &os, const ${2:Point} &value) {",
+      "    os << \"(\" << value.x << \", \" << value.y << \")\";",
+      "    return os;",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a struct source example"
+  },
+  "Example inheritance": {
+    "prefix": "example-inheritance",
+    "body": [
+      "#pragma once",
+      "#include <string>",
+      "",
+      "class ${1:Animal} {",
+      "public:",
+      "    ${1:Animal}(const std::string &name) : name(name) {}",
+      "    virtual ~${1:Animal}() = default;",
+      "    virtual std::string speak() const = 0;",
+      "",
+      "protected:",
+      "    std::string name;",
+      "};",
+      "",
+      "class ${2:Dog} : public ${1:Animal} {",
+      "public:",
+      "    ${2:Dog}(const std::string &name) : ${1:Animal}(name) {}",
+      "    std::string speak() const override { return name + \" says woof\"; }",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a simple inheritance example"
+  },
+  "Example polymorphism": {
+    "prefix": "example-polymorphism",
+    "body": [
+      "#include <iostream>",
+      "#include <memory>",
+      "#include <vector>",
+      "",
+      "class ${1:Shape} {",
+      "public:",
+      "    virtual ~${1:Shape}() = default;",
+      "    virtual void draw() const = 0;",
+      "};",
+      "",
+      "class ${2:Circle} : public ${1:Shape} {",
+      "public:",
+      "    void draw() const override {",
+      "        std::cout << \"draw circle\\n\";",
+      "    }",
+      "};",
+      "",
+      "std::vector<std::unique_ptr<${1:Shape}>> shapes;",
+      "shapes.push_back(std::make_unique<${2:Circle}>());",
+      "for (const auto &shape : shapes) {",
+      "    shape->draw();",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a polymorphism example"
+  },
+  "Access sections": {
+    "prefix": "example-access",
+    "body": [
+      "public:",
+      "    $1",
+      "",
+      "protected:",
+      "    $2",
+      "",
+      "private:",
+      "    $0"
+    ],
+    "description": "Insert public, protected, and private sections"
+  },
+  "Public section": {
+    "prefix": "keyword-public",
+    "body": ["public:", "    $0"],
+    "description": "Insert a public section"
+  },
+  "Protected section": {
+    "prefix": "keyword-protected",
+    "body": ["protected:", "    $0"],
+    "description": "Insert a protected section"
+  },
+  "Private section": {
+    "prefix": "keyword-private",
+    "body": ["private:", "    $0"],
+    "description": "Insert a private section"
+  }
+}

@@ -1,0 +1,623 @@
+{
+  "cout": {
+    "prefix": "cout",
+    "body": [
+      "std::cout << ${1:message} << ${2:'\\n'};$0"
+    ],
+    "description": "Insert std::cout output statement"
+  },
+  "cerr": {
+    "prefix": "cerr",
+    "body": [
+      "std::cerr << ${1:error message} << ${2:'\\n'};$0"
+    ],
+    "description": "Insert std::cerr error output statement"
+  },
+  "string": {
+    "prefix": "string",
+    "body": [
+      "std::string$0"
+    ],
+    "description": "Insert std::string type"
+  },
+  "endl": {
+    "prefix": "endl",
+    "body": [
+      "std::endl$0"
+    ],
+    "description": "Insert std::endl"
+  },
+  "Task: Copy array": {
+    "prefix": "task-copy-array",
+    "body": [
+      "#include <array>",
+      "#include <algorithm>",
+      "",
+      "std::array<${1:int}, ${2:5}> source = { ${3:1, 2, 3, 4, 5} };",
+      "std::array<${1:int}, ${2:5}> dest;",
+      "std::copy(source.begin(), source.end(), dest.begin());",
+      "$0"
+    ],
+    "description": "Copy one std::array to another"
+  },
+  "Task: Copy vector": {
+    "prefix": "task-copy-vector",
+    "body": [
+      "#include <vector>",
+      "#include <algorithm>",
+      "",
+      "std::vector<${1:int}> source = { ${2:1, 2, 3, 4, 5} };",
+      "std::vector<${1:int}> dest;",
+      "std::copy(source.begin(), source.end(), std::back_inserter(dest));",
+      "$0"
+    ],
+    "description": "Copy one std::vector to another"
+  },
+  "Task: Sort array/vector": {
+    "prefix": "task-sort",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "std::sort(${1:container}.begin(), ${1:container}.end());",
+      "// Descending: std::sort(${1:container}.begin(), ${1:container}.end(), std::greater<${2:int}>());",
+      "$0"
+    ],
+    "description": "Sort a container in ascending or descending order"
+  },
+  "Task: Find element": {
+    "prefix": "task-find",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "auto it = std::find(${1:container}.begin(), ${1:container}.end(), ${2:value});",
+      "if (it != ${1:container}.end()) {",
+      "    ${3:// element found at position}", 
+      "} else {",
+      "    ${4:// element not found}",
+      "}",
+      "$0"
+    ],
+    "description": "Find an element in a container"
+  },
+  "Task: Reverse array/vector": {
+    "prefix": "task-reverse",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "std::reverse(${1:container}.begin(), ${1:container}.end());",
+      "$0"
+    ],
+    "description": "Reverse the order of elements in a container"
+  },
+  "Task: Print array/vector": {
+    "prefix": "task-print",
+    "body": [
+      "for (const auto &item : ${1:container}) {",
+      "    std::cout << item << ${2:\" \"} << std::endl;",
+      "}",
+      "$0"
+    ],
+    "description": "Print all elements in a container"
+  },
+  "Task: Sum elements": {
+    "prefix": "task-sum",
+    "body": [
+      "#include <numeric>",
+      "",
+      "${1:int} sum = std::accumulate(${2:container}.begin(), ${2:container}.end(), 0);",
+      "std::cout << \"Sum: \" << sum << std::endl;",
+      "$0"
+    ],
+    "description": "Calculate sum of all elements"
+  },
+  "Task: Min/Max element": {
+    "prefix": "task-minmax",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "auto min = std::min_element(${1:container}.begin(), ${1:container}.end());",
+      "auto max = std::max_element(${1:container}.begin(), ${1:container}.end());",
+      "",
+      "std::cout << \"Min: \" << *min << \", Max: \" << *max << std::endl;",
+      "$0"
+    ],
+    "description": "Find minimum and maximum elements"
+  },
+  "Task: Count occurrences": {
+    "prefix": "task-count",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "int count = std::count(${1:container}.begin(), ${1:container}.end(), ${2:value});",
+      "std::cout << \"Occurrences: \" << count << std::endl;",
+      "$0"
+    ],
+    "description": "Count occurrences of a value in a container"
+  },
+  "Task: Remove duplicates": {
+    "prefix": "task-remove-duplicates",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "std::sort(${1:container}.begin(), ${1:container}.end());",
+      "auto last = std::unique(${1:container}.begin(), ${1:container}.end());",
+      "${1:container}.erase(last, ${1:container}.end());",
+      "$0"
+    ],
+    "description": "Remove duplicate elements from a container"
+  },
+  "Task: Filter elements": {
+    "prefix": "task-filter",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "std::vector<${1:int}> filtered;",
+      "std::copy_if(${2:source}.begin(), ${2:source}.end(), std::back_inserter(filtered),",
+      "    [](${1:int} x) { return ${3:x > 0}; });",
+      "$0"
+    ],
+    "description": "Filter elements based on a condition"
+  },
+  "Task: Average of elements": {
+    "prefix": "task-average",
+    "body": [
+      "#include <numeric>",
+      "",
+      "double avg = static_cast<double>(std::accumulate(${1:container}.begin(), ${1:container}.end(), 0)) / ${1:container}.size();",
+      "std::cout << \"Average: \" << avg << std::endl;",
+      "$0"
+    ],
+    "description": "Calculate average of elements"
+  },
+  "Task: Contains element": {
+    "prefix": "task-contains",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "bool contains = std::any_of(${1:container}.begin(), ${1:container}.end(),",
+      "    [](const auto &item) { return item == ${2:value}; });",
+      "",
+      "if (contains) {",
+      "    ${3:// container has the value}",
+      "}",
+      "$0"
+    ],
+    "description": "Check if container contains a specific value"
+  },
+  "Task: Transform elements": {
+    "prefix": "task-transform",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "std::transform(${1:source}.begin(), ${1:source}.end(), ${1:source}.begin(),",
+      "    [](${2:int} x) { return ${3:x * 2}; });",
+      "$0"
+    ],
+    "description": "Transform/map all elements using a function or lambda"
+  },
+  "Example array": {
+    "prefix": "example-array",
+    "body": [
+      "#include <array>",
+      "",
+      "std::array<${1:int}, ${2:5}> values = { ${3:1, 2, 3, 4, 5} };",
+      "for (const auto &value : values) {",
+      "    ${4:std::cout << value << '\\n';}",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a std::array example"
+  },
+  "Example vector": {
+    "prefix": "example-vector",
+    "body": [
+      "#include <vector>",
+      "",
+      "std::vector<${1:int}> values = { ${2:1, 2, 3, 4} };",
+      "values.push_back(${3:5});",
+      "$0"
+    ],
+    "description": "Insert a std::vector example"
+  },
+  "Example map": {
+    "prefix": "example-map",
+    "body": [
+      "#include <map>",
+      "#include <string>",
+      "",
+      "std::map<std::string, ${1:int}> values = {",
+      "    {\"${2:alice}\", ${3:1}},",
+      "    {\"${4:bob}\", ${5:2}}",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a std::map example"
+  },
+  "Example ostringstream": {
+    "prefix": "example-ostringstream",
+    "body": [
+      "#include <sstream>",
+      "",
+      "std::ostringstream ${1:oss};",
+      "${1:oss} << \"${2:Name}: \" << ${3:value} << \" ${4:units}\";",
+      "std::string ${5:result} = ${1:oss}.str();",
+      "",
+      "std::cout << ${5:result} << '\\n';",
+      "$0"
+    ],
+    "description": "Insert ostringstream for string formatting (customize variable name, text, value, units, and result)"
+  },
+  "Example to_string": {
+    "prefix": "example-to-string",
+    "body": [
+      "#include <string>",
+      "",
+      "int ${1:value} = ${2:42};",
+      "std::string ${3:str} = std::to_string(${1:value});",
+      "",
+      "std::cout << ${3:str} << '\\n';",
+      "$0"
+    ],
+    "description": "Insert std::to_string() for number to string conversion (customize type, value, and result)"
+  },
+  "Example stringstream": {
+    "prefix": "example-stringstream",
+    "body": [
+      "#include <sstream>",
+      "",
+      "std::stringstream ${1:ss};",
+      "${1:ss} << \"x=\" << ${2:10} << \" y=\" << ${3:20};",
+      "std::string ${4:result} = ${1:ss}.str();",
+      "",
+      "std::cout << ${4:result} << '\\n';",
+      "$0"
+    ],
+    "description": "Insert stringstream for bidirectional string/value conversion (customize variable name, values, and result)"
+  },
+  "Example string constructor": {
+    "prefix": "example-string-constructor",
+    "body": [
+      "#include <string>",
+      "",
+      "const char *${1:cstr} = \"${2:hello}\";",
+      "std::string ${3:str}(${1:cstr});",
+      "",
+      "std::cout << ${3:str} << '\\n';",
+      "$0"
+    ],
+    "description": "Insert explicit string constructor from C-string (customize pointer, value, and string variable)"
+  },
+  "Example if statement": {
+    "prefix": "example-if",
+    "body": [
+      "if (${1:condition}) {",
+      "    ${2:// work}",
+      "} else {",
+      "    ${3:// fallback}",
+      "}"
+    ],
+    "description": "Insert an if/else statement (customize condition, if body, and else body)"
+  },
+  "Example for loop": {
+    "prefix": "example-for",
+    "body": [
+      "for (${1:int} ${2:index} = ${3:0}; ${2:index} < ${4:count}; ${5:++${2:index}}) {",
+      "    ${6:// work}",
+      "}"
+    ],
+    "description": "Insert a classic for loop (customize type, index, init, limit, increment, and body)"
+  },
+  "Example while loop": {
+    "prefix": "example-while",
+    "body": [
+      "while (${1:condition}) {",
+      "    ${2:// work}",
+      "}"
+    ],
+    "description": "Insert a while loop (customize condition and body)"
+  },
+  "Example range for": {
+    "prefix": "example-range-for",
+    "body": [
+      "for (${1:const auto} &${2:value} : ${3:${2:values}}) {",
+      "    ${4:// work}",
+      "}"
+    ],
+    "description": "Insert a range-based for loop (customize type, variable, container, and body)"
+  },
+  "Example new delete": {
+    "prefix": "example-new-delete",
+    "body": [
+      "${1:Widget} *value = new ${1:Widget}(${2:arguments});",
+      "",
+      "delete value;",
+      "value = nullptr;",
+      "$0"
+    ],
+    "description": "Insert a new/delete example"
+  },
+  "Example new delete array": {
+    "prefix": "example-new-delete-array",
+    "body": [
+      "${1:int} *values = new ${1:int}[${2:count}]{};",
+      "",
+      "delete[] values;",
+      "values = nullptr;",
+      "$0"
+    ],
+    "description": "Insert a new[]/delete[] example"
+  },
+  "Example array of objects": {
+    "prefix": "example-array-objects",
+    "body": [
+      "#include <array>",
+      "",
+      "std::array<${1:Person}, ${2:3}> values = {",
+      "    ${1:Person}(\"${3:Alice}\", ${4:20}),",
+      "    ${1:Person}(\"${5:Bob}\", ${6:21}),",
+      "    ${1:Person}(\"${7:Chris}\", ${8:22})",
+      "};",
+      "$0"
+    ],
+    "description": "Insert an array of objects example"
+  },
+  "Example vector of objects": {
+    "prefix": "example-vector-objects",
+    "body": [
+      "#include <vector>",
+      "",
+      "std::vector<${1:Person}> values = {",
+      "    ${1:Person}(\"${2:Alice}\", ${3:20}),",
+      "    ${1:Person}(\"${4:Bob}\", ${5:21})",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a vector of objects example"
+  },
+  "Example list of objects": {
+    "prefix": "example-list-objects",
+    "body": [
+      "#include <list>",
+      "",
+      "std::list<${1:Person}> values = {",
+      "    ${1:Person}(\"${2:Alice}\", ${3:20}),",
+      "    ${1:Person}(\"${4:Bob}\", ${5:21})",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a list of objects example"
+  },
+  "Example throw catch": {
+    "prefix": "example-throw-catch",
+    "body": [
+      "#include <stdexcept>",
+      "",
+      "try {",
+      "    if (${1:has_error}) {",
+      "        throw ${2:std::runtime_error}(\"${3:something went wrong}\");",
+      "    }",
+      "} catch (${4:const std::exception} &ex) {",
+      "    ${5:std::cerr << ex.what() << '\\n';}",
+      "}"
+    ],
+    "description": "Insert a throw/catch example (customize condition, exception type, message, catch type, and handler)"
+  },
+  "Compile time attributes": {
+    "prefix": "example-compile-time-attributes",
+    "body": [
+      "[[nodiscard]] int ${1:compute_value}();",
+      "[[maybe_unused]] const int ${2:debug_value} = ${3:0};",
+      "[[deprecated(\"${4:use new_api instead}\")]] void ${5:old_api}();",
+      "[[noreturn]] void ${6:fatal_error}(const char *message);",
+      "constexpr int ${7:buffer_size} = ${8:64};",
+      "consteval int ${9:squared}(int value) { return value * value; }",
+      "$0"
+    ],
+    "description": "Insert a list of compile-time related attributes and keywords"
+  },
+  "Example emplace vs push": {
+    "prefix": "example-emplace-vs-push",
+    "body": [
+      "#include <vector>",
+      "#include <string>",
+      "",
+      "struct ${1:Item} {",
+      "    std::string name;",
+      "    int value;",
+      "    ${1:Item}(std::string n, int v) : name(std::move(n)), value(v) {}",
+      "};",
+      "",
+      "std::vector<${1:Item}> items;",
+      "items.push_back(${1:Item}(\"${2:push}\", ${3:1}));",
+      "items.emplace_back(\"${4:emplace}\", ${5:2});",
+      "$0"
+    ],
+    "description": "Insert an emplace_back versus push_back example"
+  },
+  "Exception std::invalid_argument": {
+    "prefix": "example-exception-invalid-argument",
+    "body": [
+      "#include <stdexcept>",
+      "",
+      "if (${1:value} < 0) {",
+      "    throw std::invalid_argument(\"${2:value must be non-negative}\");",
+      "}",
+      "$0"
+    ],
+    "description": "Insert std::invalid_argument exception (customize condition and message)"
+  },
+  "Exception std::out_of_range": {
+    "prefix": "example-exception-out-of-range",
+    "body": [
+      "#include <stdexcept>",
+      "",
+      "if (${1:index} >= ${2:size}) {",
+      "    throw std::out_of_range(\"${3:index out of bounds}\");",
+      "}",
+      "$0"
+    ],
+    "description": "Insert std::out_of_range exception (customize condition and message)"
+  },
+  "Exception std::runtime_error": {
+    "prefix": "example-exception-runtime-error",
+    "body": [
+      "#include <stdexcept>",
+      "",
+      "if (${1:has_error}) {",
+      "    throw std::runtime_error(\"${2:operation failed}\");",
+      "}",
+      "$0"
+    ],
+    "description": "Insert std::runtime_error exception (customize condition and message)"
+  },
+  "Exception std::logic_error": {
+    "prefix": "example-exception-logic-error",
+    "body": [
+      "#include <stdexcept>",
+      "",
+      "if (${1:precondition_violated}) {",
+      "    throw std::logic_error(\"${2:precondition failed}\");",
+      "}",
+      "$0"
+    ],
+    "description": "Insert std::logic_error exception (customize condition and message)"
+  },
+  "Exception std::domain_error": {
+    "prefix": "example-exception-domain-error",
+    "body": [
+      "#include <stdexcept>",
+      "",
+      "if (${1:x} < 0) {",
+      "    throw std::domain_error(\"${2:domain error in sqrt}\");",
+      "}",
+      "$0"
+    ],
+    "description": "Insert std::domain_error exception (customize condition and message)"
+  },
+  "Exception std::range_error": {
+    "prefix": "example-exception-range-error",
+    "body": [
+      "#include <stdexcept>",
+      "",
+      "if (${1:result} > ${2:max_value}) {",
+      "    throw std::range_error(\"${3:result out of range}\");",
+      "}",
+      "$0"
+    ],
+    "description": "Insert std::range_error exception (customize condition and message)"
+  },
+  "Exception std::overflow_error": {
+    "prefix": "example-exception-overflow-error",
+    "body": [
+      "#include <stdexcept>",
+      "",
+      "if (${1:a} > ${2:INT_MAX} - ${3:b}) {",
+      "    throw std::overflow_error(\"${4:integer overflow}\");",
+      "}",
+      "$0"
+    ],
+    "description": "Insert std::overflow_error exception (customize condition and message)"
+  },
+  "Exception std::underflow_error": {
+    "prefix": "example-exception-underflow-error",
+    "body": [
+      "#include <stdexcept>",
+      "",
+      "if (${1:stack}.empty()) {",
+      "    throw std::underflow_error(\"${2:stack underflow}\");",
+      "}",
+      "$0"
+    ],
+    "description": "Insert std::underflow_error exception (customize condition and message)"
+  },
+  "Exception custom class": {
+    "prefix": "example-exception-custom",
+    "body": [
+      "class ${1:CustomException} : public std::exception {",
+      "private:",
+      "    std::string message;",
+      "public:",
+      "    ${1:CustomException}(const std::string &msg) : message(msg) {}",
+      "    const char *what() const noexcept override {",
+      "        return message.c_str();",
+      "    }",
+      "};",
+      "",
+      "throw ${1:CustomException}(\"${2:custom error message}\");",
+      "$0"
+    ],
+    "description": "Insert a custom exception class (customize class name and message)"
+  },
+  "Exception multiple catch": {
+    "prefix": "example-exception-multiple-catch",
+    "body": [
+      "#include <stdexcept>",
+      "",
+      "try {",
+      "    ${1:// code that may throw}",
+      "} catch (const std::invalid_argument &ex) {",
+      "    ${2:std::cerr << \"Invalid argument: \" << ex.what() << '\\n';}",
+      "} catch (const std::out_of_range &ex) {",
+      "    ${3:std::cerr << \"Out of range: \" << ex.what() << '\\n';}",
+      "} catch (const std::exception &ex) {",
+      "    ${4:std::cerr << \"Exception: \" << ex.what() << '\\n';}",
+      "} catch (...) {",
+      "    ${5:std::cerr << \"Unknown exception\\n\";}",
+      "}",
+      "$0"
+    ],
+    "description": "Insert multiple catch blocks for different exceptions"
+  },
+  "Exception noexcept": {
+    "prefix": "example-exception-noexcept",
+    "body": [
+      "// Does not throw",
+      "${1:void} ${2:safe_function}() noexcept {",
+      "    ${3:// guaranteed not to throw}",
+      "}",
+      "",
+      "// May throw",
+      "${1:void} ${2:unsafe_function}() {",
+      "    ${4:// may throw exceptions}",
+      "}",
+      "$0"
+    ],
+    "description": "Insert noexcept specification for exception guarantees"
+  },
+  "Exception rethrow": {
+    "prefix": "example-exception-rethrow",
+    "body": [
+      "try {",
+      "    ${1:// code that may throw}",
+      "} catch (const std::exception &ex) {",
+      "    ${2:std::cerr << \"Handling: \" << ex.what() << '\\n';}",
+      "    throw;  // rethrow the same exception",
+      "}",
+      "$0"
+    ],
+    "description": "Insert exception rethrow pattern (customize handler)"
+  },
+  "Exception std::exception_ptr": {
+    "prefix": "example-exception-ptr",
+    "body": [
+      "#include <exception>",
+      "",
+      "std::exception_ptr ${1:eptr};",
+      "try {",
+      "    ${2:// code that may throw}",
+      "} catch (...) {",
+      "    ${1:eptr} = std::current_exception();",
+      "}",
+      "",
+      "if (${1:eptr}) {",
+      "    try {",
+      "        std::rethrow_exception(${1:eptr});",
+      "    } catch (const std::exception &ex) {",
+      "        ${3:std::cerr << ex.what() << '\\n';}",
+      "    }",
+      "}",
+      "$0"
+    ],
+    "description": "Insert exception_ptr for passing exceptions between functions"
+  }
+}

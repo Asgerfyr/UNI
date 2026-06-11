@@ -1,0 +1,339 @@
+{
+  "Example method": {
+    "prefix": "example-method",
+    "body": [
+      "// ${1:Widget}.h",
+      "#pragma once",
+      "#include <string>",
+      "",
+      "class ${1:Widget} {",
+      "public:",
+      "    std::string describe() const;",
+      "};",
+      "",
+      "// ${1:Widget}.cpp",
+      "#include \"${2:widget}.h\"",
+      "",
+      "std::string ${1:Widget}::describe() const {",
+      "    return \"${3:description}\";",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a full member method example"
+  },
+  "Example method header": {
+    "prefix": "example-method-h",
+    "body": [
+      "${1:std::string} ${2:describe}(${3:}) const;",
+      "$0"
+    ],
+    "description": "Insert a method declaration (customize return type, name, and parameters)"
+  },
+  "Example method source": {
+    "prefix": "example-method-cpp",
+    "body": [
+      "${1:std::string} ${2:Widget}::${3:describe}(${4:}) const {",
+      "    return ${5:\"value\"};",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a method definition (customize return type, class name, function name, and parameters)"
+  },
+  "Example function": {
+    "prefix": "example-function",
+    "body": [
+      "// ${1:math_utils}.h",
+      "#pragma once",
+      "",
+      "int ${2:add}(int left, int right);",
+      "",
+      "// ${1:math_utils}.cpp",
+      "#include \"${1:math_utils}.h\"",
+      "",
+      "int ${2:add}(int left, int right) {",
+      "    return left + right;",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a full function example with declaration and definition"
+  },
+  "Example function header": {
+    "prefix": "example-function-h",
+    "body": [
+      "${1:int} ${2:add}(${3:int left, int right});",
+      "$0"
+    ],
+    "description": "Insert a function declaration (customize return type, name, and parameters)"
+  },
+  "Example function source": {
+    "prefix": "example-function-cpp",
+    "body": [
+      "${1:int} ${2:add}(${3:int left, int right}) {",
+      "    return ${4:left + right};",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a function definition (customize return type, name, parameters, and body)"
+  },
+  "Example virtual const function declaration": {
+    "prefix": "example-virtual-const",
+    "body": [
+      "virtual ${1:double} ${2:function}(${3:}) const;",
+      "$0"
+    ],
+    "description": "Insert virtual function declaration (customize return type, name, and parameters)"
+  },
+  "Example abstract const function declaration": {
+    "prefix": "example-abstract-const",
+    "body": [
+      "virtual ${1:double} ${2:function}(${3:}) const = 0;",
+      "$0"
+    ],
+    "description": "Insert pure virtual function (customize return type, name, and parameters)"
+  },
+  "Example override const function declaration": {
+    "prefix": "example-override-const",
+    "body": [
+      "${1:double} ${2:function}(${3:}) const override;",
+      "$0"
+    ],
+    "description": "Insert override function declaration (customize return type, name, and parameters)"
+  },
+  "Example free function": {
+    "prefix": "example-free-function",
+    "body": [
+      "// ${1:string_utils}.h",
+      "#pragma once",
+      "#include <string>",
+      "",
+      "std::string ${2:trim}(const std::string &value);",
+      "",
+      "// ${1:string_utils}.cpp",
+      "#include \"${1:string_utils}.h\"",
+      "",
+      "std::string ${2:trim}(const std::string &value) {",
+      "    return value;",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a full free function example"
+  },
+  "Example free function header": {
+    "prefix": "example-free-function-h",
+    "body": [
+      "#include <string>",
+      "",
+      "${1:std::string} ${2:trim}(${3:const std::string &value});",
+      "$0"
+    ],
+    "description": "Insert a free function declaration (customize return type, name, and parameters)"
+  },
+  "Example free function source": {
+    "prefix": "example-free-function-cpp",
+    "body": [
+      "#include \"${1:string_utils}.h\"",
+      "",
+      "${2:std::string} ${3:trim}(${4:const std::string &value}) {",
+      "    return ${5:value};",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a free function definition (customize return type, name, parameters, and body)"
+  },
+  "Example friend function": {
+    "prefix": "example-friend-function",
+    "body": [
+      "// ${1:Box}.h",
+      "#pragma once",
+      "#include <ostream>",
+      "",
+      "class ${1:Box} {",
+      "public:",
+      "    explicit ${1:Box}(int value);",
+      "",
+      "private:",
+      "    int value;",
+      "    friend std::ostream &operator<<(std::ostream &os, const ${1:Box} &box);",
+      "};",
+      "",
+      "// ${1:Box}.cpp",
+      "#include \"${2:box}.h\"",
+      "",
+      "${1:Box}::${1:Box}(int value) : value(value) {}",
+      "",
+      "std::ostream &operator<<(std::ostream &os, const ${1:Box} &box) {",
+      "    os << box.value;",
+      "    return os;",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a full friend function example"
+  },
+  "Example friend function header": {
+    "prefix": "example-friend-function-h",
+    "body": [
+      "#pragma once",
+      "#include <ostream>",
+      "",
+      "class ${1:Box} {",
+      "public:",
+      "    explicit ${1:Box}(int value);",
+      "",
+      "private:",
+      "    int value;",
+      "    friend std::ostream &operator<<(std::ostream &os, const ${1:Box} &box);",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a friend function declaration in a class"
+  },
+  "Example friend function source": {
+    "prefix": "example-friend-function-cpp",
+    "body": [
+      "#include \"${1:box}.h\"",
+      "",
+      "${2:Box}::${2:Box}(int value) : value(value) {}",
+      "",
+      "std::ostream &operator<<(std::ostream &os, const ${2:Box} &box) {",
+      "    os << box.value;",
+      "    return os;",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a friend function definition"
+  },
+  "Example friend member": {
+    "prefix": "example-friend-member",
+    "body": [
+      "// ${1:Vault}.h",
+      "#pragma once",
+      "#include <iostream>",
+      "",
+      "class ${1:Vault};",
+      "",
+      "class ${2:Inspector} {",
+      "public:",
+      "    void inspect(const ${1:Vault} &vault) const;",
+      "};",
+      "",
+      "class ${1:Vault} {",
+      "public:",
+      "    explicit ${1:Vault}(int secret) : secret(secret) {}",
+      "",
+      "private:",
+      "    int secret;",
+      "    friend void ${2:Inspector}::inspect(const ${1:Vault} &vault) const;",
+      "};",
+      "",
+      "// ${1:Vault}.cpp",
+      "#include \"${3:vault}.h\"",
+      "",
+      "void ${2:Inspector}::inspect(const ${1:Vault} &vault) const {",
+      "    std::cout << vault.secret << '\\n';",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a specific member function friend example"
+  },
+  "Example template function": {
+    "prefix": "example-template-function",
+    "body": [
+      "#pragma once",
+      "#include <sstream>",
+      "#include <string>",
+      "",
+      "template<typename T>",
+      "std::string ${1:to_string_value}(const T &value) {",
+      "    std::ostringstream os;",
+      "    os << value;",
+      "    return os.str();",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a template function example"
+  },
+  "Example template class": {
+    "prefix": "example-template-class",
+    "body": [
+      "#pragma once",
+      "#include <vector>",
+      "",
+      "template<typename T>",
+      "class ${1:Container} {",
+      "public:",
+      "    void add(const T &value) {",
+      "        values.push_back(value);",
+      "    }",
+      "",
+      "    const std::vector<T> &get_values() const {",
+      "        return values;",
+      "    }",
+      "",
+      "private:",
+      "    std::vector<T> values;",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a template class example"
+  },
+  "Example operator member": {
+    "prefix": "example-operator-member",
+    "body": [
+      "class ${1:Counter} {",
+      "public:",
+      "    explicit ${1:Counter}(int value = 0) : value(value) {}",
+      "",
+      "    ${1:Counter} &operator+=(int delta) {",
+      "        value += delta;",
+      "        return *this;",
+      "    }",
+      "",
+      "private:",
+      "    int value;",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a member operator overload example"
+  },
+  "Example operator free": {
+    "prefix": "example-operator-free",
+    "body": [
+      "class ${1:Counter} {",
+      "public:",
+      "    explicit ${1:Counter}(int value = 0) : value(value) {}",
+      "    int get_value() const { return value; }",
+      "",
+      "private:",
+      "    int value;",
+      "};",
+      "",
+      "${1:Counter} operator+(const ${1:Counter} &left, const ${1:Counter} &right) {",
+      "    return ${1:Counter}(left.get_value() + right.get_value());",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a free operator overload example"
+  },
+  "Example operator friend": {
+    "prefix": "example-operator-friend",
+    "body": [
+      "#include <ostream>",
+      "",
+      "class ${1:Counter} {",
+      "public:",
+      "    explicit ${1:Counter}(int value = 0) : value(value) {}",
+      "",
+      "private:",
+      "    int value;",
+      "    friend std::ostream &operator<<(std::ostream &os, const ${1:Counter} &counter);",
+      "};",
+      "",
+      "std::ostream &operator<<(std::ostream &os, const ${1:Counter} &counter) {",
+      "    os << counter.value;",
+      "    return os;",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a friend operator overload example"
+  }
+}

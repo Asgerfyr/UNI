@@ -1,0 +1,244 @@
+{
+  "Example pointer syntax in function": {
+    "prefix": "example-function-pointer-param",
+    "body": [
+      "${1:void} ${2:increment}(${3:int} *${4:value}) {",
+      "    if (value != nullptr) {",
+      "        ${5:++(*value)};",
+      "    }",
+      "}",
+      "$0"
+    ],
+    "description": "Insert pointer parameter syntax (customize return type, name, param type, and body)"
+  },
+  "Example reference syntax in function": {
+    "prefix": "example-function-reference-param",
+    "body": [
+      "${1:void} ${2:increment}(${3:int} &${4:value}) {",
+      "    ${5:++value};",
+      "}",
+      "$0"
+    ],
+    "description": "Insert reference parameter syntax (customize return type, name, param type, and body)"
+  },
+  "Example const reference syntax": {
+    "prefix": "example-function-const-reference",
+    "body": [
+      "${1:void} ${2:print_name}(${3:const std::string} &${4:name}) {",
+      "    ${5:std::cout << name << '\\n';};",
+      "}",
+      "$0"
+    ],
+    "description": "Insert const reference parameter syntax (customize return type, name, param type, and body)"
+  },
+  "Example smart pointers": {
+    "prefix": "example-smart-pointers",
+    "body": [
+      "#include <memory>",
+      "",
+      "std::unique_ptr<${1:Widget}> owner = std::make_unique<${1:Widget}>(${2:args});",
+      "std::shared_ptr<${1:Widget}> shared = std::make_shared<${1:Widget}>(${3:args});",
+      "std::weak_ptr<${1:Widget}> observer = shared;",
+      "",
+      "if (auto locked = observer.lock()) {",
+      "    ${0:// use locked}",
+      "}"
+    ],
+    "description": "Insert unique_ptr, shared_ptr, and weak_ptr usage"
+  },
+  "Example move semantics": {
+    "prefix": "example-move",
+    "body": [
+      "#include <utility>",
+      "",
+      "std::string source = \"${1:data}\";",
+      "std::string target = std::move(source);",
+      "$0"
+    ],
+    "description": "Insert std::move example"
+  },
+  "Example constructor": {
+    "prefix": "example-constructor",
+    "body": [
+      "class ${1:Widget} {",
+      "public:",
+      "    ${1:Widget}(std::string name, int value)",
+      "        : name(std::move(name)), value(value) {}",
+      "",
+      "private:",
+      "    std::string name;",
+      "    int value;",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a constructor example"
+  },
+  "Example copy constructor": {
+    "prefix": "example-copy-constructor",
+    "body": [
+      "class ${1:Buffer} {",
+      "public:",
+      "    ${1:Buffer}(const ${1:Buffer} &other)",
+      "        : size(other.size), data(new int[other.size]) {",
+      "        std::copy(other.data, other.data + size, data);",
+      "    }",
+      "",
+      "private:",
+      "    int size{0};",
+      "    int *data{nullptr};",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a copy constructor example"
+  },
+  "Example move constructor": {
+    "prefix": "example-move-constructor",
+    "body": [
+      "class ${1:Buffer} {",
+      "public:",
+      "    ${1:Buffer}(${1:Buffer} &&other) noexcept",
+      "        : size(other.size), data(other.data) {",
+      "        other.size = 0;",
+      "        other.data = nullptr;",
+      "    }",
+      "",
+      "private:",
+      "    int size{0};",
+      "    int *data{nullptr};",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a move constructor example"
+  },
+  "Example rule of 3": {
+    "prefix": "example-rule-of-3",
+    "body": [
+      "class ${1:Buffer} {",
+      "public:",
+      "    ${1:Buffer}(int size) : size(size), data(new int[size]{}) {}",
+      "    ~${1:Buffer}() { delete[] data; }",
+      "",
+      "    ${1:Buffer}(const ${1:Buffer} &other)",
+      "        : size(other.size), data(new int[other.size]) {",
+      "        std::copy(other.data, other.data + size, data);",
+      "    }",
+      "",
+      "    ${1:Buffer} &operator=(const ${1:Buffer} &other) {",
+      "        if (this != &other) {",
+      "            int *new_data = new int[other.size];",
+      "            std::copy(other.data, other.data + other.size, new_data);",
+      "            delete[] data;",
+      "            data = new_data;",
+      "            size = other.size;",
+      "        }",
+      "        return *this;",
+      "    }",
+      "",
+      "private:",
+      "    int size;",
+      "    int *data;",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a Rule of 3 example"
+  },
+  "Example rule of 5": {
+    "prefix": "example-rule-of-5",
+    "body": [
+      "class ${1:Buffer} {",
+      "public:",
+      "    ${1:Buffer}(int size) : size(size), data(new int[size]{}) {}",
+      "    ~${1:Buffer}() { delete[] data; }",
+      "    ${1:Buffer}(const ${1:Buffer} &other);",
+      "    ${1:Buffer} &operator=(const ${1:Buffer} &other);",
+      "    ${1:Buffer}(${1:Buffer} &&other) noexcept;",
+      "    ${1:Buffer} &operator=(${1:Buffer} &&other) noexcept;",
+      "",
+      "private:",
+      "    int size{0};",
+      "    int *data{nullptr};",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a Rule of 5 class skeleton"
+  },
+  "Example rule of 0": {
+    "prefix": "example-rule-of-0",
+    "body": [
+      "class ${1:Person} {",
+      "public:",
+      "    ${1:Person}(std::string name, int age)",
+      "        : name(std::move(name)), age(age) {}",
+      "",
+      "private:",
+      "    std::string name;",
+      "    int age;",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a Rule of 0 example"
+  },
+  "Example stack vs heap": {
+    "prefix": "example-stack-vs-heap",
+    "body": [
+      "${1:Widget} stack_value(${2:args});",
+      "${1:Widget} *heap_value = new ${1:Widget}(${3:args});",
+      "",
+      "delete heap_value;",
+      "heap_value = nullptr;",
+      "$0"
+    ],
+    "description": "Insert stack allocation versus heap allocation example"
+  },
+  "Example alignment and padding": {
+    "prefix": "example-alignment-padding",
+    "body": [
+      "#include <cstddef>",
+      "#include <iostream>",
+      "",
+      "struct ${1:PackedCandidate} {",
+      "    char a;",
+      "    int b;",
+      "    char c;",
+      "};",
+      "",
+      "std::cout << \"sizeof(${1:PackedCandidate}) = \" << sizeof(${1:PackedCandidate}) << '\\n';",
+      "std::cout << \"offset b = \" << offsetof(${1:PackedCandidate}, b) << '\\n';",
+      "std::cout << \"offset c = \" << offsetof(${1:PackedCandidate}, c) << '\\n';",
+      "$0"
+    ],
+    "description": "Insert struct memory layout and padding example"
+  },
+  "Example bitwise operations": {
+    "prefix": "example-bitwise",
+    "body": [
+      "unsigned int a = ${1:0b1010};",
+      "unsigned int b = ${2:0b1100};",
+      "unsigned int and_value = a & b;",
+      "unsigned int or_value = a | b;",
+      "unsigned int xor_value = a ^ b;",
+      "unsigned int shifted_left = a << ${3:1};",
+      "unsigned int shifted_right = b >> ${4:1};",
+      "$0"
+    ],
+    "description": "Insert bitwise operations example"
+  },
+  "Example override method": {
+    "prefix": "example-override",
+    "body": [
+      "class ${1:Base} {",
+      "public:",
+      "    virtual ~${1:Base}() = default;",
+      "    virtual void ${2:run}() = 0;",
+      "};",
+      "",
+      "class ${3:Derived} : public ${1:Base} {",
+      "public:",
+      "    void ${2:run}() override {",
+      "        ${0:// implementation}",
+      "    }",
+      "};"
+    ],
+    "description": "Insert an override example (if you meant overwriting)"
+  }
+}
