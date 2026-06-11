@@ -199,3 +199,62 @@ This index lists every snippet name and prefix available in the workspace snippe
 | Premade reverse iterator | premade-reverse-iterator |
 | Premade find iterator | premade-iterator-find |
 | Premade accumulate iterator | premade-iterator-accumulate |
+
+## Container Operations by Type
+
+### std::set
+| Snippet | Prefix | Purpose |
+| --- | --- | --- |
+| SET: Insert element | set-insert | Add element (auto-sorted, no duplicates) |
+| SET: Erase element | set-erase | Remove by value or iterator |
+| SET: Find element | set-find | Search for element, returns iterator |
+| SET: Count occurrences | set-count | Check existence (0 or 1) |
+| SET: Lower bound | set-lower-bound | First element >= value |
+| SET: Upper bound | set-upper-bound | First element > value |
+| SET: Clear | set-clear | Remove all elements |
+| SET: Empty check | set-empty | Check if no elements |
+| SET: Size | set-size | Get number of elements |
+
+### std::map
+| Snippet | Prefix | Purpose |
+| --- | --- | --- |
+| MAP: Insert key-value | map-insert | Add key-value pair |
+| MAP: Erase by key | map-erase | Remove entry by key |
+| MAP: Find key | map-find | Search for key |
+| MAP: Count key | map-count | Check if key exists |
+| MAP: Access at | map-at | Safe access (throws if missing) |
+| MAP: Access with [] | map-bracket | Access/create with [] (unsafe) |
+| MAP: Clear | map-clear | Remove all entries |
+| MAP: Empty check | map-empty | Check if no entries |
+| MAP: Size | map-size | Get number of entries |
+
+### std::vector
+| Snippet | Prefix | Purpose |
+| --- | --- | --- |
+| VECTOR: Push back | vector-push-back | Add to end |
+| VECTOR: Pop back | vector-pop-back | Remove from end |
+| VECTOR: Insert at position | vector-insert | Insert at index (O(n)) |
+| VECTOR: Erase at position | vector-erase | Remove at index (O(n)) |
+| VECTOR: Access at | vector-at | Safe access with bounds check |
+| VECTOR: Access with [] | vector-bracket | Fast access, no bounds check |
+| VECTOR: Clear | vector-clear | Remove all elements |
+| VECTOR: Empty check | vector-empty | Check if empty |
+| VECTOR: Size | vector-size | Get element count |
+| VECTOR: Reserve capacity | vector-reserve | Pre-allocate space |
+
+### std::array
+| Snippet | Prefix | Purpose |
+| --- | --- | --- |
+| ARRAY: Access at | array-at | Safe access with bounds check |
+| ARRAY: Access with [] | array-bracket | Fast access, no bounds check |
+| ARRAY: Fill | array-fill | Set all elements to value |
+| ARRAY: Size | array-size | Get size (compile-time constant) |
+| ARRAY: Empty check | array-empty | Check if size is 0 |
+
+### std::pair
+| Snippet | Prefix | Purpose |
+| --- | --- | --- |
+| PAIR: Create pair | pair-create | Create pair with two values |
+| PAIR: Make pair | pair-make | Create pair (type deduction) |
+| PAIR: Access first | pair-first | Get first element |
+| PAIR: Access second | pair-second | Get second element |

@@ -7,5 +7,6 @@
     "C_Cpp.default.includePath": [
         "${workspaceFolder}/**/include",
         "${workspaceFolder}/**/src"
-    ]
+    ],
+    "C_Cpp.default.compilerPath": "C:/Windows/c/bin/c++.exe"
 }

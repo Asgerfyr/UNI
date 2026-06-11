@@ -16,6 +16,16 @@ if (!(Test-Path "$dir\CMakeLists.txt")) {
 Write-Output "Found CMakeLists.txt in: $dir"
 Set-Location $dir
 
+# Update C++ IntelliSense properties
+$scriptDir = Split-Path $PSCommandPath
+& "$scriptDir\update-cpp-properties.ps1" $dir
+
+# Clean old build cache if it exists
+if (Test-Path "$dir\build") {
+    Write-Output "Cleaning old build cache..."
+    Remove-Item -Recurse -Force "$dir\build"
+}
+
 # Build
 cmake -B build -S .
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

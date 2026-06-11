@@ -195,6 +195,331 @@
     ],
     "description": "Transform/map all elements using a function or lambda"
   },
+  "SET: Insert element": {
+    "prefix": "set-insert",
+    "body": [
+      "#include <set>",
+      "",
+      "std::set<${1:int}> ${2:my_set};",
+      "${2:my_set}.insert(${3:42});",
+      "// Elements stay sorted, duplicates rejected"
+    ],
+    "description": "Insert element into set (maintains sorted order, no duplicates)"
+  },
+  "SET: Erase element": {
+    "prefix": "set-erase",
+    "body": [
+      "${1:my_set}.erase(${2:value});  // By value",
+      "// or",
+      "${1:my_set}.erase(${1:my_set}.find(${2:value}));  // By iterator"
+    ],
+    "description": "Remove element from set by value or iterator"
+  },
+  "SET: Find element": {
+    "prefix": "set-find",
+    "body": [
+      "auto it = ${1:my_set}.find(${2:value});",
+      "if (it != ${1:my_set}.end()) {",
+      "    ${3:// Found}",
+      "} else {",
+      "    ${4:// Not found}",
+      "}"
+    ],
+    "description": "Search for element in set, returns iterator or end()"
+  },
+  "SET: Count occurrences": {
+    "prefix": "set-count",
+    "body": [
+      "int count = ${1:my_set}.count(${2:value});",
+      "// Returns 0 (not found) or 1 (found) - no duplicates in set"
+    ],
+    "description": "Check if element exists in set (returns 0 or 1)"
+  },
+  "SET: Lower bound": {
+    "prefix": "set-lower-bound",
+    "body": [
+      "auto it = ${1:my_set}.lower_bound(${2:value});",
+      "// Points to first element >= value"
+    ],
+    "description": "Find first element not less than value"
+  },
+  "SET: Upper bound": {
+    "prefix": "set-upper-bound",
+    "body": [
+      "auto it = ${1:my_set}.upper_bound(${2:value});",
+      "// Points to first element > value"
+    ],
+    "description": "Find first element strictly greater than value"
+  },
+  "SET: Clear": {
+    "prefix": "set-clear",
+    "body": [
+      "${1:my_set}.clear();  // Remove all elements"
+    ],
+    "description": "Remove all elements from set"
+  },
+  "SET: Empty check": {
+    "prefix": "set-empty",
+    "body": [
+      "if (${1:my_set}.empty()) {",
+      "    ${2:// set is empty}",
+      "}"
+    ],
+    "description": "Check if set has no elements"
+  },
+  "SET: Size": {
+    "prefix": "set-size",
+    "body": [
+      "int sz = ${1:my_set}.size();",
+      "std::cout << \"Set has \" << sz << \" elements\" << std::endl;"
+    ],
+    "description": "Get number of elements in set"
+  },
+  "MAP: Insert key-value": {
+    "prefix": "map-insert",
+    "body": [
+      "#include <map>",
+      "",
+      "std::map<${1:std::string}, ${2:int}> ${3:my_map};",
+      "${3:my_map}.insert({\"${4:key}\", ${5:value}}});",
+      "// or using []:",
+      "${3:my_map}[\"${4:key}\"] = ${5:value};"
+    ],
+    "description": "Insert key-value pair into map"
+  },
+  "MAP: Erase by key": {
+    "prefix": "map-erase",
+    "body": [
+      "${1:my_map}.erase(${2:key});  // By key",
+      "// or",
+      "${1:my_map}.erase(${1:my_map}.find(${2:key}));  // By iterator"
+    ],
+    "description": "Remove entry from map by key or iterator"
+  },
+  "MAP: Find key": {
+    "prefix": "map-find",
+    "body": [
+      "auto it = ${1:my_map}.find(${2:key});",
+      "if (it != ${1:my_map}.end()) {",
+      "    ${3:int value} = it->second;",
+      "    ${4:// Key found}",
+      "} else {",
+      "    ${5:// Key not found}",
+      "}"
+    ],
+    "description": "Search for key in map, access value via iterator->second"
+  },
+  "MAP: Count key": {
+    "prefix": "map-count",
+    "body": [
+      "int count = ${1:my_map}.count(${2:key});",
+      "// Returns 0 or 1 (no duplicate keys in map)"
+    ],
+    "description": "Check if key exists (returns 0 or 1)"
+  },
+  "MAP: Access at": {
+    "prefix": "map-at",
+    "body": [
+      "try {",
+      "    ${1:int value} = ${2:my_map}.at(${3:key});",
+      "    ${4:// Key exists}",
+      "} catch (const std::out_of_range &e) {",
+      "    ${5:// Key not found}",
+      "}"
+    ],
+    "description": "Access value by key safely (throws if key not found)"
+  },
+  "MAP: Access with []": {
+    "prefix": "map-bracket",
+    "body": [
+      "${1:int value} = ${2:my_map}[${3:key}];",
+      "// Warning: Creates entry with default value if key doesn't exist!"
+    ],
+    "description": "Access value by key using [], creates entry if missing"
+  },
+  "MAP: Clear": {
+    "prefix": "map-clear",
+    "body": [
+      "${1:my_map}.clear();  // Remove all entries"
+    ],
+    "description": "Remove all key-value pairs from map"
+  },
+  "MAP: Empty check": {
+    "prefix": "map-empty",
+    "body": [
+      "if (${1:my_map}.empty()) {",
+      "    ${2:// map is empty}",
+      "}"
+    ],
+    "description": "Check if map has no entries"
+  },
+  "MAP: Size": {
+    "prefix": "map-size",
+    "body": [
+      "int sz = ${1:my_map}.size();",
+      "std::cout << \"Map has \" << sz << \" entries\" << std::endl;"
+    ],
+    "description": "Get number of key-value pairs in map"
+  },
+  "VECTOR: Push back": {
+    "prefix": "vector-push-back",
+    "body": [
+      "#include <vector>",
+      "",
+      "std::vector<${1:int}> ${2:my_vec};",
+      "${2:my_vec}.push_back(${3:42});  // Add to end"
+    ],
+    "description": "Add element to end of vector"
+  },
+  "VECTOR: Pop back": {
+    "prefix": "vector-pop-back",
+    "body": [
+      "${1:my_vec}.pop_back();  // Remove last element",
+      "// Check size before pop_back to avoid crash!"
+    ],
+    "description": "Remove last element from vector"
+  },
+  "VECTOR: Insert at position": {
+    "prefix": "vector-insert",
+    "body": [
+      "auto it = ${1:my_vec}.begin() + ${2:index};",
+      "${1:my_vec}.insert(it, ${3:value});  // O(n) operation!"
+    ],
+    "description": "Insert element at position (expensive for large vectors)"
+  },
+  "VECTOR: Erase at position": {
+    "prefix": "vector-erase",
+    "body": [
+      "auto it = ${1:my_vec}.begin() + ${2:index};",
+      "${1:my_vec}.erase(it);  // Remove one element"
+    ],
+    "description": "Remove element at position (expensive for large vectors)"
+  },
+  "VECTOR: Access at": {
+    "prefix": "vector-at",
+    "body": [
+      "try {",
+      "    ${1:int value} = ${2:my_vec}.at(${3:index});",
+      "} catch (const std::out_of_range &e) {",
+      "    ${4:// Index out of bounds}",
+      "}"
+    ],
+    "description": "Access element safely (throws if index out of bounds)"
+  },
+  "VECTOR: Access with []": {
+    "prefix": "vector-bracket",
+    "body": [
+      "${1:int value} = ${2:my_vec}[${3:index}];",
+      "// No bounds checking - fast but unsafe!"
+    ],
+    "description": "Access element using [], no bounds checking (fast)"
+  },
+  "VECTOR: Clear": {
+    "prefix": "vector-clear",
+    "body": [
+      "${1:my_vec}.clear();  // Remove all elements, capacity unchanged"
+    ],
+    "description": "Remove all elements from vector"
+  },
+  "VECTOR: Empty check": {
+    "prefix": "vector-empty",
+    "body": [
+      "if (${1:my_vec}.empty()) {",
+      "    ${2:// vector has no elements}",
+      "}"
+    ],
+    "description": "Check if vector has no elements"
+  },
+  "VECTOR: Size": {
+    "prefix": "vector-size",
+    "body": [
+      "int sz = ${1:my_vec}.size();",
+      "std::cout << \"Vector has \" << sz << \" elements\" << std::endl;"
+    ],
+    "description": "Get number of elements in vector"
+  },
+  "VECTOR: Reserve capacity": {
+    "prefix": "vector-reserve",
+    "body": [
+      "${1:my_vec}.reserve(${2:100}});  // Allocate space without adding elements",
+      "// Improves performance for push_back if size is known"
+    ],
+    "description": "Pre-allocate capacity to avoid reallocations"
+  },
+  "ARRAY: Access at": {
+    "prefix": "array-at",
+    "body": [
+      "#include <array>",
+      "",
+      "std::array<${1:int}}, ${2:5}> ${3:my_arr}} = {${4:1, 2, 3, 4, 5}}};",
+      "${1:int}} val = ${3:my_arr}}.at(${5:0}});  // Bounds checked"
+    ],
+    "description": "Access element safely with bounds checking"
+  },
+  "ARRAY: Access with []": {
+    "prefix": "array-bracket",
+    "body": [
+      "${1:int}} val = ${2:my_arr}}[${3:0}}];",
+      "// No bounds checking - fast!"
+    ],
+    "description": "Access element using [] (no bounds checking)"
+  },
+  "ARRAY: Fill": {
+    "prefix": "array-fill",
+    "body": [
+      "${1:my_arr}.fill(${2:0}});  // Set all elements to value"
+    ],
+    "description": "Set all elements in array to same value"
+  },
+  "ARRAY: Size": {
+    "prefix": "array-size",
+    "body": [
+      "constexpr int sz = ${1:my_arr}.size();  // Compile-time constant!"
+    ],
+    "description": "Get array size (known at compile time)"
+  },
+  "ARRAY: Empty check": {
+    "prefix": "array-empty",
+    "body": [
+      "if constexpr (${1:my_arr}.empty()) {",
+      "    ${2:// This won't compile if array has elements}",
+      "}"
+    ],
+    "description": "Array is empty only if size is 0"
+  },
+  "PAIR: Create pair": {
+    "prefix": "pair-create",
+    "body": [
+      "#include <utility>",
+      "",
+      "std::pair<${1:std::string}}, {{2:int}}> {{3:my_pair}} = {{\"{{4:key}}\", {{5:42}}}}};"
+    ],
+    "description": "Create a pair with two values"
+  },
+  "PAIR: Make pair": {
+    "prefix": "pair-make",
+    "body": [
+      "auto ${1:my_pair}} = std::make_pair(${2:\"value1\"}}, {{3:42}});",
+      "// Type deduced automatically"
+    ],
+    "description": "Create pair using make_pair (type deduction)"
+  },
+  "PAIR: Access first": {
+    "prefix": "pair-first",
+    "body": [
+      "${1:std::string}} first_val = ${2:my_pair}}.first;",
+      "{{3:// Access first element}}"
+    ],
+    "description": "Access first element of pair"
+  },
+  "PAIR: Access second": {
+    "prefix": "pair-second",
+    "body": [
+      "${1:int}} second_val = ${2:my_pair}}.second;",
+      "{{3:// Access second element}}"
+    ],
+    "description": "Access second element of pair"
+  },
   "Example array": {
     "prefix": "example-array",
     "body": [
