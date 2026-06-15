@@ -7,7 +7,7 @@ $examYear = $pathParts[-2]  # e.g., "sommer-2025"
 
 # Find all Opgave folders in the same exam directory
 $examDir = Split-Path $ProjectDir
-$opgaveFolders = Get-ChildItem -Path $examDir -Directory -Filter "Opgave_*" | Sort-Object Name
+$opgaveFolders = Get-ChildItem -Path $examDir -Directory -Filter "Opgave*" | Sort-Object Name
 
 # Build include paths: current task first, then others
 $includePaths = [System.Collections.Generic.List[string]]::new()

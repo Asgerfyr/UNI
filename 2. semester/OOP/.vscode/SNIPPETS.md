@@ -258,3 +258,17 @@ This index lists every snippet name and prefix available in the workspace snippe
 | PAIR: Make pair | pair-make | Create pair (type deduction) |
 | PAIR: Access first | pair-first | Get first element |
 | PAIR: Access second | pair-second | Get second element |
+
+## VS Code Keyboard Shortcuts
+
+| Snippet | Prefix |
+| --- | --- |
+| Multiple Cursors - Add Cursor | shortcut-cursor-add |
+| Multiple Cursors - Manage | shortcut-cursor-manage |
+| Movement - Navigation | shortcut-move |
+| Selection - Expand | shortcut-select |
+| Editing - Modify | shortcut-edit |
+| Search - Find | shortcut-search |
+| View - Viewport | shortcut-view |
+| Debug - Run | shortcut-debug |
+| All Shortcuts Index | shortcut-all |
