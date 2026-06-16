@@ -3,12 +3,12 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2024\\Opgave_2\\include",
-                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2024\\Opgave_2\\src",
-                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2024\\Opgave_1\\include",
-                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2024\\Opgave_1\\src",
-                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2024\\Opgave_3\\include",
-                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2024\\Opgave_3\\src"
+                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2025-re\\Opgave_2\\include",
+                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2025-re\\Opgave_2\\src",
+                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2025-re\\Opgave_1\\include",
+                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2025-re\\Opgave_1\\src",
+                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2025-re\\Opgave_3\\include",
+                "C:\\Users\\Asger\\Uni\\Github\\UNI\\2. semester\\OOP\\OOP-examen\\sommer-2025-re\\Opgave_3\\src"
             ],
             "defines": [],
             "compilerPath": "C:/Windows/c/bin/c++.exe",
