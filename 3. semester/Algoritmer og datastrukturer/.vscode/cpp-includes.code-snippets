@@ -1,0 +1,283 @@
+{
+  "Include algorithm": {
+    "prefix": "include-algorithm",
+    "body": ["#include <algorithm>"],
+    "description": "Insert #include <algorithm>"
+  },
+  "Include cassert": {
+    "prefix": "include-cassert",
+    "body": ["#include <cassert>"],
+    "description": "Insert #include <cassert>"
+  },
+  "Include cctype": {
+    "prefix": "include-cctype",
+    "body": ["#include <cctype>"],
+    "description": "Insert #include <cctype>"
+  },
+  "Include cerrno": {
+    "prefix": "include-cerrno",
+    "body": ["#include <cerrno>"],
+    "description": "Insert #include <cerrno>"
+  },
+  "Include cfloat": {
+    "prefix": "include-cfloat",
+    "body": ["#include <cfloat>"],
+    "description": "Insert #include <cfloat>"
+  },
+  "Include chrono": {
+    "prefix": "include-chrono",
+    "body": ["#include <chrono>"],
+    "description": "Insert #include <chrono>"
+  },
+  "Include cmath": {
+    "prefix": "include-cmath",
+    "body": ["#include <cmath>"],
+    "description": "Insert #include <cmath>"
+  },
+  "Include cstddef": {
+    "prefix": "include-cstddef",
+    "body": ["#include <cstddef>"],
+    "description": "Insert #include <cstddef>"
+  },
+  "Include cstdint": {
+    "prefix": "include-cstdint",
+    "body": ["#include <cstdint>"],
+    "description": "Insert #include <cstdint>"
+  },
+  "Include cstdio": {
+    "prefix": "include-cstdio",
+    "body": ["#include <cstdio>"],
+    "description": "Insert #include <cstdio>"
+  },
+  "Include cstdlib": {
+    "prefix": "include-cstdlib",
+    "body": ["#include <cstdlib>"],
+    "description": "Insert #include <cstdlib>"
+  },
+  "Include cstring": {
+    "prefix": "include-cstring",
+    "body": ["#include <cstring>"],
+    "description": "Insert #include <cstring>"
+  },
+  "Include ctime": {
+    "prefix": "include-ctime",
+    "body": ["#include <ctime>"],
+    "description": "Insert #include <ctime>"
+  },
+  "Include exception": {
+    "prefix": "include-exception",
+    "body": ["#include <exception>"],
+    "description": "Insert #include <exception>"
+  },
+  "Include fstream": {
+    "prefix": "include-fstream",
+    "body": ["#include <fstream>"],
+    "description": "Insert #include <fstream>"
+  },
+  "Include functional": {
+    "prefix": "include-functional",
+    "body": ["#include <functional>"],
+    "description": "Insert #include <functional>"
+  },
+  "Include future": {
+    "prefix": "include-future",
+    "body": ["#include <future>"],
+    "description": "Insert #include <future>"
+  },
+  "Include iomanip": {
+    "prefix": "include-iomanip",
+    "body": ["#include <iomanip>"],
+    "description": "Insert #include <iomanip>"
+  },
+  "Include ios": {
+    "prefix": "include-ios",
+    "body": ["#include <ios>"],
+    "description": "Insert #include <ios>"
+  },
+  "Include iosfwd": {
+    "prefix": "include-iosfwd",
+    "body": ["#include <iosfwd>"],
+    "description": "Insert #include <iosfwd>"
+  },
+  "Include iostream": {
+    "prefix": "include-iostream",
+    "body": ["#include <iostream>"],
+    "description": "Insert #include <iostream>"
+  },
+  "Include iterator": {
+    "prefix": "include-iterator",
+    "body": ["#include <iterator>"],
+    "description": "Insert #include <iterator>"
+  },
+  "Include limits": {
+    "prefix": "include-limits",
+    "body": ["#include <limits>"],
+    "description": "Insert #include <limits>"
+  },
+  "Include list": {
+    "prefix": "include-list",
+    "body": ["#include <list>"],
+    "description": "Insert #include <list>"
+  },
+  "Include map": {
+    "prefix": "include-map",
+    "body": ["#include <map>"],
+    "description": "Insert #include <map>"
+  },
+  "Include memory": {
+    "prefix": "include-memory",
+    "body": ["#include <memory>"],
+    "description": "Insert #include <memory>"
+  },
+  "Include numeric": {
+    "prefix": "include-numeric",
+    "body": ["#include <numeric>"],
+    "description": "Insert #include <numeric>"
+  },
+  "Include optional": {
+    "prefix": "include-optional",
+    "body": ["#include <optional>"],
+    "description": "Insert #include <optional>"
+  },
+  "Include ostream": {
+    "prefix": "include-ostream",
+    "body": ["#include <ostream>"],
+    "description": "Insert #include <ostream>"
+  },
+  "Include random": {
+    "prefix": "include-random",
+    "body": ["#include <random>"],
+    "description": "Insert #include <random>"
+  },
+  "Include ratio": {
+    "prefix": "include-ratio",
+    "body": ["#include <ratio>"],
+    "description": "Insert #include <ratio>"
+  },
+  "Include regex": {
+    "prefix": "include-regex",
+    "body": ["#include <regex>"],
+    "description": "Insert #include <regex>"
+  },
+  "Include set": {
+    "prefix": "include-set",
+    "body": ["#include <set>"],
+    "description": "Insert #include <set>"
+  },
+  "Include sstream": {
+    "prefix": "include-sstream",
+    "body": ["#include <sstream>"],
+    "description": "Insert #include <sstream>"
+  },
+  "Include stack": {
+    "prefix": "include-stack",
+    "body": ["#include <stack>"],
+    "description": "Insert #include <stack>"
+  },
+  "Include stdexcept": {
+    "prefix": "include-stdexcept",
+    "body": ["#include <stdexcept>"],
+    "description": "Insert #include <stdexcept>"
+  },
+  "Include string": {
+    "prefix": "include-string",
+    "body": ["#include <string>"],
+    "description": "Insert #include <string>"
+  },
+  "Include string_view": {
+    "prefix": "include-string-view",
+    "body": ["#include <string_view>"],
+    "description": "Insert #include <string_view>"
+  },
+  "Include tuple": {
+    "prefix": "include-tuple",
+    "body": ["#include <tuple>"],
+    "description": "Insert #include <tuple>"
+  },
+  "Include type_traits": {
+    "prefix": "include-type-traits",
+    "body": ["#include <type_traits>"],
+    "description": "Insert #include <type_traits>"
+  },
+  "Include utility": {
+    "prefix": "include-utility",
+    "body": ["#include <utility>"],
+    "description": "Insert #include <utility>"
+  },
+  "Include variant": {
+    "prefix": "include-variant",
+    "body": ["#include <variant>"],
+    "description": "Insert #include <variant>"
+  },
+  "Include vector": {
+    "prefix": "include-vector",
+    "body": ["#include <vector>"],
+    "description": "Insert #include <vector>"
+  },
+  "Include common oop set": {
+    "prefix": "include-common-oop",
+    "body": [
+      "#include <algorithm>",
+      "#include <iostream>",
+      "#include <list>",
+      "#include <map>",
+      "#include <sstream>",
+      "#include <stdexcept>",
+      "#include <string>",
+      "#include <utility>",
+      "#include <vector>",
+      ""
+    ],
+    "description": "Insert a common standard include set used throughout the workspace"
+  },
+  "Include all workspace headers": {
+    "prefix": "include-all",
+    "body": [
+      "#include <algorithm>",
+      "#include <cassert>",
+      "#include <cctype>",
+      "#include <cerrno>",
+      "#include <cfloat>",
+      "#include <chrono>",
+      "#include <cmath>",
+      "#include <cstddef>",
+      "#include <cstdint>",
+      "#include <cstdio>",
+      "#include <cstdlib>",
+      "#include <cstring>",
+      "#include <ctime>",
+      "#include <exception>",
+      "#include <fstream>",
+      "#include <functional>",
+      "#include <future>",
+      "#include <iomanip>",
+      "#include <ios>",
+      "#include <iosfwd>",
+      "#include <iostream>",
+      "#include <iterator>",
+      "#include <limits>",
+      "#include <list>",
+      "#include <map>",
+      "#include <memory>",
+      "#include <numeric>",
+      "#include <optional>",
+      "#include <ostream>",
+      "#include <random>",
+      "#include <ratio>",
+      "#include <regex>",
+      "#include <set>",
+      "#include <sstream>",
+      "#include <stack>",
+      "#include <stdexcept>",
+      "#include <string>",
+      "#include <string_view>",
+      "#include <tuple>",
+      "#include <type_traits>",
+      "#include <utility>",
+      "#include <variant>",
+      "#include <vector>",
+      ""
+    ],
+    "description": "Insert the full standard header set found across the workspace so unused ones can be removed"
+  }
+}

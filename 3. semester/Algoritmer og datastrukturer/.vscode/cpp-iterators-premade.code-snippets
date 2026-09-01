@@ -1,0 +1,98 @@
+{
+  "Premade iterator loop": {
+    "prefix": "premade-iterator-loop",
+    "body": [
+      "for (auto it = ${1:values}.begin(); it != ${1:values}.end(); ++it) {",
+      "    ${0:// use *it}",
+      "}"
+    ],
+    "description": "Insert a basic iterator loop"
+  },
+  "Premade print iterator": {
+    "prefix": "premade-iterator-print",
+    "body": [
+      "for (auto it = ${1:values}.begin(); it != ${1:values}.end(); ++it) {",
+      "    std::cout << *it << '\\n';",
+      "}",
+      "$0"
+    ],
+    "description": "Insert an iterator print loop"
+  },
+  "Premade sort iterator": {
+    "prefix": "premade-iterator-sort",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "std::sort(${1:values}.begin(), ${1:values}.end());",
+      "$0"
+    ],
+    "description": "Insert a sort call using begin/end iterators"
+  },
+  "Premade forward iterator": {
+    "prefix": "premade-forward-iterator",
+    "body": [
+      "#include <forward_list>",
+      "",
+      "std::forward_list<${1:int}> values = { ${2:1, 2, 3} };",
+      "for (std::forward_list<${1:int}>::iterator it = values.begin(); it != values.end(); ++it) {",
+      "    ${0:// use *it}",
+      "}"
+    ],
+    "description": "Insert a forward iterator example"
+  },
+  "Premade const iterator": {
+    "prefix": "premade-const-iterator",
+    "body": [
+      "for (std::vector<${1:int}>::const_iterator it = ${2:values}.cbegin(); it != ${2:values}.cend(); ++it) {",
+      "    ${0:// read *it}",
+      "}"
+    ],
+    "description": "Insert a const iterator example"
+  },
+  "Premade bidirectional iterator": {
+    "prefix": "premade-bidirectional-iterator",
+    "body": [
+      "for (std::list<${1:int}>::iterator it = ${2:values}.begin(); it != ${2:values}.end(); ++it) {",
+      "    ${3:// forward}",
+      "}",
+      "",
+      "auto it = ${2:values}.end();",
+      "while (it != ${2:values}.begin()) {",
+      "    --it;",
+      "    ${0:// backward}",
+      "}"
+    ],
+    "description": "Insert a bidirectional iterator example"
+  },
+  "Premade reverse iterator": {
+    "prefix": "premade-reverse-iterator",
+    "body": [
+      "for (auto it = ${1:values}.rbegin(); it != ${1:values}.rend(); ++it) {",
+      "    ${0:// use *it}",
+      "}"
+    ],
+    "description": "Insert a reverse iterator example"
+  },
+  "Premade find iterator": {
+    "prefix": "premade-iterator-find",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "auto it = std::find(${1:values}.begin(), ${1:values}.end(), ${2:target});",
+      "if (it != ${1:values}.end()) {",
+      "    ${0:// found value}",
+      "}"
+    ],
+    "description": "Insert a find example using iterators"
+  },
+  "Premade accumulate iterator": {
+    "prefix": "premade-iterator-accumulate",
+    "body": [
+      "#include <numeric>",
+      "",
+      "auto total = std::accumulate(${1:values}.begin(), ${1:values}.end(), ${2:0});",
+      "$0"
+    ],
+    "description": "Insert an accumulate example using iterators"
+  }
+}
