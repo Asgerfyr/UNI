@@ -1,0 +1,10 @@
+@startuml
+
+class Customer <<domain>>
+class Order <<domain>>
+class LoginPage <<boundary>>
+
+Customer "1" -- "0..*" Order
+LoginPage --> Customer
+
+@enduml

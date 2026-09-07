@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build and Run",
+            "type": "shell",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "command": "cmake -S . -B build -G 'MinGW Makefiles'; if ($LASTEXITCODE -eq 0) { cmake --build build }; if ($LASTEXITCODE -eq 0) { .\\build\\main.exe }",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}

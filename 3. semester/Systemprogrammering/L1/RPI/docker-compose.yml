@@ -1,0 +1,11 @@
+services:
+  headless-linux:
+    build:
+      context: .
+    container_name: headless-linux
+    hostname: headless-linux
+    ports:
+      - "2222:22"
+    restart: unless-stopped
+    tty: true
+    stdin_open: true

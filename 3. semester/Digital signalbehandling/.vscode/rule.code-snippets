@@ -1,0 +1,650 @@
+{
+  "rule-orthogonal-transpose-inverse": {
+    "prefix": "rule-orthogonal",
+    "body": [
+      "# Orthogonal Matrix: A^T = A^(-1)",
+      "# If Q is orthogonal, then Q^T @ Q = I and Q @ Q^T = I",
+      "# Properties:",
+      "# - det(Q) = ±1",
+      "# - Preserves vector lengths: ||Qx|| = ||x||",
+      "# - Preserves angles between vectors"
+    ],
+    "description": "Orthogonal matrices rule: A^T = A^(-1)"
+  },
+  "rule-det-product": {
+    "prefix": "rule-det-product",
+    "body": [
+      "# Determinant of Product: det(AB) = det(A) * det(B)",
+      "# The determinant of a product equals the product of determinants",
+      "det_AB = np.linalg.det(A @ B)",
+      "det_A_times_det_B = np.linalg.det(A) * np.linalg.det(B)",
+      "assert np.isclose(det_AB, det_A_times_det_B)"
+    ],
+    "description": "Determinant multiplication rule"
+  },
+  "rule-det-transpose": {
+    "prefix": "rule-det-transpose",
+    "body": [
+      "# Determinant of Transpose: det(A^T) = det(A)",
+      "# The determinant is unchanged by transposition",
+      "det_A = np.linalg.det(A)",
+      "det_AT = np.linalg.det(A.T)",
+      "assert np.isclose(det_A, det_AT)"
+    ],
+    "description": "Determinant of transpose rule"
+  },
+  "rule-det-inverse": {
+    "prefix": "rule-det-inverse",
+    "body": [
+      "# Determinant of Inverse: det(A^(-1)) = 1 / det(A)",
+      "# The determinant of the inverse is the reciprocal of the determinant",
+      "det_A = np.linalg.det(A)",
+      "det_A_inv = np.linalg.det(np.linalg.inv(A))",
+      "assert np.isclose(det_A_inv, 1 / det_A)"
+    ],
+    "description": "Determinant of inverse rule"
+  },
+  "rule-det-scalar-multiply": {
+    "prefix": "rule-det-scalar",
+    "body": [
+      "# Determinant of Scalar Multiple: det(cA) = c^n * det(A)",
+      "# where n is the size of the matrix and c is the scalar",
+      "c = 2  # scalar",
+      "n = A.shape[0]",
+      "det_cA = np.linalg.det(c * A)",
+      "c_to_n_det_A = (c ** n) * np.linalg.det(A)",
+      "assert np.isclose(det_cA, c_to_n_det_A)"
+    ],
+    "description": "Determinant of scalar multiple rule"
+  },
+  "rule-det-zero": {
+    "prefix": "rule-det-zero",
+    "body": [
+      "# Determinant is Zero if:",
+      "# - Matrix has linearly dependent rows or columns",
+      "# - Matrix is singular (non-invertible)",
+      "# - A row or column is all zeros",
+      "# - Two rows or columns are identical",
+      "det_A = np.linalg.det(A)",
+      "if np.isclose(det_A, 0):",
+      "    print('Matrix is singular and non-invertible')"
+    ],
+    "description": "Zero determinant conditions"
+  },
+  "rule-transpose-product": {
+    "prefix": "rule-transpose-product",
+    "body": [
+      "# Transpose of Product: (AB)^T = B^T @ A^T",
+      "# Order is reversed when transposing a product",
+      "AB_T = (A @ B).T",
+      "BT_AT = B.T @ A.T",
+      "assert np.allclose(AB_T, BT_AT)"
+    ],
+    "description": "Transpose of product rule (order reversal)"
+  },
+  "rule-transpose-inverse": {
+    "prefix": "rule-transpose-inverse",
+    "body": [
+      "# (A^(-1))^T = (A^T)^(-1)",
+      "# Transpose and inverse commute",
+      "A_inv_T = np.linalg.inv(A).T",
+      "AT_inv = np.linalg.inv(A.T)",
+      "assert np.allclose(A_inv_T, AT_inv)"
+    ],
+    "description": "Transpose and inverse commutativity"
+  },
+  "rule-trace-properties": {
+    "prefix": "rule-trace",
+    "body": [
+      "# Trace Properties:",
+      "# trace(A^T) = trace(A)",
+      "# trace(A + B) = trace(A) + trace(B)",
+      "# trace(cA) = c * trace(A)",
+      "# trace(AB) = trace(BA)",
+      "# trace(A) = sum of eigenvalues",
+      "trace_A = np.trace(A)",
+      "sum_eigenvalues = np.sum(np.linalg.eigvals(A))",
+      "assert np.isclose(trace_A, sum_eigenvalues)"
+    ],
+    "description": "Trace properties and relationships"
+  },
+  "rule-eigenvalue-eigenvector": {
+    "prefix": "rule-eigenvalue",
+    "body": [
+      "# Eigenvalue Equation: Av = λv",
+      "# For eigenvalue λ and eigenvector v",
+      "eigenvalues, eigenvectors = np.linalg.eig(A)",
+      "for i, λ in enumerate(eigenvalues):",
+      "    v = eigenvectors[:, i]",
+      "    # Verify Av = λv",
+      "    Av = A @ v",
+      "    λv = λ * v",
+      "    assert np.allclose(Av, λv)"
+    ],
+    "description": "Eigenvalue and eigenvector equation"
+  },
+  "rule-det-eigenvalues": {
+    "prefix": "rule-det-eigenvalues",
+    "body": [
+      "# Determinant equals product of eigenvalues",
+      "# det(A) = λ₁ * λ₂ * ... * λₙ",
+      "det_A = np.linalg.det(A)",
+      "eigenvalues = np.linalg.eigvals(A)",
+      "product_eigenvalues = np.prod(eigenvalues)",
+      "assert np.isclose(det_A, product_eigenvalues)"
+    ],
+    "description": "Determinant as product of eigenvalues"
+  },
+  "rule-qr-decomposition": {
+    "prefix": "rule-qr",
+    "body": [
+      "# QR Decomposition: A = QR",
+      "# Q is orthogonal (Q^T @ Q = I)",
+      "# R is upper triangular",
+      "Q, R = np.linalg.qr(A)",
+      "# Verify Q is orthogonal",
+      "assert np.allclose(Q.T @ Q, np.eye(Q.shape[1]))",
+      "# Verify R is upper triangular",
+      "assert np.allclose(np.tril(R, -1), 0)",
+      "# Verify reconstruction",
+      "assert np.allclose(A, Q @ R)"
+    ],
+    "description": "QR Decomposition properties"
+  },
+  "rule-singular-value-decomposition": {
+    "prefix": "rule-svd",
+    "body": [
+      "# Singular Value Decomposition: A = UΣV^T",
+      "# U: orthogonal matrix (left singular vectors)",
+      "# Σ: diagonal matrix of singular values",
+      "# V^T: orthogonal matrix (right singular vectors)",
+      "U, s, VT = np.linalg.svd(A)",
+      "# Verify U is orthogonal",
+      "assert np.allclose(U.T @ U, np.eye(U.shape[1]))",
+      "# Verify V is orthogonal",
+      "assert np.allclose(VT @ VT.T, np.eye(VT.shape[0]))",
+      "# Verify reconstruction",
+      "Σ = np.diag(s)",
+      "assert np.allclose(A, U @ Σ @ VT)"
+    ],
+    "description": "Singular Value Decomposition"
+  },
+  "rule-rank": {
+    "prefix": "rule-rank",
+    "body": [
+      "# Rank Properties:",
+      "# rank(A) = number of non-zero singular values",
+      "# rank(A^T) = rank(A)",
+      "# rank(AB) ≤ min(rank(A), rank(B))",
+      "# rank(A) ≤ min(m, n) for m×n matrix",
+      "rank_A = np.linalg.matrix_rank(A)",
+      "_, s, _ = np.linalg.svd(A)",
+      "nonzero_singular_values = np.sum(s > 1e-10)",
+      "assert rank_A == nonzero_singular_values"
+    ],
+    "description": "Rank properties and relationships"
+  },
+  "rule-orthonormal-vectors": {
+    "prefix": "rule-orthonormal",
+    "body": [
+      "# Orthonormal Vectors:",
+      "# Vectors are orthonormal if:",
+      "# 1. Each vector has norm 1: ||v_i|| = 1",
+      "# 2. Different vectors are orthogonal: v_i · v_j = 0 (i ≠ j)",
+      "# 3. Form orthonormal set: V^T @ V = I",
+      "V_orthonormal = np.random.randn(3, 3)",
+      "V_orthonormal, _ = np.linalg.qr(V_orthonormal)",
+      "assert np.allclose(V_orthonormal.T @ V_orthonormal, np.eye(3))"
+    ],
+    "description": "Orthonormal vectors properties"
+  },
+  "rule-norm-preservation": {
+    "prefix": "rule-norm-preserve",
+    "body": [
+      "# Orthogonal matrix preserves norms:",
+      "# ||Qx|| = ||x||",
+      "# Proof: ||Qx||² = (Qx)^T(Qx) = x^T Q^T Q x = x^T I x = ||x||²",
+      "Q, _ = np.linalg.qr(np.random.randn(5, 5))",
+      "x = np.random.randn(5)",
+      "norm_x = np.linalg.norm(x)",
+      "norm_Qx = np.linalg.norm(Q @ x)",
+      "assert np.isclose(norm_x, norm_Qx)"
+    ],
+    "description": "Orthogonal matrix preserves norms"
+  },
+  "rule-angle-preservation": {
+    "prefix": "rule-angle-preserve",
+    "body": [
+      "# Orthogonal matrix preserves angles:",
+      "# angle(Qu, Qv) = angle(u, v)",
+      "# cos(θ) = (u · v) / (||u|| ||v||)",
+      "Q, _ = np.linalg.qr(np.random.randn(5, 5))",
+      "u = np.random.randn(5)",
+      "v = np.random.randn(5)",
+      "cos_θ = (u @ v) / (np.linalg.norm(u) * np.linalg.norm(v))",
+      "cos_θ_Q = (Q @ u @ (Q @ v)) / (np.linalg.norm(Q @ u) * np.linalg.norm(Q @ v))",
+      "assert np.isclose(cos_θ, cos_θ_Q)"
+    ],
+    "description": "Orthogonal matrix preserves angles"
+  },
+  "rule-lu-decomposition": {
+    "prefix": "rule-lu",
+    "body": [
+      "# LU Decomposition: A = LU",
+      "# L is lower triangular with 1s on diagonal",
+      "# U is upper triangular",
+      "from scipy.linalg import lu",
+      "P, L, U = lu(A)",
+      "# Note: SciPy includes permutation matrix P",
+      "# PA = LU",
+      "assert np.allclose(P @ A, L @ U)",
+      "# Use for solving systems: Ax = b → LUx = b"
+    ],
+    "description": "LU Decomposition"
+  },
+  "rule-positive-definite": {
+    "prefix": "rule-positive-definite",
+    "body": [
+      "# Positive Definite Matrix Conditions (all equivalent):",
+      "# 1. All eigenvalues are positive",
+      "# 2. x^T A x > 0 for all x ≠ 0",
+      "# 3. All leading principal minors are positive",
+      "# 4. Has Cholesky decomposition: A = LL^T",
+      "eigenvalues = np.linalg.eigvals(A)",
+      "is_positive_definite = np.all(eigenvalues > 0)",
+      "print(f'Positive definite: {is_positive_definite}')"
+    ],
+    "description": "Positive definite matrix properties"
+  },
+  "rule-cholesky": {
+    "prefix": "rule-cholesky",
+    "body": [
+      "# Cholesky Decomposition: A = LL^T",
+      "# For symmetric positive definite A",
+      "# L is lower triangular",
+      "L = np.linalg.cholesky(A)",
+      "# Verify reconstruction",
+      "assert np.allclose(A, L @ L.T)",
+      "# Verify L is lower triangular",
+      "assert np.allclose(np.triu(L, 1), 0)"
+    ],
+    "description": "Cholesky Decomposition"
+  },
+  "rule-gram-schmidt": {
+    "prefix": "rule-gram-schmidt",
+    "body": [
+      "# Gram-Schmidt Orthogonalization:",
+      "# Takes linearly independent vectors and produces orthonormal basis",
+      "# Process: u_i = v_i - Σ(v_i · u_j) u_j for j < i",
+      "# Then normalize: e_i = u_i / ||u_i||",
+      "def gram_schmidt(A):",
+      "    Q, R = np.linalg.qr(A)",
+      "    return Q, R",
+      "Q, R = gram_schmidt(A)",
+      "# Q contains orthonormal columns"
+    ],
+    "description": "Gram-Schmidt Orthogonalization process"
+  },
+  "rule-projection": {
+    "prefix": "rule-projection",
+    "body": [
+      "# Orthogonal Projection onto vector u:",
+      "# proj_u(v) = (v · u / u · u) u",
+      "# Or with orthonormal vector: proj_u(v) = (v · u) u",
+      "u = np.random.randn(5)",
+      "u = u / np.linalg.norm(u)  # normalize",
+      "v = np.random.randn(5)",
+      "projection = (v @ u) * u",
+      "# Alternative: using matrix form",
+      "P = np.outer(u, u)",
+      "projection_matrix = P @ v"
+    ],
+    "description": "Orthogonal projection formula"
+  },
+  "rule-normal-equation": {
+    "prefix": "rule-normal-equation",
+    "body": [
+      "# Normal Equation for Least Squares: A^T A x = A^T b",
+      "# Solves minimization problem: minimize ||Ax - b||²",
+      "# Solution: x = (A^T A)^(-1) A^T b = A^+ b (pseudoinverse)",
+      "ATA = A.T @ A",
+      "ATb = A.T @ b",
+      "x_normal = np.linalg.solve(ATA, ATb)",
+      "# Alternative using SVD",
+      "x_svd = np.linalg.lstsq(A, b, rcond=None)[0]",
+      "assert np.allclose(x_normal, x_svd)"
+    ],
+    "description": "Normal equation for least squares"
+  },
+  "rule-pseudoinverse": {
+    "prefix": "rule-pseudoinverse",
+    "body": [
+      "# Moore-Penrose Pseudoinverse: A^+",
+      "# For A^+ = V Σ^+ U^T from SVD",
+      "# Properties:",
+      "# - A A^+ A = A",
+      "# - A^+ A A^+ = A^+",
+      "# - (A A^+)^T = A A^+",
+      "# - (A^+ A)^T = A^+ A",
+      "A_pinv = np.linalg.pinv(A)",
+      "# Verify properties",
+      "assert np.allclose(A @ A_pinv @ A, A)"
+    ],
+    "description": "Moore-Penrose Pseudoinverse"
+  },
+  "rule-frobenius-norm": {
+    "prefix": "rule-frobenius-norm",
+    "body": [
+      "# Frobenius Norm: ||A||_F = √(Σ a_ij²)",
+      "# Alternatively: ||A||_F = √(trace(A^T A))",
+      "# Or: ||A||_F = √(Σ σ_i²) where σ_i are singular values",
+      "A_frob_norm = np.linalg.norm(A, 'fro')",
+      "# Verification via trace",
+      "A_frob_trace = np.sqrt(np.trace(A.T @ A))",
+      "# Verification via singular values",
+      "_, s, _ = np.linalg.svd(A)",
+      "A_frob_svd = np.sqrt(np.sum(s**2))",
+      "assert np.isclose(A_frob_norm, A_frob_trace)",
+      "assert np.isclose(A_frob_norm, A_frob_svd)"
+    ],
+    "description": "Frobenius Norm properties"
+  },
+  "rule-spectral-norm": {
+    "prefix": "rule-spectral-norm",
+    "body": [
+      "# Spectral Norm (2-norm): ||A||_2 = max singular value",
+      "# Also equals: largest eigenvalue of A^T A",
+      "# Interpretation: maximum stretch when applying A",
+      "spectral_norm = np.linalg.norm(A, 2)",
+      "# Verification via singular values",
+      "_, s, _ = np.linalg.svd(A)",
+      "max_singular = s[0]",
+      "assert np.isclose(spectral_norm, max_singular)",
+      "# Verification via eigenvalues of A^T A",
+      "eigenvalues_ATA = np.linalg.eigvals(A.T @ A)",
+      "max_eigenvalue_sqrt = np.sqrt(np.max(eigenvalues_ATA))",
+      "assert np.isclose(spectral_norm, max_eigenvalue_sqrt)"
+    ],
+    "description": "Spectral Norm (2-norm) properties"
+  },
+  "rule-condition-number": {
+    "prefix": "rule-condition-number",
+    "body": [
+      "# Condition Number: κ(A) = ||A|| * ||A^(-1)||",
+      "# Or with spectral norm: κ(A) = σ_max / σ_min",
+      "# Interpretation: measure of numerical stability",
+      "# Large κ means ill-conditioned (sensitive to perturbations)",
+      "cond_number = np.linalg.cond(A)",
+      "# Verification via singular values",
+      "_, s, _ = np.linalg.svd(A)",
+      "cond_from_svd = s[0] / s[-1]",
+      "assert np.isclose(cond_number, cond_from_svd)"
+    ],
+    "description": "Condition number and matrix stability"
+  },
+  "rule-linear-independence": {
+    "prefix": "rule-linear-independent",
+    "body": [
+      "# Vectors are linearly independent if:",
+      "# The only solution to c₁v₁ + c₂v₂ + ... + cₙvₙ = 0 is c₁=c₂=...=cₙ=0",
+      "# For matrix A with columns v₁, v₂, ..., vₙ:",
+      "# - rank(A) = n ⟺ columns are linearly independent",
+      "# - det(A) ≠ 0 ⟺ columns are linearly independent (square matrix)",
+      "rank_A = np.linalg.matrix_rank(A)",
+      "n_cols = A.shape[1]",
+      "is_independent = rank_A == n_cols"
+    ],
+    "description": "Linear independence conditions"
+  },
+  "rule-basis-dimension": {
+    "prefix": "rule-basis-dimension",
+    "body": [
+      "# Basis and Dimension:",
+      "# A basis is a set of linearly independent vectors that span the space",
+      "# Dimension = number of basis vectors",
+      "# For subspace defined by matrix A:",
+      "# - Column space dimension = rank(A)",
+      "# - Null space dimension = n - rank(A) (nullity)",
+      "# - rank(A) + nullity(A) = n (Rank-Nullity Theorem)",
+      "rank_A = np.linalg.matrix_rank(A)",
+      "n = A.shape[1]",
+      "nullity = n - rank_A"
+    ],
+    "description": "Basis, dimension, and rank-nullity theorem"
+  },
+  "rule-column-space": {
+    "prefix": "rule-column-space",
+    "body": [
+      "# Column Space (Range) of A:",
+      "# All linear combinations of columns of A",
+      "# Dimension = rank(A)",
+      "# basis = columns corresponding to pivot columns",
+      "# For solving Ax = b: solution exists iff b is in column space of A",
+      "rank_A = np.linalg.matrix_rank(A)",
+      "# Column space dimension",
+      "col_space_dim = rank_A",
+      "print(f'Column space dimension: {col_space_dim}')"
+    ],
+    "description": "Column space (range) of a matrix"
+  },
+  "rule-null-space": {
+    "prefix": "rule-null-space",
+    "body": [
+      "# Null Space of A:",
+      "# All vectors x such that Ax = 0",
+      "# Dimension (nullity) = n - rank(A)",
+      "# Finding null space: solve Ax = 0, express in terms of free variables",
+      "from scipy.linalg import null_space",
+      "null_A = null_space(A)",
+      "# Verify: null space vectors satisfy Ax = 0",
+      "for i in range(null_A.shape[1]):",
+      "    x = null_A[:, i]",
+      "    assert np.allclose(A @ x, 0)"
+    ],
+    "description": "Null space of a matrix"
+  },
+  "rule-left-null-space": {
+    "prefix": "rule-left-null-space",
+    "body": [
+      "# Left Null Space of A: A^T y = 0",
+      "# Null space of A^T",
+      "# Dimension = m - rank(A) (where m is number of rows)",
+      "# Orthogonal complement of row space",
+      "from scipy.linalg import null_space",
+      "left_null_A = null_space(A.T)",
+      "# Verify: (A^T)^T x = A x should be 0",
+      "for i in range(left_null_A.shape[1]):",
+      "    y = left_null_A[:, i]",
+      "    assert np.allclose(A.T @ y, 0)"
+    ],
+    "description": "Left null space of a matrix"
+  },
+  "rule-row-space-column-space": {
+    "prefix": "rule-row-column-space",
+    "body": [
+      "# Fundamental Subspaces:",
+      "# Row space: span of rows of A (subspace of R^n)",
+      "# Column space: span of columns of A (subspace of R^m)",
+      "# Null space: solutions to Ax = 0 (subspace of R^n)",
+      "# Left null space: solutions to A^T y = 0 (subspace of R^m)",
+      "# Row space dimension = Column space dimension = rank(A)",
+      "# Row space ⊥ Null space (orthogonal)",
+      "# Column space ⊥ Left null space (orthogonal)"
+    ],
+    "description": "Four fundamental subspaces"
+  },
+  "rule-similarity-transform": {
+    "prefix": "rule-similarity",
+    "body": [
+      "# Similarity Transformation: B = P^(-1) A P",
+      "# Properties preserved under similarity:",
+      "# - Eigenvalues are the same",
+      "# - Determinant is the same",
+      "# - Trace is the same",
+      "# - Rank is the same",
+      "P = np.random.randn(A.shape[0], A.shape[0])",
+      "B = np.linalg.inv(P) @ A @ P",
+      "# Same eigenvalues",
+      "eig_A = np.sort(np.linalg.eigvals(A))",
+      "eig_B = np.sort(np.linalg.eigvals(B))",
+      "assert np.allclose(eig_A, eig_B)"
+    ],
+    "description": "Similarity transformation properties"
+  },
+  "rule-diagonalization": {
+    "prefix": "rule-diagonalization",
+    "body": [
+      "# Diagonalization: A = PDP^(-1)",
+      "# Where D is diagonal (eigenvalues on diagonal)",
+      "# And P has eigenvectors as columns",
+      "# Condition: A must have n linearly independent eigenvectors",
+      "eigenvalues, eigenvectors = np.linalg.eig(A)",
+      "P = eigenvectors",
+      "D = np.diag(eigenvalues)",
+      "# Verify: A = PDP^(-1)",
+      "P_inv = np.linalg.inv(P)",
+      "assert np.allclose(A, P @ D @ P_inv)"
+    ],
+    "description": "Diagonalization A = PDP^(-1)"
+  },
+  "rule-spectral-theorem": {
+    "prefix": "rule-spectral-theorem",
+    "body": [
+      "# Spectral Theorem (for symmetric matrices):",
+      "# A = QΛQ^T",
+      "# Q is orthogonal (Q^T Q = I)",
+      "# Λ is diagonal (eigenvalues)",
+      "# A must be symmetric: A^T = A",
+      "# All eigenvalues are real",
+      "eigenvalues, eigenvectors = np.linalg.eigh(A)  # use eigh for symmetric",
+      "Q = eigenvectors",
+      "Λ = np.diag(eigenvalues)",
+      "# Verify: A = QΛQ^T",
+      "assert np.allclose(A, Q @ Λ @ Q.T)"
+    ],
+    "description": "Spectral Theorem for symmetric matrices"
+  },
+  "rule-cayley-hamilton": {
+    "prefix": "rule-cayley-hamilton",
+    "body": [
+      "# Cayley-Hamilton Theorem:",
+      "# Every square matrix satisfies its characteristic equation",
+      "# If p(λ) = det(λI - A) = λⁿ + c_(n-1)λ^(n-1) + ... + c_0",
+      "# Then p(A) = 0 (using A instead of λ)",
+      "# Useful for: computing A^n without explicit power, finding A^(-1)",
+      "from numpy.polynomial import polynomial as P",
+      "# Compute characteristic polynomial coefficients",
+      "char_poly = np.poly(A)",
+      "print(f'Characteristic polynomial: {char_poly}')"
+    ],
+    "description": "Cayley-Hamilton Theorem"
+  },
+  "rule-matrix-power": {
+    "prefix": "rule-matrix-power",
+    "body": [
+      "# Computing A^n efficiently:",
+      "# If A = PDP^(-1) (diagonalizable):",
+      "# A^n = PD^nP^(-1)",
+      "# For orthogonal A = QΛQ^T:",
+      "# A^n = QΛ^nQ^T",
+      "eigenvalues, eigenvectors = np.linalg.eig(A)",
+      "P = eigenvectors",
+      "D_n = np.diag(eigenvalues ** n)",
+      "P_inv = np.linalg.inv(P)",
+      "A_n = P @ D_n @ P_inv",
+      "# Verify",
+      "assert np.allclose(A_n, np.linalg.matrix_power(A, n))"
+    ],
+    "description": "Computing matrix powers efficiently"
+  },
+  "rule-matrix-exponential": {
+    "prefix": "rule-matrix-exp",
+    "body": [
+      "# Matrix Exponential: e^A",
+      "# Definition: e^A = I + A + A²/2! + A³/3! + ...",
+      "# Properties:",
+      "# - d/dt(e^(At)) = Ae^(At) = e^(At)A",
+      "# - e^(A+B) ≠ e^A e^B (in general)",
+      "# - If A and B commute: e^(A+B) = e^A e^B",
+      "from scipy.linalg import expm",
+      "A_exp = expm(A)",
+      "# Useful for solving: dx/dt = Ax, solution x(t) = e^(At) x₀"
+    ],
+    "description": "Matrix exponential"
+  },
+  "rule-vector-norm": {
+    "prefix": "rule-vector-norm",
+    "body": [
+      "# Vector Norms:",
+      "# L1-norm: ||v||_1 = Σ|v_i|",
+      "# L2-norm: ||v||_2 = √(Σ v_i²) (Euclidean)",
+      "# L∞-norm: ||v||_∞ = max|v_i|",
+      "# Lp-norm: ||v||_p = (Σ|v_i|^p)^(1/p)",
+      "v = np.random.randn(5)",
+      "norm_L1 = np.linalg.norm(v, 1)",
+      "norm_L2 = np.linalg.norm(v, 2)",
+      "norm_Linf = np.linalg.norm(v, np.inf)",
+      "print(f'L1: {norm_L1}, L2: {norm_L2}, L∞: {norm_Linf}')"
+    ],
+    "description": "Vector norms (L1, L2, L∞, Lp)"
+  },
+  "rule-inner-product": {
+    "prefix": "rule-inner-product",
+    "body": [
+      "# Inner Product Properties:",
+      "# ⟨u, v⟩ = u · v = u^T v",
+      "# 1. ⟨u, v⟩ = ⟨v, u⟩ (commutative)",
+      "# 2. ⟨au + bv, w⟩ = a⟨u, w⟩ + b⟨v, w⟩ (bilinear)",
+      "# 3. ⟨u, u⟩ ≥ 0 (positive definite)",
+      "# 4. ⟨u, u⟩ = 0 ⟺ u = 0",
+      "u = np.random.randn(5)",
+      "v = np.random.randn(5)",
+      "inner_product = u @ v",
+      "# Cauchy-Schwarz: |⟨u, v⟩| ≤ ||u|| ||v||",
+      "assert abs(inner_product) <= np.linalg.norm(u) * np.linalg.norm(v)"
+    ],
+    "description": "Inner product properties and Cauchy-Schwarz"
+  },
+  "rule-cauchy-schwarz": {
+    "prefix": "rule-cauchy-schwarz",
+    "body": [
+      "# Cauchy-Schwarz Inequality:",
+      "# |⟨u, v⟩| ≤ ||u|| ||v||",
+      "# Equality holds iff u and v are proportional",
+      "u = np.random.randn(5)",
+      "v = np.random.randn(5)",
+      "inner = u @ v",
+      "product_norms = np.linalg.norm(u) * np.linalg.norm(v)",
+      "assert abs(inner) <= product_norms + 1e-10",
+      "# Useful for proving triangle inequality and other results"
+    ],
+    "description": "Cauchy-Schwarz Inequality"
+  },
+  "rule-triangle-inequality": {
+    "prefix": "rule-triangle",
+    "body": [
+      "# Triangle Inequality:",
+      "# ||u + v|| ≤ ||u|| + ||v||",
+      "# Reverse: ||u - v|| ≥ ||u|| - ||v||",
+      "u = np.random.randn(5)",
+      "v = np.random.randn(5)",
+      "left = np.linalg.norm(u + v)",
+      "right = np.linalg.norm(u) + np.linalg.norm(v)",
+      "assert left <= right + 1e-10"
+    ],
+    "description": "Triangle Inequality for norms"
+  },
+  "rule-parallelogram-law": {
+    "prefix": "rule-parallelogram",
+    "body": [
+      "# Parallelogram Law:",
+      "# ||u + v||² + ||u - v||² = 2(||u||² + ||v||²)",
+      "u = np.random.randn(5)",
+      "v = np.random.randn(5)",
+      "left = np.linalg.norm(u + v)**2 + np.linalg.norm(u - v)**2",
+      "right = 2 * (np.linalg.norm(u)**2 + np.linalg.norm(v)**2)",
+      "assert np.isclose(left, right)"
+    ],
+    "description": "Parallelogram Law"
+  }
+}

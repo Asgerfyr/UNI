@@ -1,0 +1,123 @@
+{
+	"Multiple Cursors - Add Cursor": {
+		"prefix": "shortcut-cursor-add",
+		"body": [
+			"Alt + Click: Add cursor at click position",
+			"Ctrl + Alt + Up: Add cursor above current line",
+			"Ctrl + Alt + Down: Add cursor below current line",
+			"Ctrl + D: Select next occurrence (and add cursor)",
+			"Ctrl + Shift + L: Select all occurrences (add cursor to each)"
+		],
+		"description": "Shortcuts for adding multiple cursors"
+	},
+	"Multiple Cursors - Manage": {
+		"prefix": "shortcut-cursor-manage",
+		"body": [
+			"Ctrl + U: Undo last cursor action",
+			"Escape: Remove all cursors except first"
+		],
+		"description": "Shortcuts for managing multiple cursors"
+	},
+	"Movement - Navigation": {
+		"prefix": "shortcut-move",
+		"body": [
+			"Ctrl + Home: Jump to start of file",
+			"Ctrl + End: Jump to end of file",
+			"Ctrl + Left: Move cursor left by word",
+			"Ctrl + Right: Move cursor right by word",
+			"Home: Move cursor to start of line",
+			"End: Move cursor to end of line",
+			"Ctrl + G: Go to specific line",
+			"Ctrl + F: Find (open find box)",
+			"Ctrl + H: Find and Replace",
+			"F12: Go to definition"
+		],
+		"description": "Shortcuts for moving around the file"
+	},
+	"Selection - Expand": {
+		"prefix": "shortcut-select",
+		"body": [
+			"Shift + Ctrl + Left: Select word to the left",
+			"Shift + Ctrl + Right: Select word to the right",
+			"Shift + Home: Select from cursor to start of line",
+			"Shift + End: Select from cursor to end of line",
+			"Shift + Ctrl + Home: Select from cursor to start of file",
+			"Shift + Ctrl + End: Select from cursor to end of file",
+			"Ctrl + L: Select entire current line",
+			"Ctrl + A: Select all"
+		],
+		"description": "Shortcuts for selecting text"
+	},
+	"Editing - Modify": {
+		"prefix": "shortcut-edit",
+		"body": [
+			"Shift + Ctrl + K: Delete entire line",
+			"Alt + Up: Move line up",
+			"Alt + Down: Move line down",
+			"Shift + Alt + Up: Duplicate line up",
+			"Shift + Alt + Down: Duplicate line down",
+			"Ctrl + /: Toggle line comment",
+			"Shift + Alt + A: Toggle block comment",
+			"Tab: Indent line (or selection)",
+			"Shift + Tab: Outdent line (or selection)",
+			"Ctrl + Shift + Enter: Insert line above",
+			"Ctrl + Enter: Insert line below"
+		],
+		"description": "Shortcuts for editing and modifying text"
+	},
+	"Search - Find": {
+		"prefix": "shortcut-search",
+		"body": [
+			"Ctrl + F: Open find box",
+			"Ctrl + H: Open find and replace",
+			"Ctrl + Shift + F: Find in all files",
+			"F3: Find next",
+			"Shift + F3: Find previous",
+			"Ctrl + Shift + H: Replace all",
+			"Enter: Go to next match",
+			"Shift + Enter: Go to previous match"
+		],
+		"description": "Shortcuts for searching and finding"
+	},
+	"View - Viewport": {
+		"prefix": "shortcut-view",
+		"body": [
+			"Ctrl + B: Toggle sidebar visibility",
+			"Ctrl + J: Toggle bottom panel",
+			"Ctrl + K, Ctrl + W: Close current editor",
+			"Ctrl + K, Ctrl + O: Open folder",
+			"Ctrl + Tab: Switch to next editor tab",
+			"Ctrl + Shift + Tab: Switch to previous editor tab",
+			"Ctrl + 1: Focus first editor group",
+			"Ctrl + 2: Focus second editor group",
+			"Ctrl + 3: Focus third editor group"
+		],
+		"description": "Shortcuts for managing the view and panels"
+	},
+	"Debug - Run": {
+		"prefix": "shortcut-debug",
+		"body": [
+			"F5: Start debugging",
+			"Shift + F5: Stop debugging",
+			"F10: Step over",
+			"F11: Step into",
+			"Shift + F11: Step out",
+			"Ctrl + Shift + D: Open debug view"
+		],
+		"description": "Shortcuts for debugging"
+	},
+	"All Shortcuts": {
+		"prefix": "shortcut-all",
+		"body": [
+			"Use 'shortcut-cursor-add' for adding multiple cursors",
+			"Use 'shortcut-cursor-manage' for managing cursors",
+			"Use 'shortcut-move' for navigation",
+			"Use 'shortcut-select' for selection",
+			"Use 'shortcut-edit' for editing",
+			"Use 'shortcut-search' for searching",
+			"Use 'shortcut-view' for view management",
+			"Use 'shortcut-debug' for debugging"
+		],
+		"description": "Index of all available shortcut snippets"
+	}
+}

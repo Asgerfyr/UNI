@@ -1,0 +1,124 @@
+{
+  "Example lambda": {
+    "prefix": "example-lambda",
+    "body": [
+      "auto ${1:fn} = [${2:&}](${3:int x}) {",
+      "    return ${4:x * x};",
+      "};",
+      "$0"
+    ],
+    "description": "Insert a lambda function"
+  },
+  "Example lambda capture modes": {
+    "prefix": "example-lambda-capture",
+    "body": [
+      "int base = ${1:10};",
+      "auto by_value = [base](int x) { return base + x; };",
+      "auto by_reference = [&base](int x) { base += x; return base; };",
+      "$0"
+    ],
+    "description": "Insert lambda capture by value and by reference examples"
+  },
+  "Example algorithm sort": {
+    "prefix": "example-algo-sort",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "std::sort(${1:values}.begin(), ${1:values}.end());",
+      "$0"
+    ],
+    "description": "Insert std::sort usage"
+  },
+  "Example algorithm find_if": {
+    "prefix": "example-algo-find-if",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "auto it = std::find_if(${1:values}.begin(), ${1:values}.end(),",
+      "    [](const auto &value) { return ${2:value > 0}; });",
+      "if (it != ${1:values}.end()) {",
+      "    ${0:// use *it}",
+      "}"
+    ],
+    "description": "Insert std::find_if usage"
+  },
+  "Example algorithm transform": {
+    "prefix": "example-algo-transform",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "std::transform(${1:input}.begin(), ${1:input}.end(), ${2:output}.begin(),",
+      "    [](const auto &value) { return ${3:value * 2}; });",
+      "$0"
+    ],
+    "description": "Insert std::transform usage"
+  },
+  "Example algorithm accumulate": {
+    "prefix": "example-algo-accumulate",
+    "body": [
+      "#include <numeric>",
+      "",
+      "auto total = std::accumulate(${1:values}.begin(), ${1:values}.end(), ${2:0});",
+      "$0"
+    ],
+    "description": "Insert std::accumulate usage"
+  },
+  "Example algorithm all of": {
+    "prefix": "example-algo-all-of",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "bool ok = std::all_of(${1:values}.begin(), ${1:values}.end(),",
+      "    [](const auto &value) { return ${2:value >= 0}; });",
+      "$0"
+    ],
+    "description": "Insert std::all_of usage"
+  },
+  "Example algorithm remove erase": {
+    "prefix": "example-algo-remove-erase",
+    "body": [
+      "#include <algorithm>",
+      "",
+      "${1:values}.erase(std::remove(${1:values}.begin(), ${1:values}.end(), ${2:target}), ${1:values}.end());",
+      "$0"
+    ],
+    "description": "Insert remove-erase idiom"
+  },
+  "Example inserter": {
+    "prefix": "example-iterator-inserter",
+    "body": [
+      "#include <algorithm>",
+      "#include <iterator>",
+      "",
+      "std::copy(${1:source}.begin(), ${1:source}.end(), std::back_inserter(${2:destination}));",
+      "$0"
+    ],
+    "description": "Insert back_inserter usage"
+  },
+  "Example stream iterators": {
+    "prefix": "example-stream-iterators",
+    "body": [
+      "#include <iterator>",
+      "#include <sstream>",
+      "",
+      "std::istringstream input(\"${1:1 2 3 4}\");",
+      "std::vector<int> values((std::istream_iterator<int>(input)), std::istream_iterator<int>());",
+      "std::ostream_iterator<int> out(std::cout, \" \");",
+      "std::copy(values.begin(), values.end(), out);",
+      "$0"
+    ],
+    "description": "Insert istream_iterator and ostream_iterator usage"
+  },
+  "Example iterator next prev": {
+    "prefix": "example-iterator-next-prev",
+    "body": [
+      "#include <iterator>",
+      "",
+      "auto it = ${1:values}.begin();",
+      "auto two_ahead = std::next(it, ${2:2});",
+      "auto one_back = std::prev(two_ahead, ${3:1});",
+      "$0"
+    ],
+    "description": "Insert std::next and std::prev usage"
+  }
+}
