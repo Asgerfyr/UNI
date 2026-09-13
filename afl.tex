@@ -1,0 +1,272 @@
+﻿\documentclass[11pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[danish]{babel}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{caption}
+
+\definecolor{codebg}{RGB}{245,245,245}
+\lstset{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    showstringspaces=false,
+    columns=fullflexible
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\title{\vspace{1cm}\Huge Miniprojekt A\\[0.3cm]\Large Sampling og analyse af digitale signaler}
+\author{\textbf{Navn:} \\ \textbf{AU-ID:} \\ \textbf{Afleveringsdato:} \today}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Opgave 1: Find antal samples N for alle tre signaler}
+\subsection{Opgavebeskrivelse}
+Beskriv kort, hvad opgaven går ud på.
+
+\subsection{Forberedelse}
+Skriv dine forberedende overvejelser her. Hvad skal du måle, og hvordan vil du finde det?
+
+\subsection{Kode}
+\begin{lstlisting}[language=Python]
+# Indsæt koden fra Python-notebooket til denne opgave her
+# Eksempel:
+# N_s1 = len(s1)
+# N_s2 = len(s2)
+# N_s3 = len(s3)
+\end{lstlisting}
+
+\subsection{Resultat}
+Skriv resultaterne her. Indsæt værdier, grafer eller en kort summary af det, du fandt.
+
+\subsection{Diskussion og konklusion}
+Skriv en kort diskussion af resultatet og konklusionen for opgaven.
+
+\newpage
+
+\section{Opgave 2: Plot alle tre signaler med korrekte tidsakser}
+\subsection{Opgavebeskrivelse}
+Beskriv kort, hvad opgaven går ud på.
+
+\subsection{Forberedelse}
+Skriv dine forberedende overvejelser her.
+
+\subsection{Kode}
+\begin{lstlisting}[language=Python]
+# Indsæt koden fra Python-notebooket til denne opgave her
+# Eksempel:
+# t1 = np.arange(len(s1)) / fs
+# plt.plot(t1, s1)
+\end{lstlisting}
+
+\subsection{Resultat}
+Skriv resultaterne her.
+
+\subsection{Diskussion og konklusion}
+Skriv en kort diskussion af resultatet og konklusionen for opgaven.
+
+\newpage
+
+\section{Opgave 3: Find max, min, gennemsnit, RMS og effekt for alle tre signaler}
+\subsection{Opgavebeskrivelse}
+Beskriv kort, hvad opgaven går ud på.
+
+\subsection{Forberedelse}
+Skriv dine forberedende overvejelser her.
+
+\subsection{Kode}
+\begin{lstlisting}[language=Python]
+# Indsæt koden fra Python-notebooket til denne opgave her
+# Eksempel:
+# maks = np.max(s1)
+# rms = np.sqrt(np.mean(s1**2))
+\end{lstlisting}
+
+\subsection{Resultat}
+Skriv resultaterne her.
+
+\subsection{Diskussion og konklusion}
+Skriv en kort diskussion af resultatet og konklusionen for opgaven.
+
+\newpage
+
+\section{Opgave 4: Find crest-faktorerne for de tre signaler og sammenlign}
+\subsection{Opgavebeskrivelse}
+Beskriv kort, hvad opgaven går ud på.
+
+\subsection{Forberedelse}
+Skriv dine forberedende overvejelser her.
+
+\subsection{Kode}
+\begin{lstlisting}[language=Python]
+# Indsæt koden fra Python-notebooket til denne opgave her
+# Eksempel:
+# cf_s1 = np.max(np.abs(s1)) / np.sqrt(np.mean(s1**2))
+\end{lstlisting}
+
+\subsection{Resultat}
+Skriv resultaterne her.
+
+\subsection{Diskussion og konklusion}
+Skriv en kort diskussion af resultatet og konklusionen for opgaven.
+
+\newpage
+
+\section{Opgave 5: Nedsampling af s1 med faktor 4}
+\subsection{Opgavebeskrivelse}
+Beskriv kort, hvad opgaven går ud på.
+
+\subsection{Forberedelse}
+Skriv dine forberedende overvejelser her.
+
+\subsection{Kode}
+\begin{lstlisting}[language=Python]
+# Indsæt koden fra Python-notebooket til denne opgave her
+# Eksempel:
+# s1_down = s1[::4]
+\end{lstlisting}
+
+\subsection{Resultat}
+Skriv resultaterne her.
+
+\subsection{Diskussion og konklusion}
+Skriv en kort diskussion af resultatet og konklusionen for opgaven.
+
+\newpage
+
+\section{Opgave 6: Lytning og beskrivelse af forskellen mellem originalen og den nedsamplede version}
+\subsection{Opgavebeskrivelse}
+Beskriv kort, hvad opgaven går ud på.
+
+\subsection{Forberedelse}
+Skriv dine forberedende overvejelser her.
+
+\subsection{Kode}
+\begin{lstlisting}[language=Python]
+# Indsæt koden fra Python-notebooket til denne opgave her
+# Eksempel:
+# Audio(s1, rate=fs)
+# Audio(s1_down, rate=fs/4)
+\end{lstlisting}
+
+\subsection{Resultat}
+Skriv resultaterne her.
+
+\subsection{Diskussion og konklusion}
+Skriv en kort diskussion af resultatet og konklusionen for opgaven.
+
+\newpage
+
+\section{Opgave 7: Sammenlign de to stereo-kanaler i s2}
+\subsection{Opgavebeskrivelse}
+Beskriv kort, hvad opgaven går ud på.
+
+\subsection{Forberedelse}
+Skriv dine forberedende overvejelser her.
+
+\subsection{Kode}
+\begin{lstlisting}[language=Python]
+# Indsæt koden fra Python-notebooket til denne opgave her
+# Eksempel:
+# left = s2[:, 0]
+# right = s2[:, 1]
+# plt.plot(left)
+# plt.plot(right)
+\end{lstlisting}
+
+\subsection{Resultat}
+Skriv resultaterne her.
+
+\subsection{Diskussion og konklusion}
+Skriv en kort diskussion af resultatet og konklusionen for opgaven.
+
+\newpage
+
+\section{Opgave 8: Kvantisering af s2 med 4 bit}
+\subsection{Opgavebeskrivelse}
+Beskriv kort, hvad opgaven går ud på.
+
+\subsection{Forberedelse}
+Skriv dine forberedende overvejelser her.
+
+\subsection{Kode}
+\begin{lstlisting}[language=Python]
+# Indsæt koden fra Python-notebooket til denne opgave her
+# Eksempel:
+# levels = 2**4
+# s2_q = np.round(s2_left * (levels - 1)) / (levels - 1)
+\end{lstlisting}
+
+\subsection{Resultat}
+Skriv resultaterne her.
+
+\subsection{Diskussion og konklusion}
+Skriv en kort diskussion af resultatet og konklusionen for opgaven.
+
+\newpage
+
+\section{Opgave 9: Fade-out på s3 med eksponentielt aftagende envelope}
+\subsection{Opgavebeskrivelse}
+Beskriv kort, hvad opgaven går ud på.
+
+\subsection{Forberedelse}
+Skriv dine forberedende overvejelser her.
+
+\subsection{Kode}
+\begin{lstlisting}[language=Python]
+# Indsæt koden fra Python-notebooket til denne opgave her
+# Eksempel:
+# N = len(s3)
+# start = int(2 * N / 3)
+# envelope[start:] = np.exp(-alpha * np.arange(N - start))
+\end{lstlisting}
+
+\subsection{Resultat}
+Skriv resultaterne her.
+
+\subsection{Diskussion og konklusion}
+Skriv en kort diskussion af resultatet og konklusionen for opgaven.
+
+\newpage
+
+\section{Opgave 10: Lav et enkelt ekko med delay på 100 ms}
+\subsection{Opgavebeskrivelse}
+Beskriv kort, hvad opgaven går ud på.
+
+\subsection{Forberedelse}
+Skriv dine forberedende overvejelser her.
+
+\subsection{Kode}
+\begin{lstlisting}[language=Python]
+# Indsæt koden fra Python-notebooket til denne opgave her
+# Eksempel:
+# delay = int(0.1 * fs)
+# y = x.copy()
+# y[delay:] += 0.5 * x[:-delay]
+\end{lstlisting}
+
+\subsection{Resultat}
+Skriv resultaterne her.
+
+\subsection{Diskussion og konklusion}
+Skriv en kort diskussion af resultatet og konklusionen for opgaven.
+
+\end{document}
