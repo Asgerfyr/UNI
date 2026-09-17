@@ -1,0 +1,1038 @@
+{
+	// ========================================
+	// DIGITAL SIGNAL PROCESSING (DSB) SNIPPETS
+	// ========================================
+	// Danish aliases: use "dsb-" prefix or "dsb-da-" for Danish versions
+	// ========================================
+	
+	// ========================================
+	// IMPORTS & SETUP
+	// ========================================
+	
+	"DSB - Basic Imports": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-imports", "dsb-da-import"],
+		"body": [
+			"import numpy as np",
+			"import matplotlib.pyplot as plt",
+			"import sympy as sym",
+			"import scipy as sci",
+			"import pandas as pd",
+			"import soundfile as sf",
+			"from IPython.display import Audio, display"
+		],
+		"description": "Standard imports for Digital Signal Processing"
+	},
+
+	"DSB - Plotting Setup": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-plot-setup", "dsb-da-plot-opsætning"],
+		"body": [
+			"plt.figure(${1:1})",
+			"plt.clf()",
+			"plt.plot(${2:x}, ${3:y})",
+			"plt.xlabel('${4:Time (s)}')",
+			"plt.ylabel('${5:Amplitude}')",
+			"plt.title('${6:Signal}')",
+			"plt.show()"
+		],
+		"description": "Standard plotting template with labels"
+	},
+
+	// ========================================
+	// SAMPLING CONCEPTS
+	// ========================================
+
+	"DSB - Sample Time Axis": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-sample-axis", "dsb-da-tidsaksi", "sample-axis", "tidsaksi"],
+		"body": [
+			"# Create sampling time axis",
+			"t_start = ${1:0}",
+			"t_end = ${2:1.0}",
+			"T_s = ${3:0.001}  # Sampling period in seconds",
+			"",
+			"t = np.arange(t_start, t_end, T_s)",
+			"f_s = 1/T_s  # Sampling frequency",
+			"",
+			"print(f'Sampling frequency: {f_s} Hz')",
+			"print(f'Number of samples: {len(t)}')"
+		],
+		"description": "Create a sample time axis with sampling frequency"
+	},
+
+	"DSB - Sample Frequency Analysis": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-sample-freq", "dsb-da-samplingfrekvens", "sample-freq", "samplingfrekvens"],
+		"body": [
+			"# Sampling frequency analysis",
+			"f_s = ${1:1000}  # Sampling frequency in Hz",
+			"T_s = 1/f_s  # Sampling period",
+			"f_nyquist = f_s/2  # Nyquist frequency",
+			"",
+			"print(f'Sampling frequency: {f_s} Hz')",
+			"print(f'Sampling period: {T_s} s')",
+			"print(f'Nyquist frequency: {f_nyquist} Hz')"
+		],
+		"description": "Calculate and display sampling parameters"
+	},
+
+	"DSB - Nyquist Analysis": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-nyquist", "dsb-da-nyquist", "nyquist", "aliasing"],
+		"body": [
+			"# Nyquist frequency analysis",
+			"f_s = ${1:6000}  # Sampling frequency",
+			"f_nyquist = f_s/2",
+			"",
+			"f_test = ${2:3800}  # Test frequency",
+			"",
+			"if f_test > f_nyquist:",
+			"    # Aliasing occurs",
+			"    f_aliased = 2*f_nyquist - f_test",
+			"    print(f'Frequency {f_test} Hz aliases to {f_aliased} Hz')",
+			"else:",
+			"    print(f'Frequency {f_test} Hz is below Nyquist limit')"
+		],
+		"description": "Analyze Nyquist frequency and aliasing"
+	},
+
+	// ========================================
+	// SIGNAL GENERATION
+	// ========================================
+
+	"DSB - Sine Wave": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-sine", "dsb-da-sinus", "sine", "sinus"],
+		"body": [
+			"# Generate sine wave",
+			"f_0 = ${1:350}  # Frequency in Hz",
+			"t_duration = ${2:1.0}  # Duration in seconds",
+			"f_s = ${3:1000}  # Sampling frequency",
+			"T_s = 1/f_s",
+			"",
+			"t = np.arange(0, t_duration, T_s)",
+			"x = np.sin(f_0 * 2 * np.pi * t)",
+			"",
+			"plt.plot(t, x)",
+			"plt.xlabel('Time (s)')",
+			"plt.ylabel('Amplitude')",
+			"plt.title(f'Sine wave {f_0} Hz')",
+			"plt.show()"
+		],
+		"description": "Generate and plot a sine wave"
+	},
+
+	"DSB - Cosine Wave": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-cosine", "dsb-da-cosinus", "cosine", "cosinus"],
+		"body": [
+			"# Generate cosine wave",
+			"f_0 = ${1:500}  # Frequency in Hz",
+			"t_duration = ${2:1.0}",
+			"f_s = ${3:4000}  # Sampling frequency",
+			"",
+			"t = np.linspace(0, t_duration, int(f_s * t_duration))",
+			"x = np.cos(f_0 * 2 * np.pi * t)",
+			"",
+			"plt.plot(t, x)",
+			"plt.show()"
+		],
+		"description": "Generate and plot a cosine wave"
+	},
+
+	"DSB - Sine with Phase and Amplitude": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-sine-advanced", "dsb-da-sinus-fase", "sine-advanced", "sinus-fase"],
+		"body": [
+			"# Generate sine with amplitude, phase, and DC offset",
+			"f = ${1:500}  # Frequency in Hz",
+			"A = ${2:2.5}  # Amplitude",
+			"phi_deg = ${3:120}  # Phase shift in degrees",
+			"DC_offset = ${4:1}  # DC offset",
+			"f_s = ${5:4000}  # Sampling frequency",
+			"t_duration = ${6:1.0}",
+			"",
+			"phi_rad = np.deg2rad(phi_deg)",
+			"t = np.linspace(0, t_duration, int(f_s * t_duration))",
+			"x = A * np.sin(2 * np.pi * f * t + phi_rad) + DC_offset",
+			"",
+			"plt.step(t, x)",
+			"plt.show()"
+		],
+		"description": "Generate sine wave with amplitude, phase, and DC offset"
+	},
+
+	"DSB - Multi-Tone Signal": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-multitone", "dsb-da-toner", "multitone", "toner"],
+		"body": [
+			"# Generate multi-tone signal",
+			"f_s = ${1:4000}  # Sampling frequency",
+			"t_duration = ${2:1.0}",
+			"t = np.linspace(0, t_duration, int(f_s * t_duration))",
+			"",
+			"# Define tones",
+			"f1 = ${3:350}",
+			"A1 = ${4:1.0}",
+			"f2 = ${5:500}",
+			"A2 = ${6:1.0}",
+			"",
+			"# Generate signals",
+			"x1 = A1 * np.sin(2 * np.pi * f1 * t)",
+			"x2 = A2 * np.sin(2 * np.pi * f2 * t)",
+			"x_sum = x1 + x2",
+			"",
+			"plt.plot(t, x1, label=f'{f1} Hz')",
+			"plt.plot(t, x2, label=f'{f2} Hz')",
+			"plt.plot(t, x_sum, label='Sum')",
+			"plt.legend()",
+			"plt.show()"
+		],
+		"description": "Generate and sum multiple sinusoidal tones"
+	},
+
+	"DSB - Complex Exponential": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-complex-exp", "dsb-da-kompleks", "complex-exp", "kompleks-eksponential"],
+		"body": [
+			"# Generate complex exponential signal",
+			"f = ${1:100}  # Frequency in Hz",
+			"f_s = ${2:1000}  # Sampling frequency",
+			"t_duration = ${3:1.0}",
+			"",
+			"t = np.linspace(0, t_duration, int(f_s * t_duration))",
+			"x = np.exp(1j * 2 * np.pi * f * t)",
+			"",
+			"print(f'Real part: {x.real[:10]}')",
+			"print(f'Imag part: {x.imag[:10]}')"
+		],
+		"description": "Generate a complex exponential signal"
+	},
+
+	// ========================================
+	// FREQUENCY DOMAIN ANALYSIS
+	// ========================================
+
+	"DSB - FFT Analysis": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-fft", "dsb-dft", "dft", "fft", "fourier"],
+		"body": [
+			"# Perform FFT analysis",
+			"N = ${1:len(x)}  # Number of samples",
+			"X = np.fft.fft(x, N)  # Compute FFT",
+			"f = np.fft.fftfreq(N, T_s)  # Frequency axis",
+			"",
+			"# Magnitude spectrum",
+			"magnitude = np.abs(X)",
+			"",
+			"plt.figure()",
+			"plt.plot(f[:N//2], 20*np.log10(magnitude[:N//2]))",
+			"plt.xlabel('Frequency (Hz)')",
+			"plt.ylabel('Magnitude (dB)')",
+			"plt.title('Frequency Spectrum')",
+			"plt.show()"
+		],
+		"description": "Compute and plot FFT magnitude spectrum in dB"
+	},
+
+	"DSB - FFT Basic": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-fft-basic", "dsb-dft-basic", "dft-basic", "fft-basic"],
+		"body": [
+			"# Basic FFT",
+			"N = ${1:12000}",
+			"f_s = ${2:2000}",
+			"",
+			"sample_count = np.arange(N)",
+			"sample_times = sample_count * (1 / f_s)",
+			"",
+			"f_0 = ${3:3600}  # Test frequency",
+			"x = np.sin(f_0 * 2 * np.pi * sample_times)",
+			"",
+			"X = np.fft.fft(x, f_s)",
+			"",
+			"plt.plot(20 * np.log10(np.abs(X)))",
+			"plt.xlabel('Frequency (Hz)')",
+			"plt.show()"
+		],
+		"description": "Simple FFT implementation and plotting"
+	},
+
+	"DSB - Power Spectrum": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-power-spectrum", "dsb-psd", "psd", "power-spectrum"],
+		"body": [
+			"# Compute power spectral density",
+			"N = len(x)",
+			"X = np.fft.fft(x)",
+			"power = np.abs(X)**2 / N",
+			"freqs = np.fft.fftfreq(N, T_s)",
+			"",
+			"plt.semilogy(freqs[:N//2], power[:N//2])",
+			"plt.xlabel('Frequency (Hz)')",
+			"plt.ylabel('Power')",
+			"plt.title('Power Spectral Density')",
+			"plt.show()"
+		],
+		"description": "Calculate and plot power spectral density"
+	},
+
+	// ========================================
+	// AUDIO SIGNAL PROCESSING
+	// ========================================
+
+	"DSB - Load Audio File": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-load-audio", "dsb-da-indlæs-lyd", "load-audio", "indlæs-lyd"],
+		"body": [
+			"# Load audio file",
+			"import soundfile as sf",
+			"",
+			"audio, f_s = sf.read('${1:signal.wav}')",
+			"",
+			"print(f'Sample rate: {f_s} Hz')",
+			"print(f'Number of samples: {len(audio)}')",
+			"print(f'Duration: {len(audio)/f_s:.2f} seconds')"
+		],
+		"description": "Load and display audio file information"
+	},
+
+	"DSB - Plot Audio Signal": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-plot-audio", "dsb-da-tegn-lyd", "plot-audio", "tegn-lyd"],
+		"body": [
+			"# Plot audio signal with time axis",
+			"f_s = ${1:44100}",
+			"t_s = 1/f_s",
+			"",
+			"N = len(audio)",
+			"t = np.arange(N) * t_s",
+			"",
+			"plt.plot(t, audio)",
+			"plt.xlabel('Time (s)')",
+			"plt.ylabel('Amplitude')",
+			"plt.title('Audio Signal')",
+			"plt.show()"
+		],
+		"description": "Plot audio waveform with correct time axis"
+	},
+
+	"DSB - Stereo Audio": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-stereo", "dsb-da-stereo", "stereo", "kanaler"],
+		"body": [
+			"# Work with stereo audio",
+			"audio, f_s = sf.read('${1:stereo_file.wav}')",
+			"",
+			"# Extract channels",
+			"left_channel = audio[:, 0]",
+			"right_channel = audio[:, 1]",
+			"",
+			"print(f'Channels: {audio.shape[1]}')",
+			"print(f'Samples per channel: {len(left_channel)}')"
+		],
+		"description": "Load and extract stereo channels"
+	},
+
+	"DSB - Audio Playback": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-audio-play", "dsb-da-afspil", "audio-play", "afspil"],
+		"body": [
+			"# Play audio in Jupyter",
+			"from IPython.display import Audio, display",
+			"",
+			"# Play generated signal",
+			"display(Audio(data=x, rate=f_s))",
+			"",
+			"# Or play with different sampling rate",
+			"display(Audio(data=x, rate=int(f_s * 0.5)))"
+		],
+		"description": "Play audio in Jupyter notebook"
+	},
+
+	// ========================================
+	// SIGNAL STATISTICS & ANALYSIS
+	// ========================================
+
+	"DSB - Signal Statistics": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-signal-stats", "dsb-da-statistik", "signal-stats", "statistik"],
+		"body": [
+			"# Calculate signal statistics",
+			"max_val = np.max(x)",
+			"min_val = np.min(x)",
+			"mean_val = np.mean(x)",
+			"std_val = np.std(x)",
+			"",
+			"print(f'Max: {max_val:.6f}')",
+			"print(f'Min: {min_val:.6f}')",
+			"print(f'Mean: {mean_val:.6f}')",
+			"print(f'Std Dev: {std_val:.6f}')"
+		],
+		"description": "Calculate basic signal statistics"
+	},
+
+	"DSB - RMS and Power": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-rms-power", "dsb-da-effekt", "rms", "effekt"],
+		"body": [
+			"# Calculate RMS and signal power",
+			"def rms(signal):",
+			"    return np.sqrt(np.mean(signal**2))",
+			"",
+			"def power(signal):",
+			"    return np.mean(signal**2)",
+			"",
+			"rms_val = rms(x)",
+			"power_val = power(x)",
+			"",
+			"print(f'RMS: {rms_val:.6f}')",
+			"print(f'Power: {power_val:.6f}')"
+		],
+		"description": "Calculate RMS and signal power"
+	},
+
+	"DSB - Comprehensive Signal Analysis": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-full-analysis", "dsb-da-fuld-analyse", "full-analysis", "fuld-analyse"],
+		"body": [
+			"# Comprehensive signal analysis",
+			"x = audio[:, 0]  # Use first channel if stereo",
+			"",
+			"# Statistics",
+			"max_x = np.max(x)",
+			"min_x = np.min(x)",
+			"mean_x = np.mean(x)",
+			"",
+			"# RMS and Power",
+			"def rms(signal):",
+			"    return np.sqrt(np.mean(signal**2))",
+			"",
+			"def power(signal):",
+			"    return np.mean(signal**2)",
+			"",
+			"rms_x = rms(x)",
+			"power_x = power(x)",
+			"",
+			"print(f'Max: {max_x:.6f}')",
+			"print(f'Min: {min_x:.6f}')",
+			"print(f'Mean: {mean_x:.6f}')",
+			"print(f'RMS: {rms_x:.6f}')",
+			"print(f'Power: {power_x:.6f}')"
+		],
+		"description": "Full signal analysis with multiple metrics"
+	},
+
+	// ========================================
+	// FILTERING
+	// ========================================
+
+	"DSB - Low-Pass Filter Design": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-lpf", "dsb-iir", "lpf", "low-pass", "iir-butterworth"],
+		"body": [
+			"from scipy import signal",
+			"",
+			"# Design low-pass filter",
+			"f_c = ${1:1000}  # Cutoff frequency",
+			"f_s = ${2:4000}  # Sampling frequency",
+			"",
+			"# Normalized cutoff frequency",
+			"Wn = 2 * f_c / f_s",
+			"",
+			"# Design filter",
+			"b, a = signal.butter(${3:4}, Wn, btype='low')",
+			"",
+			"# Apply filter",
+			"y = signal.filtfilt(b, a, x)",
+			"",
+			"plt.plot(x, label='Original')",
+			"plt.plot(y, label='Filtered')",
+			"plt.legend()",
+			"plt.show()"
+		],
+		"description": "Design and apply a low-pass Butterworth filter"
+	},
+
+	"DSB - High-Pass Filter": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-hpf", "dsb-iir-high", "hpf", "high-pass", "iir"],
+		"body": [
+			"from scipy import signal",
+			"",
+			"f_c = ${1:500}  # Cutoff frequency",
+			"f_s = ${2:4000}",
+			"Wn = 2 * f_c / f_s",
+			"",
+			"b, a = signal.butter(${3:4}, Wn, btype='high')",
+			"y = signal.filtfilt(b, a, x)",
+			"",
+			"plt.plot(x, label='Original')",
+			"plt.plot(y, label='Filtered')",
+			"plt.legend()",
+			"plt.show()"
+		],
+		"description": "Design and apply a high-pass filter"
+	},
+
+	"DSB - Band-Pass Filter": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-bpf", "dsb-bandpass", "bpf", "band-pass", "bandpass"],
+		"body": [
+			"from scipy import signal",
+			"",
+			"f_low = ${1:500}",
+			"f_high = ${2:2000}",
+			"f_s = ${3:4000}",
+			"",
+			"Wn = [2*f_low/f_s, 2*f_high/f_s]",
+			"",
+			"b, a = signal.butter(${4:4}, Wn, btype='band')",
+			"y = signal.filtfilt(b, a, x)",
+			"",
+			"plt.plot(y)",
+			"plt.show()"
+		],
+		"description": "Design and apply a band-pass filter"
+	},
+
+	// ========================================
+	// CONVOLUTION AND CORRELATION
+	// ========================================
+
+	"DSB - Convolution": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-convolve", "dsb-conv", "convolve", "convolution", "fir"],
+		"body": [
+			"# Convolution of two signals",
+			"x = ${1:signal_1}",
+			"h = ${2:signal_2}",
+			"",
+			"y = np.convolve(x, h, mode='same')",
+			"",
+			"plt.plot(y)",
+			"plt.title('Convolution')",
+			"plt.show()"
+		],
+		"description": "Perform convolution between two signals"
+	},
+
+	"DSB - Cross Correlation": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-xcorr", "dsb-corr", "xcorr", "cross-correlation", "correlation"],
+		"body": [
+			"# Cross correlation",
+			"x = ${1:signal_1}",
+			"y = ${2:signal_2}",
+			"",
+			"# Compute cross correlation",
+			"correlation = np.correlate(x, y, mode='full')",
+			"lags = np.arange(-len(x)+1, len(y))",
+			"",
+			"plt.plot(lags, correlation)",
+			"plt.xlabel('Lag')",
+			"plt.ylabel('Correlation')",
+			"plt.show()"
+		],
+		"description": "Compute cross-correlation between two signals"
+	},
+
+	// ========================================
+	// WINDOWING
+	// ========================================
+
+	"DSB - Apply Window": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-window", "dsb-da-vindue", "window", "vindue", "windowing"],
+		"body": [
+			"# Apply window function",
+			"N = len(x)",
+			"window_type = '${1:hann}'  # hann, hamming, blackman, etc.",
+			"",
+			"window = signal.get_window(window_type, N)",
+			"",
+			"x_windowed = x * window",
+			"",
+			"plt.plot(x, label='Original')",
+			"plt.plot(x_windowed, label='Windowed')",
+			"plt.legend()",
+			"plt.show()"
+		],
+		"description": "Apply window function to reduce spectral leakage"
+	},
+
+	// ========================================
+	// SIGNAL COMPARISON
+	// ========================================
+
+	"DSB - Compare Signals": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-compare", "dsb-da-sammenlign", "compare", "sammenlign"],
+		"body": [
+			"# Compare two signals",
+			"fig, axes = plt.subplots(3, 1, figsize=(10, 8))",
+			"",
+			"# Time domain",
+			"axes[0].plot(t, x1, label='Signal 1')",
+			"axes[0].plot(t, x2, label='Signal 2')",
+			"axes[0].set_title('Time Domain')",
+			"axes[0].legend()",
+			"",
+			"# Frequency domain",
+			"X1 = np.fft.fft(x1)",
+			"X2 = np.fft.fft(x2)",
+			"freqs = np.fft.fftfreq(len(x1), T_s)",
+			"",
+			"axes[1].plot(freqs[:len(freqs)//2], 20*np.log10(np.abs(X1[:len(X1)//2])))",
+			"axes[1].plot(freqs[:len(freqs)//2], 20*np.log10(np.abs(X2[:len(X2)//2])))",
+			"axes[1].set_title('Frequency Domain (dB)')",
+			"axes[1].set_xlabel('Frequency (Hz)')",
+			"",
+			"# Difference",
+			"axes[2].plot(x1 - x2)",
+			"axes[2].set_title('Difference')",
+			"",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Compare two signals in time and frequency domains"
+	},
+
+	// ========================================
+	// SAMPLING AND DOWNSAMPLING
+	// ========================================
+
+	"DSB - Downsample": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-downsample", "dsb-da-nedsampling", "downsample", "nedsampling", "decimation"],
+		"body": [
+			"# Downsample signal",
+			"factor = ${1:2}  # Downsample by factor",
+			"",
+			"x_down = x[::factor]",
+			"t_down = t[::factor]",
+			"f_s_new = f_s / factor",
+			"",
+			"plt.plot(t, x, label='Original')",
+			"plt.step(t_down, x_down, label=f'Downsampled {factor}x')",
+			"plt.legend()",
+			"plt.show()"
+		],
+		"description": "Downsample a signal"
+	},
+
+	"DSB - Upsample": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-upsample", "dsb-da-opsampling", "upsample", "opsampling", "interpolation"],
+		"body": [
+			"# Upsample signal",
+			"factor = ${1:2}",
+			"",
+			"x_up = np.zeros(len(x) * factor)",
+			"x_up[::factor] = x",
+			"",
+			"t_up = np.arange(len(x_up)) * (T_s / factor)",
+			"",
+			"plt.plot(t, x, label='Original')",
+			"plt.plot(t_up, x_up, label=f'Upsampled {factor}x')",
+			"plt.legend()",
+			"plt.show()"
+		],
+		"description": "Upsample a signal"
+	},
+
+	// ========================================
+	// UTILITY FUNCTIONS
+	// ========================================
+
+	"DSB - Plot Audio Function": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-plot-audio-func", "dsb-da-plot-funk", "plot-audio-func", "plot-funk"],
+		"body": [
+			"def plot_audio(title, t, audio_data):",
+			"    \"\"\"Plot audio signal with proper labels\"\"\"",
+			"    plt.figure()",
+			"    plt.plot(t, audio_data)",
+			"    plt.xlabel('Time (s)')",
+			"    plt.ylabel('Amplitude')",
+			"    plt.title(title)",
+			"    plt.grid(True)",
+			"    plt.show()",
+			"",
+			"# Usage:",
+			"# plot_audio('My Signal', t, x)"
+		],
+		"description": "Reusable audio plotting function"
+	},
+
+	"DSB - Create Signal Function": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-create-signal-func", "dsb-da-gen-signal", "create-signal-func", "gen-signal-func"],
+		"body": [
+			"def create_sine(frequency, amplitude=1.0, phase=0, dc_offset=0, duration=1.0, fs=4000):",
+			"    \"\"\"Generate a sine wave signal\"\"\"",
+			"    t = np.linspace(0, duration, int(fs * duration))",
+			"    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) + dc_offset",
+			"    return t, x",
+			"",
+			"# Usage:",
+			"# t, x = create_sine(frequency=500, amplitude=2.5, phase=np.pi/3, dc_offset=1)"
+		],
+		"description": "Reusable sine wave generator function"
+	},
+
+	"DSB - Signal Analysis Function": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-analyze-signal-func", "dsb-da-analyse-funk", "analyze-signal-func", "analyse-funk"],
+		"body": [
+			"def analyze_signal(x):",
+			"    \"\"\"Comprehensive signal analysis\"\"\"",
+			"    stats = {",
+			"        'max': np.max(x),",
+			"        'min': np.min(x),",
+			"        'mean': np.mean(x),",
+			"        'std': np.std(x),",
+			"        'rms': np.sqrt(np.mean(x**2)),",
+			"        'power': np.mean(x**2)",
+			"    }",
+			"    return stats",
+			"",
+			"# Usage:",
+			"# stats = analyze_signal(x)",
+			"# print(stats)"
+		],
+		"description": "Reusable signal analysis function"
+	},
+
+	// ========================================
+	// INVERSE TRANSFORMS
+	// ========================================
+
+	"DSB - IFFT (Inverse FFT)": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-ifft", "dsb-idft", "ifft", "idft", "inverse-fft"],
+		"body": [
+			"# Inverse FFT - Convert from frequency to time domain",
+			"X = ${1:frequency_spectrum}",
+			"",
+			"# Compute inverse FFT",
+			"x = np.fft.ifft(X)",
+			"",
+			"# Take real part (imaginary part should be near zero due to numerical error)",
+			"x = np.real(x)",
+			"",
+			"print(f'Signal shape: {x.shape}')",
+			"print(f'Max magnitude: {np.max(np.abs(x)):.6f}')"
+		],
+		"description": "Compute inverse FFT (IFFT/IDFT) - frequency to time domain"
+	},
+
+	// ========================================
+	// ADDITIONAL FREQUENCY ANALYSIS
+	// ========================================
+
+	"DSB - Zero Padding FFT": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-zero-pad", "dsb-padding", "zero-pad", "fft-padding"],
+		"body": [
+			"# FFT with zero padding for better frequency resolution",
+			"x = ${1:signal}",
+			"N = len(x)",
+			"N_fft = ${2:2*N}  # Zero pad to 2x original length",
+			"",
+			"# Compute padded FFT",
+			"X = np.fft.fft(x, N_fft)",
+			"freqs = np.fft.fftfreq(N_fft, T_s)",
+			"",
+			"# Higher frequency resolution",
+			"freq_resolution = 1 / (N_fft * T_s)",
+			"print(f'Frequency resolution: {freq_resolution:.2f} Hz')"
+		],
+		"description": "FFT with zero padding for improved frequency resolution"
+	},
+
+	"DSB - Magnitude and Phase": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-mag-phase", "dsb-magnitude-phase", "mag-phase", "magnitude-phase"],
+		"body": [
+			"# Extract magnitude and phase from spectrum",
+			"X = np.fft.fft(x)",
+			"",
+			"# Magnitude spectrum",
+			"magnitude = np.abs(X)",
+			"",
+			"# Phase spectrum",
+			"phase = np.angle(X)  # In radians",
+			"phase_deg = np.rad2deg(phase)  # In degrees",
+			"",
+			"plt.figure(figsize=(12, 4))",
+			"",
+			"plt.subplot(1, 2, 1)",
+			"plt.plot(magnitude[:len(magnitude)//2])",
+			"plt.title('Magnitude Spectrum')",
+			"plt.ylabel('Magnitude')",
+			"",
+			"plt.subplot(1, 2, 2)",
+			"plt.plot(phase_deg[:len(phase_deg)//2])",
+			"plt.title('Phase Spectrum')",
+			"plt.ylabel('Phase (degrees)')",
+			"",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Extract and plot magnitude and phase spectrum"
+	},
+
+	// ========================================
+	// FILTER ANALYSIS
+	// ========================================
+
+	"DSB - Filter Frequency Response": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-filter-response", "dsb-frekvensrespons", "filter-response", "frekvensrespons"],
+		"body": [
+			"# Plot filter frequency response",
+			"from scipy import signal",
+			"",
+			"# Design filter",
+			"b, a = signal.butter(${1:4}, ${2:0.5}, btype='low')",
+			"",
+			"# Compute frequency response",
+			"w, h = signal.freqz(b, a)",
+			"",
+			"plt.figure(figsize=(10, 4))",
+			"",
+			"plt.subplot(1, 2, 1)",
+			"plt.plot(w, 20*np.log10(np.abs(h)))",
+			"plt.title('Magnitude Response')",
+			"plt.ylabel('Magnitude (dB)')",
+			"plt.xlabel('Normalized Frequency')",
+			"plt.grid()",
+			"",
+			"plt.subplot(1, 2, 2)",
+			"plt.plot(w, np.rad2deg(np.angle(h)))",
+			"plt.title('Phase Response')",
+			"plt.ylabel('Phase (degrees)')",
+			"plt.xlabel('Normalized Frequency')",
+			"plt.grid()",
+			"",
+			"plt.tight_layout()",
+			"plt.show()"
+		],
+		"description": "Plot filter magnitude and phase response"
+	},
+
+	"DSB - FIR Filter Design": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-fir", "dsb-fir-design", "fir", "fir-filter"],
+		"body": [
+			"# Design FIR filter (Finite Impulse Response)",
+			"from scipy import signal",
+			"",
+			"f_c = ${1:1000}  # Cutoff frequency",
+			"f_s = ${2:4000}  # Sampling frequency",
+			"N_taps = ${3:51}  # Number of filter taps",
+			"",
+			"# Normalized cutoff frequency",
+			"Wn = 2 * f_c / f_s",
+			"",
+			"# Design FIR filter using windowed sinc",
+			"b = signal.firwin(N_taps, Wn)",
+			"",
+			"# Apply filter",
+			"y = signal.lfilter(b, [1], x)",
+			"",
+			"print(f'Filter order: {N_taps}')",
+			"print(f'Filter coefficients: {b[:5]}...')"
+		],
+		"description": "Design and apply FIR (Finite Impulse Response) filter"
+	},
+
+	// ========================================
+	// TIME-FREQUENCY ANALYSIS
+	// ========================================
+
+	"DSB - Spectrogram": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-spectrogram", "dsb-spectro", "spectrogram", "spectro"],
+		"body": [
+			"# Create spectrogram (time-frequency representation)",
+			"from scipy import signal",
+			"",
+			"f_s = ${1:4000}",
+			"",
+			"# Compute spectrogram",
+			"f, t, Sxx = signal.spectrogram(x, f_s, nperseg=${2:256})",
+			"",
+			"plt.pcolormesh(t, f, 10 * np.log10(Sxx + 1e-10), shading='gouraud')",
+			"plt.ylabel('Frequency (Hz)')",
+			"plt.xlabel('Time (s)')",
+			"plt.title('Spectrogram')",
+			"plt.colorbar(label='Power (dB)')",
+			"plt.show()"
+		],
+		"description": "Compute and display spectrogram for time-frequency analysis"
+	},
+
+	// ========================================
+	// FFT WITH PROPER FREQUENCY AXIS
+	// ========================================
+
+	"DSB - FFT with Frequency Axis": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-fft-freq-axis", "dsb-fft-correct", "fft-freq-axis", "fft-proper"],
+		"body": [
+			"# FFT with CORRECT frequency axis (most important fix!)",
+			"N = len(x)  # Number of samples",
+			"T_s = 1/f_s  # Sampling period",
+			"",
+			"# Compute FFT",
+			"X = np.fft.fft(x)",
+			"",
+			"# Create CORRECT frequency axis (not bin indices!)",
+			"freq = np.fft.fftfreq(N, T_s)",
+			"",
+			"# Plot only positive frequencies",
+			"plt.plot(freq[:N//2], 20*np.log10(np.abs(X[:N//2])))",
+			"plt.xlabel('Frequency (Hz)')",
+			"plt.ylabel('Magnitude (dB)')",
+			"plt.title('Frequency Spectrum')",
+			"plt.xlim(0, f_s/2)",
+			"plt.grid(True)",
+			"plt.show()"
+		],
+		"description": "FFT with proper frequency axis (Hz, not bin indices) - the correct way!"
+	},
+
+	"DSB - FFT Log Frequency Scale": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-fft-log-freq", "dsb-fft-semilogx", "fft-log-freq", "fft-logarithmic"],
+		"body": [
+			"# FFT on logarithmic frequency axis",
+			"N = len(x)",
+			"T_s = 1/f_s",
+			"",
+			"# Compute FFT and frequency axis",
+			"X = np.fft.fft(x)",
+			"freq = np.fft.fftfreq(N, T_s)",
+			"",
+			"# Plot on log frequency scale (positive frequencies only)",
+			"plt.semilogx(freq[:N//2], 20*np.log10(np.abs(X[:N//2])))",
+			"plt.xlabel('Frequency (Hz) - LOG SCALE')",
+			"plt.ylabel('Magnitude (dB)')",
+			"plt.title('Frequency Spectrum (Logarithmic Scale)')",
+			"plt.xlim(1, f_s/2)  # Start at 1 Hz (log(0) is undefined!)",
+			"plt.grid(True, which='both', alpha=0.3)",
+			"plt.show()"
+		],
+		"description": "FFT plotted on logarithmic frequency axis (Hz, not bins)"
+	},
+
+	"DSB - Sine Wave with DC Offset": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-sine-dc", "dsb-sine-offset", "sine-dc", "sine-offset", "dc-offset"],
+		"body": [
+			"# Generate sine wave with DC offset and DC component in spectrum",
+			"f_0 = ${1:400}  # Frequency in Hz",
+			"A = ${2:1.0}  # Amplitude",
+			"DC_offset = ${3:2}  # DC offset voltage",
+			"duration = ${4:0.1}  # Duration in seconds",
+			"f_s = ${5:12000}  # Sampling frequency",
+			"",
+			"t = np.arange(0, duration, 1/f_s)",
+			"x = A * np.sin(2*np.pi*f_0*t) + DC_offset",
+			"",
+			"# FFT",
+			"X = np.fft.fft(x)",
+			"freq = np.fft.fftfreq(len(x), 1/f_s)",
+			"",
+			"# DC component is at freq=0 (bin 0) - very large!",
+			"print(f'DC component magnitude: {np.abs(X[0]):.2f}')",
+			"",
+			"plt.semilogx(freq[:len(freq)//2], 20*np.log10(np.abs(X[:len(X)//2])))",
+			"plt.xlabel('Frequency (Hz)')",
+			"plt.ylabel('Magnitude (dB)')",
+			"plt.xlim(1, f_s/2)",
+			"plt.grid(True, which='both', alpha=0.3)",
+			"plt.show()"
+		],
+		"description": "Sine wave with DC offset - shows DC component at 0 Hz"
+	},
+
+	"DSB - Frequency Resolution Demo": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-freq-resolution", "dsb-resolution-demo", "freq-resolution", "resolution"],
+		"body": [
+			"# Demonstrate frequency resolution vs. signal duration",
+			"f_0 = ${1:400}  # Signal frequency",
+			"f_s = ${2:12000}  # Sampling frequency",
+			"",
+			"# Short signal",
+			"duration_short = ${3:0.1}  # 100 ms",
+			"t_short = np.arange(0, duration_short, 1/f_s)",
+			"x_short = np.sin(2*np.pi*f_0*t_short)",
+			"",
+			"# Long signal",
+			"duration_long = ${4:1.0}  # 1 second",
+			"t_long = np.arange(0, duration_long, 1/f_s)",
+			"x_long = np.sin(2*np.pi*f_0*t_long)",
+			"",
+			"# Frequency resolution = f_s / N",
+			"res_short = f_s / len(x_short)",
+			"res_long = f_s / len(x_long)",
+			"",
+			"print(f'Short signal resolution: {res_short:.2f} Hz/bin')",
+			"print(f'Long signal resolution: {res_long:.2f} Hz/bin')",
+			"print(f'',)",
+			"print(f'Longer signals = better frequency resolution!')"
+		],
+		"description": "Compare frequency resolution: duration affects bin width"
+	},
+
+	"DSB - DFT Manual Calculation": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-dft-manual", "dsb-dft-loop", "dft-manual", "dft-calc"],
+		"body": [
+			"# Manual DFT calculation (for understanding)",
+			"x = ${1:np.array([3, 0, -5, 1])}  # Input signal",
+			"N = len(x)",
+			"",
+			"# DFT formula: X[k] = sum(x[n] * exp(-j*2*pi*k*n/N)) for n=0..N-1",
+			"X = np.zeros(N, dtype=complex)",
+			"W_N = np.exp(-2j * np.pi / N)  # Twiddle factor",
+			"",
+			"for k in range(N):",
+			"    for n in range(N):",
+			"        X[k] += x[n] * W_N**(k*n)",
+			"",
+			"print('Manual DFT:')",
+			"print(X)",
+			"",
+			"# Compare with NumPy",
+			"X_numpy = np.fft.fft(x)",
+			"print('NumPy FFT:')",
+			"print(X_numpy)"
+		],
+		"description": "Manual DFT calculation to understand the algorithm"
+	},
+
+	"DSB - Symmetry in FFT": {
+		"scope": "python,jupyter",
+		"prefix": ["dsb-fft-symmetry", "dsb-real-signal", "fft-symmetry", "real-signal-symmetry"],
+		"body": [
+			"# FFT symmetry for real-valued signals",
+			"# Real signals have conjugate symmetry: X[k] = X*[N-k]",
+			"",
+			"X = np.fft.fft(x)  # x is real-valued",
+			"",
+			"# Check symmetry (should be approximately zero)",
+			"symmetry_error = np.max(np.abs(X - np.conj(X[::-1])))",
+			"print(f'Symmetry error (should be ~0): {symmetry_error:.2e}')",
+			"",
+			"# This is why we only plot positive frequencies",
+			"# (negative frequencies contain no new information for real signals)"
+		],
+		"description": "Demonstrate FFT conjugate symmetry for real-valued signals"
+	}
+}

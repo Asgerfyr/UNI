@@ -1,0 +1,74 @@
+{
+	"Complex Array": {
+		"scope": "python,jupyter",
+		"prefix": "complex-array",
+		"body": "np.array($1, dtype=complex)",
+		"description": "Create a NumPy array with complex dtype"
+	},
+	"Complex Array 2D": {
+		"scope": "python,jupyter",
+		"prefix": "complex-array-2d",
+		"body": "np.array($1, dtype=complex).reshape($2, $3)",
+		"description": "Create a 2D complex array"
+	},
+	"Complex Zeros": {
+		"scope": "python,jupyter",
+		"prefix": "complex-zeros",
+		"body": "np.zeros(($1,), dtype=complex)",
+		"description": "Create array of zeros with complex dtype"
+	},
+	"Complex Ones": {
+		"scope": "python,jupyter",
+		"prefix": "complex-ones",
+		"body": "np.ones(($1,), dtype=complex)",
+		"description": "Create array of ones with complex dtype"
+	},
+	"Complex Empty": {
+		"scope": "python,jupyter",
+		"prefix": "complex-empty",
+		"body": "np.empty(($1,), dtype=complex)",
+		"description": "Create empty array with complex dtype"
+	},
+	"Complex Range": {
+		"scope": "python,jupyter",
+		"prefix": "complex-range",
+		"body": "np.arange($1, $2, $3, dtype=complex)",
+		"description": "Create range array with complex dtype"
+	},
+	"Complex Linspace": {
+		"scope": "python,jupyter",
+		"prefix": "complex-linspace",
+		"body": "np.linspace($1, $2, $3, dtype=complex)",
+		"description": "Create linearly spaced array with complex dtype"
+	},
+	"Real and Imaginary": {
+		"scope": "python,jupyter",
+		"prefix": "real-imag",
+		"body": "real_part = np.real(${1:array})\nimag_part = np.imag(${1:array})",
+		"description": "Extract real and imaginary parts"
+	},
+	"Complex Conjugate": {
+		"scope": "python,jupyter",
+		"prefix": "conj",
+		"body": "np.conj(${1:array})",
+		"description": "Complex conjugate"
+	},
+	"Complex Magnitude": {
+		"scope": "python,jupyter",
+		"prefix": "magnitude",
+		"body": "np.abs(${1:array})",
+		"description": "Magnitude (absolute value) of complex number"
+	},
+	"Complex Phase": {
+		"scope": "python,jupyter",
+		"prefix": "phase",
+		"body": "np.angle(${1:array})",
+		"description": "Phase (argument) of complex number in radians"
+	},
+	"Polar to Rectangular": {
+		"scope": "python,jupyter",
+		"prefix": "polar-to-rect",
+		"body": "${1:magnitude} * np.exp(1j * ${2:phase})",
+		"description": "Convert from polar (magnitude, phase) to rectangular form"
+	}
+}

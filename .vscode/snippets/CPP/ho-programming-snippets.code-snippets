@@ -1,0 +1,647 @@
+{
+  // Higher-Order Programming in C++ - Snippet Collection
+  // Scoped for: C++ and header files
+  // Prefixes: ho-* (higher-order)
+
+  // ============================================================================
+  // 1. FIRST-ORDER & HIGHER-ORDER FUNCTIONS
+  // ============================================================================
+
+  "First-Order Function": {
+    "scope": "cpp,h",
+    "prefix": "ho-first",
+    "body": [
+      "// First-order function - takes data, returns data",
+      "int ${1:square}(int ${2:x}) {",
+      "    return ${2:x} * ${2:x};",
+      "}"
+    ],
+    "description": "First-order function template"
+  },
+
+  "Second-Order Function": {
+    "scope": "cpp,h",
+    "prefix": "ho-second",
+    "body": [
+      "// Second-order function - takes function and data",
+      "int ${1:applyTwice}(int (*${2:func})(int), int ${3:x}) {",
+      "    return ${2:func}(${2:func}(${3:x}));",
+      "}"
+    ],
+    "description": "Second-order function that takes a function as parameter"
+  },
+
+  "Third-Order Function": {
+    "scope": "cpp,h",
+    "prefix": "ho-third",
+    "body": [
+      "// Third-order function - takes a function that takes a function",
+      "int ${1:metaApply}}(",
+      "    int (*${2:funcThatTakesFunc})(int (*)(int)),",
+      "    int (*${3:innerFunc})(int),",
+      "    int ${4:x}) {",
+      "    return ${2:funcThatTakesFunc}}(${3:innerFunc}})(${4:x}});",
+      "}"
+    ],
+    "description": "Third-order function template"
+  },
+
+  // ============================================================================
+  // 2. FUNCTION POINTERS
+  // ============================================================================
+
+  "Function Pointer Declaration": {
+    "scope": "cpp,h",
+    "prefix": "ho-funptr",
+    "body": [
+      "// Function pointer - pointer to a function",
+      "int (*${1:ptr}})(${2:int}) = &${3:square}};"
+    ],
+    "description": "Declare and initialize a function pointer"
+  },
+
+  "Function Pointer Call": {
+    "scope": "cpp,h",
+    "prefix": "ho-funptr-call",
+    "body": [
+      "// Call via function pointer",
+      "int ${1:result}} = ${2:ptr}}(${3:10}});"
+    ],
+    "description": "Call a function through a function pointer"
+  },
+
+  "Function Pointer - Multiple Parameters": {
+    "scope": "cpp,h",
+    "prefix": "ho-funptr-multi",
+    "body": [
+      "// Function pointer with multiple parameters",
+      "int (*${1:ptr}})(${2:int}}, ${3:int}}) = &${4:add}};"
+    ],
+    "description": "Function pointer with multiple parameters"
+  },
+
+  // ============================================================================
+  // 3. STD::FUNCTION
+  // ============================================================================
+
+  "std::function Signature": {
+    "scope": "cpp,h",
+    "prefix": "ho-stdfunc",
+    "body": [
+      "// std::function - type-safe function wrapper",
+      "#include <functional>",
+      "",
+      "int ${1:arith}}(",
+      "    const std::function<int(${2:int}}, ${3:int}})> ${4:the_func}},",
+      "    int ${5:a}},",
+      "    int ${6:b}}) {",
+      "    return ${4:the_func}}(${5:a}}, ${6:b}});",
+      "}"
+    ],
+    "description": "std::function as parameter"
+  },
+
+  "std::function Call": {
+    "scope": "cpp,h",
+    "prefix": "ho-stdfunc-call",
+    "body": [
+      "// Call std::function parameter",
+      "arith(${1:add}}, ${2:10}}, ${3:15}});"
+    ],
+    "description": "Call a function via std::function parameter"
+  },
+
+  // ============================================================================
+  // 4. FUNCTION OBJECTS
+  // ============================================================================
+
+  "Function Object Basic": {
+    "scope": "cpp,h",
+    "prefix": "ho-funcobj",
+    "body": [
+      "// Function object - class implementing operator()",
+      "class ${1:Multiplier}} {",
+      "private:",
+      "    int ${2:factor}};",
+      "public:",
+      "    ${1:Multiplier}}(int ${2:factor}}) : ${2:factor}}(${2:factor}}) {}",
+      "",
+      "    int operator()(int ${3:x}}) const {",
+      "        return ${3:x}} * ${2:factor}};",
+      "    }",
+      "};"
+    ],
+    "description": "Basic function object with operator()"
+  },
+
+  "Function Object with Interface": {
+    "scope": "cpp,h",
+    "prefix": "ho-funcobj-iface",
+    "body": [
+      "// Function object with interface",
+      "class ${1:IArith}} {",
+      "public:",
+      "    virtual ~${1:IArith}}() = default;",
+      "    virtual int operator()(int ${2:a}}, int ${3:b}}) const = 0;",
+      "};",
+      "",
+      "class ${4:Adder}} : public ${1:IArith}} {",
+      "public:",
+      "    int operator()(int ${2:a}}, int ${3:b}}) const override {",
+      "        return ${2:a}} + ${3:b}};",
+      "    }",
+      "};"
+    ],
+    "description": "Function object implementing an interface"
+  },
+
+  // ============================================================================
+  // 5. LAMBDA BASICS
+  // ============================================================================
+
+  "Lambda Basic": {
+    "scope": "cpp,h",
+    "prefix": "ho-lambda",
+    "body": [
+      "// Basic lambda",
+      "auto ${1:lambda}} = [](${2:int ${3:x}}}) {",
+      "    return ${3:x}} * ${3:x}};",
+      "};"
+    ],
+    "description": "Basic lambda expression"
+  },
+
+  "Lambda with Return Type": {
+    "scope": "cpp,h",
+    "prefix": "ho-lambda-ret",
+    "body": [
+      "// Lambda with explicit return type",
+      "auto ${1:lambda}} = [](${2:int ${3:x}}}) -> ${4:int}} {",
+      "    return ${3:x}} * ${3:x}};",
+      "};"
+    ],
+    "description": "Lambda with explicit return type annotation"
+  },
+
+  "Lambda Multiple Parameters": {
+    "scope": "cpp,h",
+    "prefix": "ho-lambda-multi",
+    "body": [
+      "// Lambda with multiple parameters",
+      "auto ${1:lambda}} = [](${2:int ${3:a}}}}, ${4:int ${5:b}}}}) {",
+      "    return ${3:a}} + ${5:b}};",
+      "};"
+    ],
+    "description": "Lambda with multiple parameters"
+  },
+
+  "Lambda Generic Parameters": {
+    "scope": "cpp,h",
+    "prefix": "ho-lambda-generic",
+    "body": [
+      "// Lambda with generic (auto) parameters",
+      "auto ${1:lambda}} = [](auto ${2:a}}, auto ${3:b}}) {",
+      "    return ${2:a}} + ${3:b}};",
+      "};"
+    ],
+    "description": "Lambda with auto/generic parameters"
+  },
+
+  "Lambda Default Parameters": {
+    "scope": "cpp,h",
+    "prefix": "ho-lambda-default",
+    "body": [
+      "// Lambda with default parameter values",
+      "auto ${1:lambda}} = [](int ${2:x}}, uint ${3:max}} = ${4:5}}) {",
+      "    return ${2:x}} < ${3:max}};",
+      "};"
+    ],
+    "description": "Lambda with default parameter values"
+  },
+
+  // ============================================================================
+  // 6. LAMBDA CAPTURE - BY VALUE
+  // ============================================================================
+
+  "Capture by Value": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-val",
+    "body": [
+      "// Capture by value - copies variables into lambda",
+      "int ${1:x}} = ${2:10}};",
+      "int ${3:y}} = ${4:20}};",
+      "auto ${5:lambda}} = [${1:x}}, ${3:y}}]() {",
+      "    return ${1:x}} + ${3:y}};",
+      "};"
+    ],
+    "description": "Capture specific variables by value"
+  },
+
+  "Capture All by Value": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-val-all",
+    "body": [
+      "// Capture all by value - [=]",
+      "int ${1:x}} = ${2:10}};",
+      "int ${3:y}} = ${4:20}};",
+      "auto ${5:lambda}} = [=]() {",
+      "    return ${1:x}} + ${3:y}};",
+      "};"
+    ],
+    "description": "Capture all variables by value with [=]"
+  },
+
+  // ============================================================================
+  // 7. LAMBDA CAPTURE - BY REFERENCE
+  // ============================================================================
+
+  "Capture by Reference": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-ref",
+    "body": [
+      "// Capture by reference - references original variables",
+      "int ${1:x}} = ${2:10}};",
+      "auto ${3:lambda}} = [&${1:x}}]() {",
+      "    ${1:x}} = ${1:x}} + ${4:5}};",
+      "};"
+    ],
+    "description": "Capture variables by reference"
+  },
+
+  "Capture All by Reference": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-ref-all",
+    "body": [
+      "// Capture all by reference - [&]",
+      "int ${1:x}} = ${2:10}};",
+      "int ${3:y}} = ${4:20}};",
+      "auto ${5:lambda}} = [&]() {",
+      "    ${1:x}} = ${1:x}} + ${3:y}};",
+      "};"
+    ],
+    "description": "Capture all variables by reference with [&]"
+  },
+
+  "Mixed Capture": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-mixed",
+    "body": [
+      "// Mixed capture - some by value, some by reference",
+      "int ${1:x}} = ${2:10}};",
+      "int ${3:y}} = ${4:20}};",
+      "auto ${5:lambda}} = [${1:x}}, &${3:y}}]() {",
+      "    ${3:y}} = ${1:x}} + ${3:y}};",
+      "};"
+    ],
+    "description": "Mixed capture: some by value, some by reference"
+  },
+
+  // ============================================================================
+  // 8. LAMBDA CAPTURE - MUTABLE
+  // ============================================================================
+
+  "Mutable Capture": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-mutable",
+    "body": [
+      "// Mutable capture - allows modification of captured values",
+      "int ${1:x}} = ${2:10}};",
+      "auto ${3:lambda}} = [${1:x}}]() mutable {",
+      "    return ++${1:x}};  // modifies lambda's copy, not original",
+      "};"
+    ],
+    "description": "Mutable lambda to modify captured values"
+  },
+
+  // ============================================================================
+  // 9. LAMBDA CAPTURE - SPECIAL
+  // ============================================================================
+
+  "Capture with Rename": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-rename",
+    "body": [
+      "// Capture with rename",
+      "int ${1:original_x}} = ${2:10}};",
+      "auto ${3:lambda}} = [${4:new_name}} = ${1:original_x}}]() {",
+      "    return ${4:new_name}} * ${5:2}};",
+      "};"
+    ],
+    "description": "Capture variable with a new name"
+  },
+
+  "Capture with Initialization": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-init",
+    "body": [
+      "// Capture with initialization",
+      "auto ${1:lambda}} = [${2:VarA}} = ${3:x}}, ${4:VarB}} = ${5:31}}]() {",
+      "    return ${2:VarA}} + ${4:VarB}};",
+      "};"
+    ],
+    "description": "Capture with initialization of new variables"
+  },
+
+  "Capture with std::move": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-move",
+    "body": [
+      "// Capture with std::move",
+      "std::string ${1:s}} = ${2:\"hello\"}};",
+      "auto ${3:lambda}} = [${4:moved_s}} = std::move(${1:s}})]() {",
+      "    return ${4:moved_s}};",
+      "};"
+    ],
+    "description": "Capture with move semantics"
+  },
+
+  // ============================================================================
+  // 10. LAMBDA CAPTURE - THIS
+  // ============================================================================
+
+  "Capture This": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-this",
+    "body": [
+      "// Capture this - access object members",
+      "class ${1:MyClass}} {",
+      "private:",
+      "    int ${2:member_var}};",
+      "public:",
+      "    auto ${3:getLambda}}() {",
+      "        return [this]() {",
+      "            return ${2:member_var}};",
+      "        };",
+      "    }",
+      "};"
+    ],
+    "description": "Capture this pointer to access class members"
+  },
+
+  "Capture This Copy": {
+    "scope": "cpp,h",
+    "prefix": "ho-cap-this-copy",
+    "body": [
+      "// Capture *this - copy of object",
+      "class ${1:MyClass}} {",
+      "private:",
+      "    int ${2:member_var}};",
+      "public:",
+      "    auto ${3:getLambda}}() {",
+      "        return [*this]() {",
+      "            return ${2:member_var}};",
+      "        };",
+      "    }",
+      "};"
+    ],
+    "description": "Capture *this - copy of entire object"
+  },
+
+  // ============================================================================
+  // 11. CLOSURES
+  // ============================================================================
+
+  "Simple Closure": {
+    "scope": "cpp,h",
+    "prefix": "ho-closure",
+    "body": [
+      "// Closure - function that remembers its environment",
+      "auto ${1:make_adder}} = [](int ${2:x}}) {",
+      "    return [${2:x}}](int ${3:y}}) {",
+      "        return ${2:x}} + ${3:y}};",
+      "    };",
+      "};",
+      "",
+      "auto ${4:add5}} = ${1:make_adder}}(${5:5}});",
+      "int ${6:result}} = ${4:add5}}(${7:3}});  // 8"
+    ],
+    "description": "Closure - nested lambda capturing outer scope"
+  },
+
+  "Closure with Reference Warning": {
+    "scope": "cpp,h",
+    "prefix": "ho-closure-ref",
+    "body": [
+      "// Closure with reference capture - DANGER: reference lifetime",
+      "auto ${1:make_closure}} = [](int& ${2:x}}) {",
+      "    return [&${2:x}}]() {",
+      "        return ${2:x}} * ${3:2}};  // reference must stay valid!",
+      "    };",
+      "};"
+    ],
+    "description": "Closure with reference capture (watch lifetime!)"
+  },
+
+  // ============================================================================
+  // 12. LAMBDA FACTORY
+  // ============================================================================
+
+  "Lambda Factory Pattern": {
+    "scope": "cpp,h",
+    "prefix": "ho-factory",
+    "body": [
+      "// Lambda factory - immediately invoked lambda",
+      "auto ${1:operation}} = [${2:choice}}]() {",
+      "    switch(${2:choice}}) {",
+      "        case ${3:1}}:",
+      "            return [](int ${4:a}}, int ${5:b}}) { return ${4:a}} + ${5:b}}; };",
+      "        case ${6:2}}:",
+      "            return [](int ${4:a}}, int ${5:b}}) { return ${4:a}} * ${5:b}}; };",
+      "        default:",
+      "            return [](int ${4:a}}, int ${5:b}}) { return ${4:a}} - ${5:b}}; };",
+      "    }",
+      "}();  // immediately invoked!"
+    ],
+    "description": "Lambda factory using immediate invocation"
+  },
+
+  // ============================================================================
+  // 13. FUNCTIONAL PROGRAMMING - MAP
+  // ============================================================================
+
+  "Map / Transform": {
+    "scope": "cpp,h",
+    "prefix": "ho-map",
+    "body": [
+      "// Map - apply function to every element",
+      "#include <algorithm>",
+      "",
+      "std::vector<int> ${1:nums}} = {${2:1}}, ${3:2}}, ${4:3}}, ${5:4}}};",
+      "std::vector<int> ${6:squared}}(${1:nums}}.size());",
+      "",
+      "std::transform(${1:nums}}.begin(), ${1:nums}}.end(), ${6:squared}}.begin(),",
+      "    [](int ${7:x}}) { return ${7:x}} * ${7:x}}; });"
+    ],
+    "description": "Map operation using std::transform"
+  },
+
+  // ============================================================================
+  // 14. FUNCTIONAL PROGRAMMING - FILTER
+  // ============================================================================
+
+  "Filter / Copy If": {
+    "scope": "cpp,h",
+    "prefix": "ho-filter",
+    "body": [
+      "// Filter - keep only elements satisfying condition",
+      "#include <algorithm>",
+      "",
+      "std::vector<int> ${1:nums}} = {${2:1}}, ${3:2}}, ${4:3}}, ${5:4}}};",
+      "std::vector<int> ${6:evens}};",
+      "",
+      "std::copy_if(${1:nums}}.begin(), ${1:nums}}.end(), std::back_inserter(${6:evens}}),",
+      "    [](int ${7:n}}) { return ${7:n}} % 2 == 0; });"
+    ],
+    "description": "Filter operation using std::copy_if"
+  },
+
+  // ============================================================================
+  // 15. FUNCTIONAL PROGRAMMING - REDUCE
+  // ============================================================================
+
+  "Reduce / Accumulate": {
+    "scope": "cpp,h",
+    "prefix": "ho-reduce",
+    "body": [
+      "// Reduce - combine elements into single value",
+      "#include <numeric>",
+      "",
+      "std::vector<int> ${1:nums}} = {${2:1}}, ${3:2}}, ${4:3}}, ${5:4}}};",
+      "int ${6:sum}} = std::accumulate(${1:nums}}.begin(), ${1:nums}}.end(), ${7:0}},",
+      "    [](int ${8:acc}}, int ${9:x}}) { return ${8:acc}} + ${9:x}}; });"
+    ],
+    "description": "Reduce operation using std::accumulate"
+  },
+
+  // ============================================================================
+  // 16. FUNCTIONAL PROGRAMMING - FORALL
+  // ============================================================================
+
+  "Forall / All Of": {
+    "scope": "cpp,h",
+    "prefix": "ho-forall",
+    "body": [
+      "// Forall - check if all elements satisfy condition",
+      "#include <algorithm>",
+      "",
+      "std::vector<int> ${1:nums}} = {${2:2}}, ${3:4}}, ${4:6}}};",
+      "bool ${5:all_even}} = std::all_of(${1:nums}}.begin(), ${1:nums}}.end(),",
+      "    [](int ${6:n}}) { return ${6:n}} % 2 == 0; });"
+    ],
+    "description": "Forall operation using std::all_of"
+  },
+
+  // ============================================================================
+  // 17. FUNCTIONAL PROGRAMMING - EXISTS
+  // ============================================================================
+
+  "Exists / Any Of": {
+    "scope": "cpp,h",
+    "prefix": "ho-exists",
+    "body": [
+      "// Exists - check if any element satisfies condition",
+      "#include <algorithm>",
+      "",
+      "std::vector<int> ${1:nums}} = {${2:1}}, ${3:3}}, ${4:5}}, ${5:6}}};",
+      "bool ${6:has_even}} = std::any_of(${1:nums}}.begin(), ${1:nums}}.end(),",
+      "    [](int ${7:n}}) { return ${7:n}} % 2 == 0; });"
+    ],
+    "description": "Exists operation using std::any_of"
+  },
+
+  // ============================================================================
+  // 18. FUNCTION COMPOSITION
+  // ============================================================================
+
+  "Function Composition": {
+    "scope": "cpp,h",
+    "prefix": "ho-compose",
+    "body": [
+      "// Function composition - combine multiple functions",
+      "auto ${1:add1}} = [](int ${2:x}}) { return ${2:x}} + 1; };",
+      "auto ${3:times2}} = [](int ${2:x}}) { return ${2:x}} * 2; };",
+      "",
+      "auto ${4:composed}} = [${1:add1}}, ${3:times2}}](int ${2:x}}) {",
+      "    return ${3:times2}}(${1:add1}}(${2:x}}));",
+      "};"
+    ],
+    "description": "Compose multiple functions into one"
+  },
+
+  // ============================================================================
+  // 19. CURRYING
+  // ============================================================================
+
+  "Currying": {
+    "scope": "cpp,h",
+    "prefix": "ho-curry",
+    "body": [
+      "// Currying - pre-fill function arguments",
+      "auto ${1:add}} = [](int ${2:x}}, int ${3:y}}) { return ${2:x}} + ${3:y}}; };",
+      "",
+      "// Create specialized version with first arg pre-filled",
+      "auto ${4:add5}} = [](int ${3:y}}) {",
+      "    return ${1:add}}(${5:5}}, ${3:y}});",
+      "};",
+      "",
+      "int ${6:result}} = ${4:add5}}(${7:10}});  // equivalent to add(5, 10)"
+    ],
+    "description": "Currying - create specialized function from generic"
+  },
+
+  // ============================================================================
+  // 20. PASSING LAMBDAS TO HIGHER-ORDER FUNCTIONS
+  // ============================================================================
+
+  "Lambda as Higher-Order Function Parameter": {
+    "scope": "cpp,h",
+    "prefix": "ho-lambda-param",
+    "body": [
+      "// Pass lambda to higher-order function",
+      "int ${1:arith}}(const std::function<int(int, int)> ${2:func}}, int ${3:a}}, int ${4:b}}) {",
+      "    return ${2:func}}(${3:a}}, ${4:b}});",
+      "}",
+      "",
+      "// Call with lambda",
+      "int ${5:result}} = ${1:arith}}(",
+      "    [](auto ${6:a}}, auto ${7:b}}) {",
+      "        return ${6:a}} * ${7:b}};",
+      "    },",
+      "    ${8:5}},",
+      "    ${9:10}}",
+      ");"
+    ],
+    "description": "Pass lambda expression to higher-order function"
+  },
+
+  // ============================================================================
+  // 21. COMPLETE EXAMPLE - FUNCTIONAL PIPELINE
+  // ============================================================================
+
+  "Functional Pipeline": {
+    "scope": "cpp,h",
+    "prefix": "ho-pipeline",
+    "body": [
+      "// Functional programming pipeline",
+      "#include <vector>",
+      "#include <algorithm>",
+      "#include <numeric>",
+      "",
+      "std::vector<int> ${1:nums}} = {${2:1}}, ${3:2}}, ${4:3}}, ${5:4}}, ${6:5}}};",
+      "int ${7:result}} = std::accumulate(",
+      "    // Filter: keep even numbers",
+      "    std::vector<int>([&]() {",
+      "        std::vector<int> ${8:filtered}};",
+      "        std::copy_if(${1:nums}}.begin(), ${1:nums}}.end(), std::back_inserter(${8:filtered}}),",
+      "            [](int ${9:n}}) { return ${9:n}} % 2 == 0; });",
+      "        return ${8:filtered}};",
+      "    }()).begin(),",
+      "    // Map: multiply by 10",
+      "    std::vector<int>().end(),",
+      "    0,",
+      "    [](int ${10:acc}}, int ${9:n}}) { return ${10:acc}} + (${9:n}} * 10); }",
+      ");  // Result: sum of (even numbers * 10)"
+    ],
+    "description": "Complete functional pipeline example"
+  }
+}
