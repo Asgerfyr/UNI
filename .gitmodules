@@ -1,3 +1,11 @@
 [submodule "3. semester/Systemprogrammering/raspberrypi"]
 	path = 3. semester/Systemprogrammering/raspberrypi
 	url = https://github.com/Asgerfyr/UNI-3-raspberry-pi
+
+[submodule "3. semester/Systemprogrammering/handins/3-sem-sys-1"]
+	path = 3. semester/Systemprogrammering/handins/3-sem-sys-1
+	url = https://gitlab.au.dk/au798909/3-sem-sys-1
+
+[submodule "3. semester/knp/handins/knp-git"]
+	path = 3. semester/knp/handins/knp-git
+	url = https://gitlab.au.dk/au791434/knp-git
