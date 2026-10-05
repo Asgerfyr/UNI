@@ -1,0 +1,3 @@
+[submodule "3. semester/Systemprogrammering/raspberrypi"]
+	path = 3. semester/Systemprogrammering/raspberrypi
+	url = https://github.com/Asgerfyr/UNI-3-raspberry-pi
