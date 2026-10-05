@@ -1,0 +1,352 @@
+% !TeX program = pdflatex
+\documentclass[12pt,a4paper]{article}
+
+% Encoding & sprog
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[danish]{babel}
+
+% Sideopsætning
+\usepackage{geometry}
+
+
+% Grafik
+\usepackage{graphicx}
+
+% Header/footer
+\usepackage{graphicx} % i preamble
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{pgf}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{blkarray}
+\usepackage{qtree}
+\usepackage{amsfonts}
+\usepackage[shortlabels]{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{stmaryrd}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{minted}
+\usepackage{xcolor} % to access the named colour LightGray
+\definecolor{LightGray}{gray}{0.9}
+
+\setminted[python]{ %minted design :3
+  frame=lines,
+  framesep=2mm,
+  baselinestretch=0.5,
+  bgcolor=LightGray,
+  fontsize=\footnotesize,
+  linenos
+}
+
+
+
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\geometry{top=3.5cm, bottom=3cm, left=3cm, right=3cm, headheight=2.5cm}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\includegraphics[width=10cm]{Logo/aulogo.png}\\}
+\chead{\raisebox{6mm}{Digital Signal Behandling - HandIn 2}}
+\rhead{\raisebox{6mm}{13/10/2026}}
+\rfoot{Side \thepage\ af \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+
+% Hyperref (indlæses altid sidst)
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+
+% ----------- FORSIDE -----------
+\pagenumbering{gobble}
+\pagestyle{empty}
+\begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+
+    {\Large \textsc{Aarhus University}} \\
+    \vspace{2.5cm}
+
+    {\Huge \textbf{Frekvensanalysesystem baseret
+på Diskret Fourier Transformation}} \\
+    \vspace{0.5cm}
+
+    {\Large 13/10/2026} \\
+    \vspace{2cm}
+
+    {\large \textit{Group X}} \\
+    \vspace{0.2cm}
+
+    {\large Yusuf \textsc{Cakir} - AU-ID.: AU802700} \\
+    {\large Firstname \textsc{Lastname} - AU-ID.: XXXXXXXX}\\
+    {\large Asger Grundtdal \textsc{Stidsen} - AU-ID.: AU798909}
+    \\
+
+    \vspace{2cm}
+
+    {\large \textit{Instructors}} \\
+    {\large Lars \textsc{G. Johansen}} \\
+
+
+    \vfill
+
+    \includegraphics[width=0.45\textwidth]{Logo/aulogoblue.png}
+
+\end{titlepage}
+\setcounter{page}{1}
+%AUTO indholdfortegnelse
+\tableofcontents
+
+% ----------- INDHOLD -----------
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\pagestyle{fancy}
+
+
+
+\section*{Exercise 1} %1
+De første 10 sekunder af begge støjsignaler analyseres.
+For et samplet signal med samplingsfrekvens \(f_s\) er samplingstiden:
+\[
+f_s = \frac{1}{T_s}
+\]
+Tidsaksen dannes som:
+\[
+t[n]=\frac{n}{f_s}
+\]
+hvor:
+\[
+n=0,1,\ldots,N-1
+\]
+Begge lydfiler har:
+\[
+f_s=48.000\text{ Hz}
+\]
+For et signal på 10 sekunder bliver antallet af samples:
+\[
+N=T\cdot f_s
+\]
+\[
+N=10\cdot48.000
+\]
+\[
+N=480.000
+\]
+
+
+\section*{Exercise 2} %2
+
+\section*{Exercise 3} %3
+
+\section*{Exercise 4} %4
+
+\code[py]{}{code:e4-}
+\begin{lstlisting}
+
+
+\end{lstlisting}
+
+
+\section*{Exercise 5} %5
+
+\section*{Exercise 6} %6
+
+\section*{Exercise 7} %7
+ 
+\section*{Exercise 4.13}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Ekstraopgave/13.png}
+    \caption{Enter Caption}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{minted}{python}
+fs = 2000
+required_df = 0.5
+
+N_min = fs / required_df
+N_fft = 2**np.ceil(np.log2(N_min))   # FFT kræver N som potens af 2
+df_actual = fs / N_fft
+
+print("Minimum N:", N_min)
+print("N (potens af 2):", int(N_fft))
+print("Reel frekvensopløsning:", df_actual, "Hz")
+\end{minted}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{l r}
+\hline
+\textbf{Størrelse} & \textbf{Værdi} \\
+\hline
+Minimum $N$ & 4000.0 \\
+$N$ (potens af 2) & 4096 \\
+Reel frekvensopløsning & 0.48828125 Hz \\
+\hline
+\end{tabular}
+\caption{Bestemmelse af antal datapunkter og reel frekvensopløsning}
+\end{table}
+ 
+\section*{Exercise 4.17}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Ekstraopgave/image17.png}
+    \caption{Enter Caption}
+    \label{fig:placeholder}
+\end{figure}
+
+
+\begin{minted}{python}
+N = 10
+n = np.arange(N)
+
+# A) Hamming window
+w_ham = 0.54 - 0.46*np.cos(2*np.pi*n/(N-1))
+
+# B) Hanning window
+w_han = 0.5 - 0.5*np.cos(2*np.pi*n/(N-1))
+
+print("A) Hamming:", np.round(w_ham, 4))
+print("B) Hanning:", np.round(w_han, 4))
+\end{minted}
+
+
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{c|cccccccccc}
+\hline
+$n$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+A) Hamming & 0.08 & 0.1876 & 0.4601 & 0.77 & 0.9723 & 0.9723 & 0.77 & 0.4601 & 0.1876 & 0.08 \\
+B) Hanning & 0 & 0.117 & 0.4132 & 0.75 & 0.9698 & 0.9698 & 0.75 & 0.4132 & 0.117 & 0 \\
+\hline
+\end{tabular}%
+}
+\caption{Hamming- og Hanning-vinduesfunktioner for $N=10$}
+\end{table}
+
+ 
+\section*{Exercise 4.18}
+ 
+ \begin{figure}[H]
+     \centering
+     \includegraphics[width=1\linewidth]{Ekstraopgave/image2.png}
+     \caption{Enter Caption}
+     \label{fig:placeholder}
+ \end{figure}
+
+\begin{minted}{python}
+
+x = np.array([0, 0.2, 0, -0.2, 0, 0.2])
+N = 6
+n = np.arange(N)
+
+# A) Triangular window
+w_tri = 1 - np.abs((n - (N-1)/2) / ((N-1)/2))
+xw_tri = x * w_tri
+
+# B) Hamming window
+w_ham = 0.54 - 0.46*np.cos(2*np.pi*n/(N-1))
+xw_ham = x * w_ham
+
+# C) Hanning window
+w_han = 0.5 - 0.5*np.cos(2*np.pi*n/(N-1))
+xw_han = x * w_han
+
+print("A) Triangular:")
+print("  w(n)  =", np.round(w_tri, 4))
+print("  xw(n) =", np.round(xw_tri, 4))
+
+print("\nB) Hamming:")
+print("  w(n)  =", np.round(w_ham, 4))
+print("  xw(n) =", np.round(xw_ham, 4))
+
+print("\nC) Hanning:")
+print("  w(n)  =", np.round(w_han, 4))
+print("  xw(n) =", np.round(xw_han, 4))
+
+\end{minted}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|cccccc}
+\hline
+$n$ & 0 & 1 & 2 & 3 & 4 & 5 \\
+\hline
+\multicolumn{7}{l}{\textbf{A) Triangular window}} \\
+\hline
+$w(n)$  & 0 & 0.4 & 0.8 & 0.8 & 0.4 & 0 \\
+$x_w(n)$ & 0 & 0.08 & 0 & $-0.16$ & 0 & 0 \\
+\hline
+\multicolumn{7}{l}{\textbf{B) Hamming window}} \\
+\hline
+$w(n)$  & 0.08 & 0.3979 & 0.9121 & 0.9121 & 0.3979 & 0.08 \\
+$x_w(n)$ & 0 & 0.0796 & 0 & $-0.1824$ & 0 & 0.016 \\
+\hline
+\multicolumn{7}{l}{\textbf{C) Hanning window}} \\
+\hline
+$w(n)$  & 0 & 0.3455 & 0.9045 & 0.9045 & 0.3455 & 0 \\
+$x_w(n)$ & 0 & 0.0691 & 0 & $-0.1809$ & 0 & 0 \\
+\hline
+\end{tabular}
+\caption{Vindues- og vinduede sekvenser for $N=6$}
+\end{table}
+ 
+ \section*{Exercise 4.20}
+
+\begin{figure}[H]
+     \centering
+     \includegraphics[width=1\linewidth]{Ekstraopgave/image.png}
+     \caption{Enter Caption}
+     \label{fig:placeholder}
+ \end{figure}
+
+ \begin{minted}{python}
+
+fs = 8000   # samplingsfrekvens
+f0 = 2000   # signalfrekvens
+
+# A
+N = 100
+df = fs / N
+ratio = f0 / df
+leakage = "Nej" if ratio == int(ratio) else "Ja"
+print(f"A) N = {N}: Δf = {df:.4f} Hz, f0/Δf = {ratio:.4f}, Lækage: {leakage}")
+
+# B
+N = 73
+df = fs / N
+ratio = f0 / df
+leakage = "Nej" if ratio == int(ratio) else "Ja"
+print(f"B) N = {N}: Δf = {df:.4f} Hz, f0/Δf = {ratio:.4f}, Lækage: {leakage}")
+\end{minted}
+
+
+A) N = 100 -> ingen lækage
+$\Delta$f = fs/N = 8000/100 = 80 Hz
+f0/$\Delta$f = 2000/80 = 25 (heltal)
+
+Da forholdet er et heltal, rammer signalfrekvensen 2000 Hz præcis på et DFT-bin. Signalet indeholder et helt antal perioder inden for de 100 samples, så der opstår ingen diskontinuitet i vinduet, energien samles i ét enkelt bin.
+
+B) N = 73 -> spektral lækage
+$\Delta$f = fs/N = 8000/73 = 109.59 Hz
+f0/$\Delta$f = 2000/109.59 = 18.25 (ikke heltal)
+
+Da forholdet ikke er et heltal, rammer 2000 Hz mellem to bins. Signalet indeholder ikke et helt antal perioder inden for de 73 samples, hvilket giver en diskontinuitet, når DFT'en behandler segmentet som periodisk gentaget. Denne diskontinuitet spreder energien ud over flere nabo-bins, det er det, der kaldes spektral lækage.
+
+\end{document}
